@@ -1,0 +1,335 @@
+\chapter{Cohomologia de Galois}
+O Capítulo 3 está destinado ao estudo da cohomologia galoisiana \cite[\textsection 5]{chr}. Os resultados são desenvolvidos na seção \ref{sec:cohomgal} deste capítulo, apresentando a generalização de dois resultados importantes: o Teorema 90 de Hilbert e o isomorfismo entre o grupo de Brauer e o segundo grupo de cohomologia. \par 
+Na primeira seção, temos a construção do grupo de Brauer para anéis comutativos, apresentada inicialmente por \citeauthor{brauer} em \cite{brauer}. Esta construção é bastante sucinta, com objetivo de compreender os resultados apresentados na segunda seção acerca do grupo de Brauer.
+
+\section{Grupo de Brauer} \label{sec:brauer} % POR QUE GRUPO DE BRAUER
+O grupo de Brauer é inicialmente definido sobre corpos. Ele consiste de classes de equivalência de álgebras simples centrais de dimensão finita. O Teorema de Wedderburn, enunciado a seguir, permite definir uma relação de equivalência entre as álgebras $A_1, A_2$ com base nas álgebras de divisão $D_1,D_2$. \par
+Sejam $R$ um anel comutativo com unidade e $A$ uma $R$-álgebra, não necessariamente comutativa. Denotamos por $C(A)$ o centro de $A$, definido por $C(A) = \{x \in A \mid ax = xa, \forall a \in A \}.$ Se $C(A)=R$, então $A$ é uma $R$-álgebra central. Observe que $\C$ é uma $\R$-álgebra que não é central, pois $C(\C) = \C$, e não $\R$. Por outro lado, o conjunto $\Hq$ dos quatérnios é uma $\R$-álgebra central. \par 
+\begin{teo}[Wedderburn] \label{teo:wedderburn} \cite[Theorem 1]{rapinchuk}
+Sejam $K$ um corpo e $A$ uma $K$-álgebra simples de dimensão finita. Então existe um único $n \in N$ e uma única $K$-álgebra de divisão $D$ (a menos de isomorfismos), tal que \[A \simeq M_n(D).\] Por outro lado, qualquer álgebra da forma $M_n(D)$, onde $D$ é uma álgebra de divisão, é simples.
+\end{teo}
+
+Dizemos que duas $K$-álgebras simples centrais $A_1 \simeq M_{n_1}(D_1)$ e $A_2 \simeq M_{n_2} (D_2)$ são similares, denotado por $A_1 \sim A_2$, se $D_1 \simeq D_2$. Claramente, $\sim$ é uma relação de equivalência. Dada uma $K$-álgebra simples central de dimensão finita $A$, denotamos a classe de equivalência de $A$ por $[A]$, e o grupo de Brauer $Br(K)$ é a coleção destas classes, com produto definido por \[[A][B] = [A\otimes_K B].\]
+Para verificar que $Br(K)$ é de fato um grupo abeliano, utiliza-se as propriedades do produto tensorial, que garantem que o produto definido acima é associativo e comutativo. Além disso, mostra-se que a operação está bem-definida, possui elemento neutro e que cada elemento não nulo possui inverso -- $[M_n(K)]$ e $[A^o]$, respectivamente. Caso seja interesse do leitor, sugerimos \cite{dis:brauer}. Nesta seção, estamos interessados em detalhar a construção do grupo de Brauer de um anel. \par 
+A construção a seguir, realizada por \citeauthor{brauer}, coincide com o grupo de Brauer $Br(R)$ quando o anel $R$ é um corpo e, por analogia, é nomeado grupo de Brauer do anel $R$, e também denotado por $Br(R)$. \par 
+O grupo de Brauer $Br(R)$ de um anel comutativo $R$ é definido sobre classes de equivalência de $R$-álgebras centrais e separáveis, chamadas $R$-álgebras de Azumaya. Detalharemos a relação de equivalência na sequência do texto. Para definirmos a operação de $Br(R)$, além de determinarmos suas propriedades, vamos seguir a construção apresentada em \cite{brauer}. \par 
+Sejam $\A(R)$ o conjunto das classes de equivalência das $R$-álgebras de Azumaya com respeito a isomorfismo, isto é, uma classe $[S] \in \A(R)$ é formada por $R$-álgebras de Azumaya isomorfas, e $\A_0(R)$ o subconjunto que consiste das $R$-álgebras da forma $\Hom{R}{E}{E}$, onde $E$ é um $R$-módulo projetivo finitamente gerado e fiel. As proposições a seguir, encontradas em \cite{brauer}, mostram que $\A(R)$ e $\A_0(R)$ são conjuntos fechados com respeito ao produto tensorial. %mostra que é. Prop 5.1. e 1.5.
+\begin{prop}\label{prop:brauer1}
+Sejam $R_1$ e $R_2$ $R$-álgebras comutativas, $A_1$ uma $R_1$-álgebra separável e $A_2$ uma $R_2$-álgebra separável. Então $A_1 \otimes_R A_2$ é igual a $0$ ou é uma $R_1 \otimes_R R_2$-álgebra separável. Além disso o centro de $A_1\otimes_R A_2$ é $C(A_1)\otimes_R C(A_2)$.
+\begin{proof}
+Seja $S = A_1 \otimes_R A_2$, não nula. Então $S^e = S \otimes_{R_1 \otimes R_2}S^o = A_1^e \otimes_R A_2^e$. Pelo Teorema \ref{teo:algsep}, as aplicações $\mu_i: A_i^e \rightarrow A_i$ cindem, e portanto a aplicação $\mu: S^e \rightarrow S$ também cinde. Assim, $S$ é uma $R_1 \otimes R_2$-álgebra separável. Em particular, se $g_i$ é a inversa de $\mu_i$, então $g = g_1 \otimes_R g_2$ é a inversa de $\mu$. Então $C(A_i) = \mu_i(g_i(1)A_i^e)$, logo $C(S)$ é $\mu(g(1)S^e) = C(A_1) \otimes C(A_2)$.
+\end{proof}
+\end{prop}
+Seja $A$ um $R$-módulo. Definimos o anulador de $A$ por $ann(A) = \{x \in R \;|\; xA = 0 \} \subset R$. Observe que o anulador é um ideal de $R$.
+\begin{prop}\cite[Proposition 5.1.]{brauer}\label{prop:brauer2}
+Seja $R$ um anel comutativo.
+\begin{enumerate}
+    \item Se $E$ é um $R$-módulo projetivo finitamente gerado tal que $ann(E) \subset R$, então $\Hom{R}{E}{E}$ é separável sobre $R$ e seu centro é $R/ann(E)$;
+    \item Se $E'$ é outro $R$-módulo projetivo finitamente gerado, então $E\otimes_R E'$ é um $R$-módulo projetivo finitamente gerado e $\Hom{R}{E\otimes E'}{E\otimes E'}\simeq \Hom{R}{E}{E}\otimes_R \Hom{R}{E'}{E'}$.
+    \item Se $E$ e $E'$ são fieis, então $E\otimes E'$ também é fiel.
+\end{enumerate}
+\end{prop}
+Vamos introduzir uma relação de equivalência sobre $\A(R)$, onde $A_1 \sim A_2$ se existem álgebras $\Omega_1, \Omega_2 \in \A_0(R)$ tais que \[A_1 \otimes_R \Omega_1 \simeq A_2 \otimes_R \Omega_2.\]
+
+Pelas Proposições \ref{prop:brauer1} e \ref{prop:brauer2}, temos que a relação de equivalência está bem-definida, e é compatível com a operação de produto tensorial. Assim, podemos considerar o conjunto das classes \[Br(R) = \A(R)/{\sim}.\] Claramente, a classe $[R]$ é o elemento neutro de $Br(R)$. O Teorema a seguir mostra que a classe da álgebra oposta de $A$, $[A^o]$, é o inverso da classe $[A]$. % Teorema 2.1.
+\begin{teo}\cite[Theorem 2.1.]{brauer}
+Se $A$ é uma álgebra sobre $C=C(A)$, então são equivalentes as seguintes afirmações:
+\begin{enumerate}
+    \item $A$ é uma $C$-álgebra separável;
+    \item $A^e \Hom{A^e}{A}{A^e}\simeq A^e$;
+    \item A aplicação $\eta: A^e \rightarrow \Hom{C}{A}{A}$ dada por $\eta(x\otimes y)(z) = xzy$ é um isomorfismo e $A$ é um $C$-módulo projetivo finitamente gerado;
+    \item A aplicação $\eta$ (como acima) é um isomorfismo e $C$ é um somando direto de $A$, enquanto $C$-módulo.
+\end{enumerate}
+\end{teo}
+Assim, como $A$ é um $R$-módulo projetivo finitamente gerado e fiel, temos $[A][A^o] = [A^e] = [\Hom{R}{A}{A}] = [R]$. 
+O Corolário 1.3. de \cite{brauer} afirma que se $A$ é $R$-separável e $I$ é um ideal em $C$, então $IA \cap C(A) = I$, e nos permite mostrar que $A$ é fiel. Tomando o anulador de $A$, $ann(A) \subset C(A)$, temos que $ann(A)A \cap C(A) = ann(A)$. Mas $ann(A) A = 0$, portanto $ann(A) = 0$ e $A$ é fiel. Logo $Br(R)$ é, de fato, um grupo abeliano. \par 
+Retornando ao grupo de Brauer de um corpo, vamos observar extensões de corpos. Seja $L\mid_K$ uma extensão de corpos e $A$ uma $K$-álgebra simples central. Definimos $A_L = A\otimes_K L$. Dizemos que $L$ é um corpo de fatoração para $A$ se $A_L$ e $M_n(L)$ são $L$-álgebras isomorfas. Se $L$ é uma álgebra de fatoração para $A$, então também será para qualquer álgebra similar a $A$. As classes de álgebras que se fatoram sobre uma extensão $L\mid_K$ formam um subgrupo de $Br(K)$ que é chamado grupo de Brauer relativo à extensão $L\mid_K$, denotado por $Br(L/K)$. \par 
+Para verificar que $Br(L/K)$ é de fato um subgrupo de $Br(K)$, precisamos observar que isso segue do fato de que se $A$ é uma $K$-álgebra simples central e $A_L$ é uma $L$-álgebra simples central, então a correspondência $[A] \mapsto [A_L]$ determina uma aplicação $\iota_{L/K}: Br(K) \rightarrow Br(L)$. Além disso, existe um isomorfismo de $L$-álgebras \[(A \otimes_K B) \otimes_K L \simeq (A\otimes_K L)\otimes_L (B\otimes_K L)\] que mostra que $\iota_{L/K}$ é um homomorfismo de grupos. Temos, então, que $Br(L/K)$ é justamente o núcleo de $\iota_{L/K}$. \par 
+Vamos retornar agora ao caso de anéis, e observar as extensões de anéis e as álgebras de Azumaya. Seja $S$ uma $R$-álgebra comutativa. Pela proposição a seguir, a aplicação $A\mapsto S\otimes_R A$ induz uma aplicação de $\A(R)$ em $\A(S)$ que leva $\A_0(R)$ em $\A_0(S)$.
+\begin{prop}\cite[Proposition 5.5.]{brauer}
+Sejam $E$ um $R$-módulo projetivo finitamente gerado e $S$ uma $R$-álgebra comutativa. Então:
+\begin{enumerate}
+    \item $S\otimes_R E$ é um $S$-módulo projetivo finitamente gerado;
+    \item $\Hom{S}{S\otimes_R E}{S\otimes_R E} \simeq S\otimes_R \Hom{R}{E}{E}$;
+    \item Se $E$ é um $R$-módulo fiel, então $S\otimes_R E$ é um $S$-módulo fiel.
+\end{enumerate}
+\end{prop}
+Esta aplicação, que leva $[A]\mapsto [S\otimes_R A]$, induz um homomorfismo de $Br(R)$ em $Br(S)$ para qualquer $R$-álgebra comutativa $S$. Em particular, se $f: R \rightarrow S$ é um homomorfismo de anéis, então podemos ver $S$ como $R$-álgebra e portanto existe um homomorfismo induzido $Br(f): Br(R) \rightarrow Br(S)$. Isso mostra que $Br(\cdot)$ é um funtor covariante da categoria de anéis comutativos para a categoria de grupos abelianos. \par
+Seja $f:R \rightarrow S$ um homomorfismo de anéis comutativos. Então, o núcleo de $Br(f): Br(R) \rightarrow Br(S)$ é formado pelas classes de $R$-álgebras $A$ que satisfazem \[S\otimes_R A \simeq \Hom{S}{M}{M}\] para algum $S$-módulo projetivo finitamente gerado e fiel $M$. Neste caso, $S$ fatora $A$, e o núcleo de $Br(f)$ é denotado $Br(S/R)$, chamado de grupo de Brauer das $R$-álgebras de Azumaya que se fatoram por $S$. \par 
+Vejamos um exemplo de grupo de Brauer. Seja $K$ um corpo algebricamente fechado, e $D$ uma $K$-álgebra de divisão de dimensão finita. Tomemos $d \in D$. Como $D$ tem dimensão finita sobre $K$, os elementos $1, d, d^2, \dots$ são linearmente depentendes, e portanto $d$ satisfaz um polinômio minimal $f \in K[x]$, irredutível sobre $K$; porém, como $K$ é algebricamente fechado, temos que $d \in K$. Assim, $D \subset K$ e portanto, $D=K$. Assim, pelo Teorema de Wedderburn, temos que todas as $K$-álgebras simples centrais são isomorfas a $M_n(K)$, para algum $n \in \N$. Desta forma, temos que o grupo $Br(K)$ é trivial. \par 
+Outro exemplo que podemos ver é o grupo de Brauer do corpo $\R$ dos números reais. Pelo Teorema de Frobenius \cite[Theorem 3.2.3., p.16]{oxford}, temos que as únicas $\R$-álgebras de divisão são $\R$, $\C$ e $\Hq$, e $\C$ não é uma $\R$-álgebra central. Vamos observar o homomorfismo de $\R$-álgebras $\phi: \Hq \rightarrow \Hq^o$ dado por \[\phi(a+bi+cj+dk) = a-bi-cj-dk.\] Claramente, $\phi$ é um isomorfismo. Desta forma, temos que $\Hq \simeq \Hq^o$, e portanto $\Hq \otimes_\R \Hq^o \simeq \Hq \otimes_\R \Hq$. Assim, temos que o único elemento não nulo em $Br(\R)$, a classe $[\Hq]$, satisfaz $[\Hq]^2 = [\R]$. Assim, temos que $Br(\R) = \Z_2$. Em \cite{oxford}, \citeauthor{oxford} desenvolve os requisitos necessários para o estudo do grupo de Brauer de corpos locais, com objetivo de determinar o grupo $Br(\Q)$, a saber \[Br(\Q) = \left\{(a,x) \mid a \in \left\{0, \frac{1}{2}\right\}, x \in  \bigoplus_p \Q/\Z \textrm{ e } a + \sum x_p = 0 \right\}.\]
+
+Seja $S$ um anel e $R$ um subanel de $S$. Dizemos que um elemento $x \in S$ é integral sobre $R$ se existe $a_0,\dots,a_{n-1} \in R$ tais que $x^n + a_{n-1}x^{n-1} + \dots + a_0 =0$, ou seja, $x \in S$ é raiz de um polinômio mônico com coeficientes em $R$ \cite[p.43, Definição 2.1.1]{anelinteiro}. Se $K$ é uma extensão finita de $\Q$, chamamos de anel de inteiros de $K$ ao conjunto dos elementos de $K$ que são integrais sobre $\Z$ \cite[p.66]{anelinteiro}.\par 
+Em \citeyear{integers}, \citeauthor{integers} desenvolveu, utilizando a sequência \eqref{seq:amitsur}, apresentada na seção seguinte, obtida por \citeauthor*{amitsur} em \cite{amitsur}, o teorema a seguir.
+\begin{teo*}\cite[Theorem 5.0]{integers}
+Sejam $K=\Q(\sqrt{m})$ com $m$ um inteiro sem fatores quadráticos e $S$ o anel de inteiros de $K$. Então o grupo de Brauer $Br(S/\Z)$ é trivial quando $m=-3,-1,2,3$ ou $5$.
+\end{teo*}
+
+
+\section{Cohomologia Galoisiana} \label{sec:cohomgal}
+A teoria de cohomologia foi introduzida em uma conferência internacional em Moscou, em 1935. James Alexander e Andrey Kolmogoroff desenvolveram, separados, resultados muito semelhantes. Ambos trouxeram uma operação associativa e anticomutativa nos grupos de cohomologia.
+
+Para compreendermos os resultados que serão apresentados neste capítulo, originalmente apresentados por \citeauthor*{chr} em \cite[\textsection 5]{chr}, vamos precisar saber um pouco mais de cohomologia. Para isso, vamos utilizar a construção apresentada por \citeauthor{dis:cohomologia} em \cite[p.51]{dis:cohomologia}, motivada por \citeauthor{pre:cohomologia} em \cite{pre:cohomologia}.
+
+Sejam $G$ um grupo, $A$ um $G$-módulo, isto é, $A$ é um grupo abeliano (aditivo) com uma ação de $\Z G$, e $n\in \N$. Uma $n$-cocadeia\label{diss:cocadeia} de $G$ sobre $A$ é uma função $f:G^n\rightarrow A$, onde $G^n = G\times \cdots \times G$ se $n>0$, ou um elemento de $A$, se $n=0$. Denotamos por $C^n(G,A)$ o conjunto das $n$-cocadeias de $G$ sobre $A$. Note que $C^n(G,A)$ é um grupo abeliano com a operação de adição.
+
+A partir de uma $n$-cocadeia $f$, definimos o homomorfismo de grupos abelianos $\delta:C^n(G,A)\rightarrow C^{n+1}(G,A)$, chamado cobordo, que determina uma $(n+1)$-cocadeia $\delta f$, definida por 
+\begin{align*}
+    \delta f(\sigma_1,\dots,\sigma_{n+1}) := \sigma_1f(\sigma_2,\dots,\sigma_{n+1}) &+ \sum_{i=1}^{n}(-1)^i f(\sigma_1, \dots, \sigma_i\sigma_{i+1},\dots, \sigma_{n+1}) \\
+    &+ (-1)^n f(\sigma_1, \dots, \sigma_n).
+\end{align*}
+Por exemplo, seja $f$ uma $3$-cocadeia. Então $\delta f$ será a $4$-cocadeia dada por
+\begin{align*}
+    \delta f(\sigma_1, \dots, \sigma_{4})=\sigma_1f(\sigma_2,\sigma_3,\sigma_4)  &- f(\sigma_1\sigma_2,\sigma_3,\sigma_4) \\
+     &+ f(\sigma_1,\sigma_2\sigma_3,\sigma_4) \\
+     &- f(\sigma_1,\sigma_2,\sigma_3\sigma_4) \\
+     &+ f(\sigma_1, \sigma_2,\sigma_3).
+\end{align*}
+
+Temos que $\delta$ é um homomorfismo de $G$-módulos e $\delta\delta f =0$. A demonstração pode ser encontrada em \cite[p.52]{dis:cohomologia}.
+
+Uma sequência de grupos abelianos e homomorfismos \[\cdots \rightarrow G_{i-1} \xrightarrow{f_{i-1}} G_{i} \xrightarrow{f_i} G_{i+1} \rightarrow \cdots\] em que os homomorfismos satisfazem $f_i \circ f_{i-1}=0$ é chamada cocadeia complexa.\par 
+Sejam $Z^n(G,A)=\ker{\delta} \subseteq C^n(G,A)$ e $B^n(G,A)=\delta(C^{n-1}(G,A))$, se $n>0$, e $B^0(G,A)=0$. Chamamos $f\in Z^n(G,A)$ de $n$-cociclo e, para $f' \in C^{n-1}(G,A)$, $\delta f' \in B^n(G,A)$ de $n$-cobordo. \par 
+Como $\delta\delta = 0$ , temos 
+\[B^n(G,A) \subseteq Z^n(G,A) \subset G^n(G,A)\]
+e, como $C^n(G,A)$ é um grupo abeliano, seus subgrupos são normais. Assim, podemos definir o quociente \[H^n(G,A) = \dfrac{Z^n(G,A)}{B^n(G,A)},\] chamado de $n$-ésimo grupo de cohomologia de $G$ sobre $A$. \par
+Os resultados da seção 5 de \cite{chr} são uma generalização de dois grandes resultados da teoria de Galois clássica. O primeiro deles é o Teorema 90 de Hilbert:
+\begin{teo*}[Teorema 90 de Hilbert]
+Seja $L\mid_K$ uma extensão galoisiana de corpos com grupo de Galois $G$, não necessariamente finita, e seja $U(L)$ o grupo multiplicativo de $L$. Então \[H^1\left(G,U(L)\right)=0,\] isto é, o primeiro grupo de cohomologia de $G$ sobre o grupo multiplicativo de $L$ é trivial.
+\end{teo*}
+O outro resultado é referente ao segundo grupo de cohomologia do grupo de Galois, onde se prova que este é isomorfo ao grupo de Brauer. Na seção~\ref{sec:brauer} temos a construção do grupo de Brauer, além de alguns resultados de \citeauthor{brauer} \cite{brauer}. \par 
+Iniciaremos agora o desenvolvimento dos resultados obtidos por \citeauthor*{chr}, a partir da construção realizada por \citeauthor{amitsur2} em \cite{amitsur2}. \par
+Sejam $R$ um anel comutativo, $T$ uma $R$-álgebra comutativa e $T^n$ o produto tensorial de $T$ sobre $R$ com $n$ fatores, representado por $T\otimes_R \cdots \otimes_R T$. Sejam $\varepsilon_i: T^{n+1} \rightarrow T^{n+2}$ os homomorfismos de $R$-álgebras definidos por
+\[\varepsilon_i(t_0\otimes\cdots\otimes t_n) = t_0 \otimes \cdots \otimes t_{i-1}\otimes 1 \otimes t_i \otimes \cdots \otimes t_n\]
+\begin{lemma}
+Sejam $S$ extensão galoisiana de $R$ com grupo de Galois $G$, $E^n$ a $S$-álgebra das funções de $n$ variáveis de $G$ em $S$ e $S^{n+1} = S\otimes \cdots \otimes S$ uma $S$-álgebra, com $S$ agindo no primeiro fator. \par
+Então $h_n: S^{n+1}\rightarrow E^n$ definido por
+\[h_n(s_0 \otimes \dots \otimes s_n)(\sigma_1,\dots,\sigma_n) = s_0\left( \sigma_1(s_1)\right)\left( \sigma_1\sigma_2(s_2)\right) \cdots \left(\sigma_1\cdots\sigma_n(s_n)\right)\] é um isomorfismo de $S$-álgebras.
+\begin{proof}
+Sejam $r \in S$, $s, s' \in S^{n+1}$, $s =s_0 \otimes \cdots \otimes s_n$ e $s'=s_0' \otimes \cdots \otimes s_n'$, e $\sigma = (\sigma_1, \dots, \sigma_n) \in G^n$. Mostremos que $h_n$ é um $S$-homomorfismo: 
+
+\vspace{0.3cm}
+$\begin{array}{rrl}
+    \bullet & r\cdot h_n(s)(\sigma) &= r \left(s_0\cdots \left(\sigma_1\cdots\sigma_n (s_n)\right) \right)\\
+    & &= \left(rs_0\right)\cdots\left(\sigma_1\cdots\sigma_n(s_n)\right) \\
+    & &= h_n(rs_0\otimes\cdots\otimes s_n)(\sigma) \\
+    & &= h_n(r \cdot s)(\sigma)
+\end{array}$
+
+\vspace{0.3cm}
+$\begin{array}{rrl}
+    \bullet & h_n(s)h_n(s')(\sigma) &= \left(s_0\cdots\left(\sigma_1\cdots\sigma_n(s_n)\right)\right)\left(s_0'\cdots\left(\sigma_1\cdots\sigma_n(s_n')\right)\right) \\
+    & &= \left(s_0s_0'\right)\cdots\left( \sigma_1\cdots\sigma_n (s_n s_n')\right) \\
+    & &=h_n(s_0s_0' \otimes\cdots\otimes s_ns_n')(\sigma) \\
+    & &= h_n(s\cdot s')(\sigma)
+\end{array}$
+\vspace{0.3cm}
+
+Além disso, pelo Teorema~\ref{galois}, $h_1$ é um isomorfismo. Suponha agora que $h_{n-1}$ é um isomorfismo. Vamos mostrar que $h_n$ é um isomorfismo, por indução em $n$. \par
+Como $h_{n-1}$ é um isomorfismo, temos que
+\[S^{n+1}\simeq S \otimes S^{n} \simeq S\otimes E^{n-1}\]onde o segundo isomorfismo é dado por $1\otimes h_{n-1}$. Agora, tome a ação de $G$ em $E^n$ dada por\[(\sigma f)(\sigma_1,\dots,\sigma_n) = \sigma\left( f(\sigma^{-1}\sigma_1,\sigma_2,\dots,\sigma_n) \right)\]
+Tomemos $D$ o $S$-módulo livre com geradores $\delta_\sigma$, $\sigma \in G$, como definido na página \pageref{alg:D}. Temos então que $E^n$ é um $D$-módulo, tomando a ação $\delta_\sigma f = \sigma f$. Assim, $\left(E^n\right)^G$ é o conjunto das funções $f \in E^n$ tais que\[\sigma(f(\sigma_1,\dots,\sigma_n)) = f(\sigma\sigma_1,\sigma_2,\dots,\sigma_n).\]
+Defina então $\psi: E^{n-1}\rightarrow (E^n)^G$ por\[(\psi g)(\sigma_1,\dots,\sigma_n) = \sigma_1(g(\sigma_2,\dots,\sigma_n)),\]
+para qualquer $g\in E^{n-1}$. Temos que $\psi$ é um isomorfismo de $R$-álgebras, com inversa
+\[(\psi^{-1}f)(\sigma_2,\dots,\sigma_n)= f(1,\sigma_2, \dots, \sigma_n)\]
+Logo, $1\otimes \psi : S\otimes E^{n-1} \rightarrow S\otimes (E^n)^G$ é um isomorfismo de $S$-álgebras. \par 
+Pelo Teorema~\ref{galois}, $\omega: S\otimes(E^n)^G \rightarrow E^n$, definido por $\omega(s\otimes f) = sf$ é um isomorfismo de $S$-álgebras. Assim, temos
+
+\begin{align*}
+    & \omega(1\otimes \psi)(1\otimes h_{n-1})(s_0 \otimes \cdots \otimes s_n)(\sigma_1,\dots,\sigma_n) \\
+    & = \omega(1\otimes \psi)(s_0 \otimes h_{n-1}(s_1\otimes \cdots \otimes s_n)(\sigma_1,\dots,\sigma_n)) \\
+    & =  \omega \left(s_0 \otimes \sigma_1h_{n-1}(s_1\otimes\cdots\otimes s_n)(\sigma_2,\dots,\sigma_n) \right) \\
+    & = \omega\left(s_0\otimes \sigma_1 \left(s_1 \sigma_2(s_2)\cdots \sigma_2\cdots \sigma_n(s_n) \right) \right) \\
+    & =  s_0 \sigma_1 \left(s_1 \sigma_2(s_2)\cdots (\sigma_2\cdots \sigma_n)(s_n) \right) \\
+    & =  s_0 \sigma_1 (s_1) \cdots (\sigma_1 \cdots \sigma_n) (s_n) \\
+    & =  h_n (s_0 \otimes \cdots \otimes s_n)(\sigma_1, \dots, \sigma_n).
+\end{align*}
+Portanto, $\omega(1\otimes \psi)(1\otimes h_{n-1})=h_n$ é um isomorfismo de $S$-álgebras.
+\end{proof}
+\end{lemma}
+
+Definimos então, com $S$ extensão galoisiana de $R$ com grupo de Galois $G$, e $E^n$ a $S$-álgebra das funções de $n$ variáveis de $G$ em $S$, os homomorfismos de $R$-álgebras $\theta_i: E^n \rightarrow E^{n+1}$, onde
+\begin{align*}
+    (\theta_0 f) (\sigma_1,\dots,\sigma_{n+1})     &=\sigma_1f(\sigma_2,\dots,\sigma_{n+1})\\
+    (\theta_i f) (\sigma_1,\dots,\sigma_{n+1})     &= f(\sigma_1, \dots, \sigma_i\sigma_{i+1},\dots, \sigma_{n+1}),\; (1\leq i \leq n)\\
+    (\theta_{n+1} f) (\sigma_1,\dots,\sigma_{n+1})  &= f(\sigma_1,\dots,\sigma_n)
+\end{align*}
+Vamos mostrar que o diagrama abaixo é comutativo.
+\begin{equation} \label{diag:cohomology}
+\begin{tikzcd}
+S^{n+1} \arrow{d}{\varepsilon_i} \arrow{r}{h_n} & E^n \arrow{d}{\theta_i} \\
+S^{n+2} \arrow{r}{h_{n+1}}                        & E^{n+1}                  
+\end{tikzcd}
+\end{equation}
+Para $i=0$, o resultado de $\theta_0 \circ h_n$ é
+\begin{equation} \label{eq:comA1} \begin{array}{rl}
+    & \theta_0(h_n(s_0\otimes\cdots\otimes s_n))(\sigma_1,\dots,\sigma_{n+1})  \\
+    =& \sigma_1(h_n(s_0\otimes\cdots\otimes s_n)(\sigma_2,\dots,\sigma_{n+1})) \\
+    =& \sigma_1\left(s_0\sigma_2(s_1)\cdots(\sigma_2\cdots\sigma_{n+1})(s_n)\right) \\
+    =& \sigma_1(s_0)\sigma_1\sigma_2(s_1)\cdots(\sigma_1\cdots\sigma_{n+1})(s_n),
+\end{array}\end{equation}
+enquanto para $h_{n+1}\circ \varepsilon_0$ temos
+\begin{equation} \label{eq:comA2} \begin{array}{rl}
+    & h_{n+1}(\varepsilon_0(s_0\otimes\cdots\otimes s_n))(\sigma_1,\dots,\sigma_{n+1}) \\
+    =& h_{n+1}(1\otimes s_0\otimes\cdots\otimes s_n)(\sigma_1,\dots,\sigma_{n+1}) \\
+    =& 1\sigma_1(s_0)\sigma_1\sigma_2(s_1)\cdots(\sigma_1\cdots\sigma_{n+1})(s_n).
+\end{array}\end{equation}
+Assim, pelas equações~\eqref{eq:comA1} e~\eqref{eq:comA2}, temos que o diagrama é comutativo para $i=0$. Para $1\leq i \leq n$ temos
+\begin{equation} \label{eq:comB1} \begin{array}{rl}
+    & \theta_i(h_n(s_0\otimes\cdots\otimes s_n))(\sigma_1,\dots,\sigma_{n+1}) \\
+    =& h_n(s_0\otimes\cdots\otimes s_n)(\sigma_1,\dots,\sigma_{i}\sigma_{i+1},\dots,\sigma_{n+1}) \\
+    =& s_0\cdots(\sigma_1\cdots\sigma_i\sigma_{i+1})(s_i)\cdots(\sigma_1\cdots\sigma_{n+1})(s_n),
+\end{array}\end{equation}
+enquanto pelo outro lado
+\begin{equation} \label{eq:comB2} \begin{array}{rl}
+    & h_{n+1}(\varepsilon_i(s_0\otimes\cdots\otimes s_n))(\sigma_1,\dots,\sigma_{n+1})  \\
+    =& h_{n+1}((s_0\otimes\cdots\otimes1\otimes s_i\otimes \dots \otimes s_n))(\sigma_1,\dots,\sigma_{n+1}) \\
+    =& s_0\cdots (\sigma_1\cdots\sigma_i)(1) (\sigma_1\cdots\sigma_{i+1})(s_i)\cdots(\sigma_1\cdots\sigma_{n+1})(s_n).
+\end{array}\end{equation}
+Logo, pelas equações~\eqref{eq:comB1} e~\eqref{eq:comB2}, temos que o diagrama é comutativo para todo $i \leq n$. Falta apenas verificar para $i=n+1$:
+\begin{equation} \label{eq:comC1} \begin{array}{rl}
+    & \theta_{n+1}(h_n(s_0\otimes\cdots\otimes s_n))(\sigma_1,\dots,\sigma_{n+1}) \\
+    =& h_n(s_0\otimes \cdots\otimes s_n)(\sigma_1,\dots,\sigma_n) \\
+    =& s_0\cdots(\sigma_1\cdots\sigma_n)(s_n)
+\end{array}\end{equation}
+por um lado, e por outro
+\begin{equation} \label{eq:comC2}\begin{array}{rl}
+    & h_{n+1}(\varepsilon_{n+1}(s_0\otimes\cdots\otimes s_n)) \\
+    =& h_{n+1}(s_0\otimes\cdots\otimes s_n \otimes 1)(\sigma_1,\dots,\sigma_{n+1}) \\
+    =& s_0 \cdots(\sigma_1\cdots\sigma_n)(s_n)(\sigma_1\cdots\sigma_{n+1})(1)
+\end{array}\end{equation}
+Assim, como consequência das equações \eqref{eq:comA1}-\eqref{eq:comC2}, segue que o diagrama~\eqref{diag:cohomology} é comutativo. \par 
+Agora, sejam $F$ um funtor covariante da categoria de $R$-álgebras comutativas para a categoria de grupos abelianos e $T$ uma $R$-álgebra comutativa. Definimos uma cocadeia complexa $C(T/R, F)$ por $C^n(T/R, F) = F(T^{n+1})$, com cobordo $\Delta^n: C^n(T/R, F) \rightarrow C^{n+1}(T/R, F)$, dado por $\Delta^n = \sum_{i=0}^{n+1}(-1)^i F(\varepsilon_i)$.
+\[\cdots \xrightarrow{\Delta^{n-2}} F(T^{n}) \xrightarrow{\Delta^{n-1}} F(T^{n+1}) \xrightarrow{\Delta^n} F(T^{n+2}) \cdots\]
+Denotamos por $B^n(T/R, F)$ os $n$-cobordos e por $Z^n(T/R, F)$ os $n$-cociclos desta cocadeia complexa. Então o $n$-ésimo grupo de cohomologia desta cocadeia complexa, denotado por \[H^n(T/R,F):= \dfrac{Z^n(T/R, F)}{B^n(T/R, F)},\] é chamado $n$-ésimo grupo de cohomologia de Amitsur de $T/R$ com valores em $F$. \par 
+Para obtermos o principal resultado da seção 5 de \cite{chr}, uma sequência exata de sete termos que relaciona o segundo grupo de cohomologia de Amitsur e o grupo de Brauer da extensão galoisiana $T$ sobre $R$ com grupo de Galois $G$, iremos derivá-la da sequência exata 
+\begin{equation} \begin{split} \label{seq:amitsur}
+    0 \rightarrow H^1(S/R,U) \rightarrow &P(R) \rightarrow H^0(S/R,P) \rightarrow H^2(S/R,U) \\
+    &\rightarrow Br(S/R) \rightarrow H^1(S/R, P)\rightarrow H^3(S/R, U)
+\end{split} \end{equation}
+apresentada em \cite{amitsur}. Para isso, vamos mostrar que no caso de uma extensão galoisiana $T$ de $R$ com grupo de Galois $G$, temos $H^n(T/R,F) \simeq H^n(G,F(T))$. \par 
+Novamente, seja $F$ um funtor covariante da categoria de $R$-álgebras comutativas para a categoria de grupos abelianos. Se $J$ é um conjunto finito, seja $S_j$ uma $R$-álgebra comutativa, para cada $j\in J$. Assim, as projeções
+\begin{align*}
+    p_i: \bigoplus_{j \in J} S_j \rightarrow S_i
+\end{align*}
+determinam homomorfismos $F(p_i):F\left(\bigoplus_{j\in J} S_j\right)\rightarrow F\left(S_i\right)$, que por sua vez dão origem a um homomorfismo \[\varphi_J: F\left(\bigoplus_{j\in J}S_j\right) \rightarrow \bigoplus_{j\in J} F\left(S_j\right)\] definido por \[(\varphi_J)(x) = \sum_{i \in J}F(p_i)(x)\] para $x \in F\left(\bigoplus_{j\in J}S_j\right)$. Aqui vemos um elemento do produto direto como uma função do conjunto de índices. Dizemos que $F$ é um funtor aditivo se o homomorfismo $\varphi_J$ acima é um isomorfismo, qualquer que seja o conjunto finito $J$. \par 
+Agora, tomemos $S$ extensão galoisiana de $R$ com grupo de Galois $G$ e $F$ um funtor aditivo. Seja $J$ o produto cartesiano $G^n = G\times \cdots \times G$, e $S_j = S$, para todo $j \in J$; além disso, denotemos $\bigoplus_{j\in J}F(S_j)$ por $E_F^n$. \par
+Observe que $E_F^n$ é o conjunto de todas as funções de $n$ variáveis de $G$, que são representadas no índice $j$, em $F(S)$. Dessa forma, são exatamente os grupos $C^n(G, F(S))$, grupo das $n$-cocadeias de $G$ em $F(S)$. \par 
+Escrevendo $\varphi_J$ como $\varphi_n$, obtemos o isomorfismo $\varphi_n: F(E^n) \rightarrow E_F^n$. O homomorfismo de $R$-álgebras $\theta_i: E^n \rightarrow E^{n+1}$ dá origem a um homomorfismo $\theta_{i,F}: E^n_F\rightarrow E_F^{n+1}$ tal que $\varphi_{n+1} F(\theta_i) = \theta_{i,F} \varphi_n$. Além disso, $\theta_{i,F}$ é definido de forma explícita pela fórmula
+\[  (\theta_{i,F}f)(\sigma_1,\dots,\sigma_{n+1}) = \begin{cases} \sigma_1 f(\sigma_2,\dots,\sigma_{n+1}) &\textrm{ para }i=0 \\
+    f(\sigma_1,\dots,\sigma_i\sigma_{i+1},\dots,\sigma_{n+1} ) &\textrm{ para } 1\leq i \leq n \\
+    f(\sigma_1,\dots,\sigma_n) &\textrm{ para }i=n+1
+    \end{cases}\]
+Assim, se definimos $\delta^n: E_F^n \rightarrow E_F^{n+1}$ por $\delta^n = \sum_{i=0}^{n+1} (-1)^i \theta_{i,F}$, temos que os grupos abelianos $E_F^n$, junto com os homomorfismos $\delta^n$, formam a cocadeia complexa $C(G,F(S))$ do grupo $G$ com coeficientes no $G$-módulo $F(S)$, como na construção da página \pageref{diss:cocadeia}:
+\[\cdots \rightarrow E^{n-1}_{F} \xrightarrow{\delta^{n-1}} E^n_{F} \xrightarrow{\delta^n} E^{n+1}_F \rightarrow \cdots\]
+
+\begin{defn}
+Sejam $\mathcal{C} = \left\{ G^i, \delta^{i} \right\}$ e $\mathcal{C}' = \left\{H^i, \Delta^i \right\}$ duas cocadeias complexas. Um homomorfismo de cocadeias complexas $f: \mathcal{C} \rightarrow \mathcal{C}'$ é uma sequência de homomorfismos de grupos $f^n: G^n \rightarrow H^n$ que satisfaz $\Delta^n f^n = f^{n+1} \delta^n$, de forma que o diagrama abaixo é comutativo, para todo $n\geq 0$.
+\begin{center}
+\begin{tikzcd}
+\cdots \arrow{r} & G^n \arrow{r}{\delta^{n}} \arrow{d}{f^n} & G^{n+1} \arrow{r} \arrow{d}{f^{n+1}} & \cdots \\
+\cdots \arrow{r} & H^n \arrow{r}{\Delta^{n}}                  & H^{n+1} \arrow{r}                      & \cdots
+\end{tikzcd}
+\end{center}
+Caso $f^n:G^n \rightarrow H^n$ seja um isomorfismo para todo $n \geq 0$, temos que $f$ é um isomorfismo de cocadeias complexas.
+\end{defn}
+
+\begin{teo} \label{teo:isocohomology}
+Sejam $F$ um funtor aditivo da categoria de $R$-álgebras comutativas para a categoria de grupos abelianos e $S$ extensão galoisiana de $R$ com grupo de Galois $G$. Então $C(S/R,F) \simeq C(G,F(S))$ como cocadeias complexas, e $H^n(S/R,F)\simeq H^n(G,F(S))$, para $n \geq 0$.
+\begin{proof}
+Como $h_n$ são isomorfismos, assim como $\varphi_n$, a demonstração segue dos isomorfismos $h_{n, F}: F (S^{n+1}) \rightarrow E_F^n$ definidos por $h_{n,F} = \varphi_n F(h_n)$. Assim, temos que $\theta_i h_n = h_{n+1} \varepsilon_i$ e pela construção dos parágrafos anteriores, $\theta_{i,F} h_{n,F} = h_{n+1, F}F(\varepsilon_i)$, e portanto $\delta^n h_{n,F} = h_{n+1, F} \Delta^n$, a partir das definições. Lembrando que $E^n_F = C^n(G, F(S))$, temos os isomorfismos.
+\end{proof}
+\end{teo} \par 
+O diagrama a seguir ilustra a construção até aqui. As cocadeias complexas correspondem à primeira e à terceira coluna do diagrama, e a segunda coluna à composição $h_{n,F} = \varphi_n F(h_n)$.
+
+\begin{center}
+    \begin{tikzcd}[row sep=large, column sep=huge, font = \normalsize] % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBGAXVJADcBDAGwFcYkQAxACgGUA9YGADU5AL4BKEKNLpMufIRTkK1Ok1btuAUT5hJ02djwEiAJhU0GLNohA6wAfQ5SZIDEYVEyp1VY23ufkEhUwkXQ3kTJVIfS3UbTi4dYLF9V3dIxWRzWLVrdmThMSdwtzljLLJiX3j2AB062igIHAQDMo8oklIAZhr82wamlrb08s8Uc2q4gZAh5tbSjIqzXv7-OcaFttUYKABzeCJQADMAJwgAWyQyEBwIJGU8je4ACwc9EBpGegAjGEYAAVxlEQGcsPtXjhSucrjcaPckD0Zi8uEN6GcYGhsIwCA4sJJvn8AcDOooQIwYCdoe1YddELdEYhzM8Eu9BKQOKIvhTiUCQeTKdSef8wFAkcRaRd6YyHohkaz6nUACIAnD0XQ8n7-flk9jgyHQmii8WIAC0PUlrjpjwRcoALCiEtwGjhXjB1fjCbydaTMvqIVCYdLbXc5Sy-Al0Wc0K8sB8tXy-StbAagzR3fRTXcAO4QTNQBAI+hYRjsV4QCAAa2DcOZdqQAFYnUq3R76A5gFhOdyib6BQHDbX6Symc3FYM6rBGOrNX2SQPbEKjSATRKpXWFUzHRPEuyimF57r-UuqTTrSH5Q3EOPI+XO0Ue4n+3rU4GV2vzZaN-Sd2OW5ODAxnGD4iL2PoLq+FJnjyBbsDgeYFkWdwlmWtgVtWw5IAAbNeVqnJeW5ygA7D+SAABzXqEF51uOTIAJyiJQohAA
+
+\vdots \arrow{d}[left]{\Delta^{n-1}} & & \vdots \arrow{d}{\delta^{n-1}} \\
+F(S^{n+1}) \arrow{r}{F(h_n)} \arrow{d}{F(\varepsilon_i)} \arrow[bend left]{rr}{h_{n,F}} \arrow[bend right]{d}[left]{\Delta^n} & F(E^n) \arrow{d}{F(\theta_i)} \arrow[two heads, hook]{r}{\varphi_n} & E^n_F \arrow{d}[left]{\theta_{i,F}} \arrow[bend left]{d}{\delta^n} \\
+F(S^{n+2}) \arrow{r}{F(h_{n+1})} \arrow[bend right]{rr}{h_{n+1,F}} \arrow{d}[left]{\Delta^{n+1}} & F(E^{n+1}) \arrow[two heads, hook]{r}{\varphi_{n+1}} & E^{n+1}_F \arrow{d}{\delta^{n-1}} \\
+\vdots & & \vdots  \\
+\end{tikzcd}
+\end{center}
+
+Sejam $A, B$ $R$-álgebras comutativas, e seja $F$ um funtor. A composição dos homomorfismos induzidos pelas projeções $p_A$ e $p_B$ e inclusões $i_A$ e $i_B$ de $A$ e $B$ em $A \oplus B$
+\[F(A\oplus B) \rightarrow F(A)\oplus F(B)\]
+dada por $x \mapsto (F(p_A)(x), F(p_B)(x))$ e \[F(A)\oplus F(B) \rightarrow F(A\oplus B)\] dado por $(x,y) \mapsto F(i_A)(x) + F(i_B)(y)$ para um $x \in F(A\oplus B)$ resulta em
+\[x \mapsto F(i_A)(F(p_A)(x)) + F(i_B)(F(p_B)(x)).\] Disto segue que se  $F(i_A \circ p_A + i_B \circ p_B) \stackrel{*}{=} F(i_A \circ p_A) + F(i_B \circ p_B)$ então
+\begin{align*}
+    &F(i_A)(F(p_A)(x)) + F(i_B)(F(p_B)(x)) \\ &= (F(i_A)\circ F(p_A))(x) + (F(i_B)\circ F(p_B))(x) \\
+    &= F(i_A \circ p_A)(x) + F(i_B \circ p_B)(x) \\
+    &= (F(i_A \circ p_A) + F(i_B \circ p_B))(x) \\
+    &\stackrel{*}{=} F((i_A \circ p_A) + (i_B \circ p_B))(x) \\
+    &= F(\id{A\oplus B})(x) = \id{F(A\oplus B)}(x) = x,
+\end{align*}
+ou seja, a aplicação $x \mapsto (F(p_A)(x), F(p_B)(x))$ é um isomorfismo. Assim, $F(A\oplus B) \simeq F(A)\oplus F(B)$, o que implica que, para um conjunto finito de índices $J$, \[\bigoplus_{j \in J} F(A_j) \simeq F\left(\bigoplus_{j \in J} A_i\right)\] e portanto $F$ é aditivo. Isto nos mostra que para verificar se um funtor $F$ é aditivo, é suficiente verificar a igualdade $F(i_A \circ p_A + i_B \circ p_B) = F(i_A \circ p_A) + F(i_B \circ p_B)$, para quaisquer $A, B$ $R$-álgebras comutativas. \par
+Sejam agora $U$ e $P$ os funtores covariantes da categoria de $R$-álgebras comutativas para a categoria de grupos abelianos definidos a seguir: seja $T$ uma $R$-álgebra comutativa, $U(T)$ é o grupo multiplicativo dos elementos invertíveis de $T$, e $P(T)$ é o grupo de $T$-módulos projetivos finitamente gerados de posto 1. \par
+\begin{lemma}\label{lema323}
+Seguindo as notações acima, o funtor $U$ é aditivo.
+\begin{proof}
+Como um morfismo $f:S\rightarrow T$ na categoria $R$-álgebras comutativas satisfaz $f(s\cdot t) = f(s)\cdot f(t)$, para quaisquer $s,t \in s$, temos que $f|_{U(S)}: U(S) \rightarrow U(T)$ é um morfismo de grupos abelianos. Portanto definimos, dado $f:S\rightarrow T$ um morfismo da categoria de $R$-álgebras comutativas, $U(f) := f|_{U(S)}$. Dessa forma, é claro que \[U(i_S\circ p_S) + U(i_T \circ p_T) = i_S \circ p_S + i_T \circ p_T = U(i_S\circ p_S + i_T \circ p_T).\] Logo, $U$ é um funtor aditivo.
+\end{proof}
+\end{lemma}
+\citeauthor{bourbaki} constrói o grupo abeliano $P(T)$ dos $T$-módulos projetivos finitamente gerados de posto 1 em \cite[II,\textsection 5.4.]{bourbaki}. Este é um grupo abeliano com a operação de produto tensorial, com elemento neutro $\overline{T}$ e, dado $\overline{M} \in P(T)$, o inverso é $\overline{M}^{-1} = \overline{M^*}$, onde $M^* = \Hom{T}{M}{T}$. Vamos mostrar que $P$ é um funtor aditivo.\par
+Sejam $S, T$ $R$-álgebras comutativas. Então, dado um homomorfismo $f: S \rightarrow T$, temos que $T$ é um $S$-módulo (em particular, uma $S$-álgebra) com ação $s\cdot t = f(s)t$. Desta forma, um $S$-módulo $M$ pode ser associado ao $T$-módulo $T\otimes_S M = M_T$, onde $t' (t\otimes m) = t't \otimes m$. Note que a aplicação que leva $M \mapsto M_T$ satisfaz $M_T \otimes_T N_T = (M \otimes_S N)_T$ para quaisquer $S$-módulos $M$, $N$. Desta forma, temos que este é um homomorfismo de grupos entre $P(S)$ e $P(T)$. \par
+\begin{lemma}\label{lema324}
+Seguindo as notações acima, o funtor $P$ é aditivo.
+\begin{proof}
+Para mostar que o funtor $P$ é aditivo, vamos mostrar que \[\varphi: P(S\oplus T) \rightarrow P(S) \oplus P(T)\] dado por $\varphi(M)=P(p_S)(M) + P(p_T)(M)$, onde $p_S:S\oplus T \rightarrow S$ e $p_T:S \oplus T \rightarrow T$ são as projeções canônicas e $P(p_S)(M) = M_S$ (analogamente para $P(p_T)$), é um isomorfismo. Note que, como $p_S$ e $p_T$ são homomorfismos de $S\oplus T$ em $S$ e $T$ respectivamente, $P(p_S)$ e $P(p_T)$ são homomorfismos de grupos abelianos entre $P(S\oplus T)$ e $P(S)$ ou $P(T)$. Assim, 
+\begin{align*}
+    \varphi(M\otimes_{S\oplus T} N) &= P(p_S)(M\otimes_{S\oplus T} N) + (P(p_T)(M\otimes_{S\oplus T} N) \\
+    &= P(p_S)(M)\otimes_{S} P(p_S)(N)) + (P(p_T)(M)\otimes_{T} P(p_T)(N) \\
+    &= P(p_S)(M) + P(p_T)(M)\star P(p_S)(N) + P(p_T)(N) \\
+    &=\varphi(M)\star \varphi(N)
+\end{align*}
+Assim, basta verificar se o homomorfismo $\varphi$ é uma bijeção. Sejam $M \in P(S)$ e $N\in P(T)$. Podemos ver $S$ e $T$ como $S\oplus T$-módulos, com ação dada por $(s + t)s' = ss'$ e $(s+t)t' = tt'$. Da mesma forma para os módulos $M$ e $N$. Vamos mostrar que $\varphi(M\oplus N) = M + N$.
+\begin{align*}
+    \varphi(M\oplus N) &= P(p_S)(M\oplus N) + P(p_T)(M\oplus N) \\
+    &= S\otimes_{S\oplus T}(M\oplus N) + T\otimes_{S\oplus T}(M\oplus N) \\
+    &=\left((S\otimes_{S\oplus T} M) \oplus (S \otimes_{S\oplus T} N)\right) + \left((T\otimes_{S\oplus T} M) \oplus (T \otimes_{S\oplus T} N)\right)
+\end{align*}
+Neste caso, dado qualquer $s\otimes n \in S \otimes_{S\oplus T} N$, que $s\otimes n = 1(s+0) \otimes n = 1 \otimes (s+0) n = 1 \otimes 0 = 0$. De forma semelhante, temos que $T\otimes_{S\oplus T} S = 0$, e obtemos \[\varphi(M\oplus N) = S\otimes_{S\oplus T}M + T\otimes_{S\oplus T} N,\]
+mas $S\otimes_{S\oplus T} M \simeq M$ e $T \otimes_{S\oplus T} N \simeq N$. Portanto, $\varphi(M\oplus N) = M + N$ e este é um epimorfismo. \par 
+Para verificar a injetividade, tomemos dois $S\oplus T$-módulos  $M, N$. Então
+\begin{align*}
+    \varphi(M) &= \varphi(N) \\
+    P(p_S)(M) + P(p_T)(M) &= P(p_S)(N) + P(p_T)(N) \\
+    M_S + M_T &= N_S + N_T
+\end{align*}
+e portanto, $M_S \simeq N_S$ como $S$-módulos, e $M_T \simeq N_T$ como $T$-módulos. Logo, $M \simeq N$ como $S\oplus T$-módulos e $\varphi$ é injetivo.
+\end{proof}
+\end{lemma}
+Assim, obtemos o corolário a seguir, que é o principal resultado de \cite{chr}.
+\begin{corol} \label{corol:seqexata}
+Seja $S$ extensão galoisiana de $R$ com grupo de Galois $G$. Então existe uma sequência exata
+\begin{equation*} \begin{split}
+0 \rightarrow H^1(G,U(S)) \rightarrow P(R) \rightarrow H^0(G,P(S)) \rightarrow H^2(G,U(S)) \\
+\rightarrow Br(S/R) \rightarrow H^1(G,P(S)) \rightarrow H^3(G,U(S))
+\end{split}\end{equation*}
+onde $Br(S/R)$ é o grupo de Brauer das $R$-álgebras de Azumaya fatoradas por $S$.
+\begin{proof}
+A partir do Teorema~\ref{galois}, temos que $S$ é um $R$-módulo projetivo finitamente gerado e, portanto, a sequência~\eqref{seq:amitsur}, a lembrar
+\begin{equation*} \begin{split}
+    0 \rightarrow H^1(S/R,U) \rightarrow &P(R) \rightarrow H^0(S/R,P) \rightarrow H^2(S/R,U) \\
+    &\rightarrow Br(S/R) \rightarrow H^1(S/R, P)\rightarrow H^3(S/R, U)
+\end{split} \end{equation*}
+é exata \cite[Theorem~7.6.]{amitsur}. Ainda, pelos Lemas \ref{lema323} e \ref{lema324}, os funtores $U$ e $P$ são aditivos. Pelo Teorema~\ref{teo:isocohomology}, temos $H^{n}(S/R, U) \simeq H^n(G,U(S))$ e $H^n(S/R, P) \simeq H^n(G,P(S))$. Assim segue o resultado.
+\end{proof}
+\end{corol}
+
+Dois teoremas apresentados por \citeauthor{brauer} em \cite{brauer} são consequências diretas do Corolário \ref{corol:seqexata}, e generalizam o Teorema 90 de Hilbert e o isomorfismo entre o segundo grupo de cohomologia e o grupo de Brauer, resultados já conhecidos para corpos. Mais uma vez, sejam $S$ extensão galoisiana de $R$ com grupo de Galois $G$. Então:
+\begin{corol}\cite[Theorem A.9.]{brauer}
+Se todo $R$-módulo projetivo finitamente gerado de posto 1 é livre, então $H^1(G,U(S)) = 0$.
+\begin{proof}
+Suponha que todo $R$-módulo projetivo finitamente gerado de posto 1 é livre. Logo temos que $P(R)$, o grupo abeliano dos $R$-módulos projetivos finitamente gerados de posto 1, é trivial, pois são todos isomorfos a $R^1$. Portanto a sequência $0 \rightarrow H^1(G,U(S)) \rightarrow 0$ implica que $H^1(G,U(S)) = 0$.
+\end{proof}
+\end{corol}
+\begin{corol}\cite[Theorem A.15.]{brauer}
+Suponha que todo $S$-módulo projetivo finitamente gerado de posto 1 é livre. Então, a sequência \[0 \rightarrow H^2(G,U(S)) \rightarrow Br(R) \rightarrow Br(S)\] é exata.
+\begin{proof}
+Suponha que todo $S$-módulo projetivo finitamente gerado de posto 1 é livre. Logo, temos que $P(S)$ é trivial, pois são todos isomorfos a $S^1$. Portanto, os grupos de cohomologia $H^0(G,P(S))$ e $H^1(G,P(S))$ são triviais e implicam, pelo Corolário \ref{corol:seqexata}, a sequência exata $0 \rightarrow H^2(G,U(S)) \rightarrow Br(S/R) \rightarrow 0$, de onde segue o isomorfismo $H^2(G,U(S)) \simeq Br(S/R)$.\par
+Por outro lado, a sequência \[0 \rightarrow Br(S/R) \hookrightarrow Br(R) \xrightarrow{f} Br(S)\] é exata, uma vez que $Br(S/R)$ é o núcleo da aplicação $f: Br(R) \rightarrow Br(S)$. Logo segue o resultado.
+ 
+\end{proof}
+\end{corol}

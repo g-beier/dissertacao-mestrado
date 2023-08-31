@@ -1,0 +1,138 @@
+\documentclass[12pt]{report}
+\usepackage{amsmath,amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{float}
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[math]{blindtext}
+\usepackage{indentfirst}
+\usepackage{tikz}
+    \usetikzlibrary{cd}
+\usepackage[numbers]{natbib}
+    \setcitestyle{notesep={; }}
+
+
+%------------------------------- Comandos ------------------------------
+\newtheorem{teo}{Teorema}[section]
+\newtheorem*{teo*}{Teorema}
+\newtheorem{lemma}[teo]{Lema}
+\newtheorem{corol}[teo]{Corolário}
+\newtheorem{prop}[teo]{Proposição}
+\newtheorem*{prop*}{Proposição}
+
+\theoremstyle{definition}
+\newtheorem{defn}[teo]{Definição}
+\newtheorem*{exemplo}{Exemplo}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Observação}
+
+
+\newcommand{\p}{\mathcal{P}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\Hom}[3]{\textrm{Hom}_{#1}\left( #2,#3 \right)}
+\newcommand{\id}[1]{\, \textrm{id}_{#1}}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\Gal}[2]{\textrm{Gal}\left({#1}\mid_{#2}\right)}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Hq}{\mathbb{H}}
+
+%=========================================================================
+\linespread{1.2}
+%\allowdisplaybreaks
+
+\tikzcdset{every label/.append style = {font = \small}}
+
+\hyphenation{Galois}
+\hyphenation{Galoisianas}
+
+
+
+\begin{document}
+
+%=========================================================================
+%           Capa, Título e Cabeçalho
+%=========================================================================
+
+\thispagestyle{empty}
+\begin{center} {\large Universidade Federal do Rio Grande do Sul
+\par \vspace{0.2in} Instituto de Matemática e Estatística
+\par \vspace{0.2in} Programa de Pós-Graduação em Matemática}
+\par \vspace*{2.0in} {\Large \bf  Extensões Galoisianas Comutativas}
+\par \vspace*{0.2in} {\Large \bf }
+\par \vspace{1.2in} {\large Dissertação de Mestrado}
+\par \vspace{1.2in} {\large Gustav Beier}
+\par \vfill {\large Porto Alegre, Maio de 2021.}
+\end{center}
+
+\pagenumbering{gobble}
+
+%=========================================================================
+
+{\large \noindent Dissertação submetida por Gustav Eckard Gorniski Beier\footnote{Bolsista do Conselho Nacional de Desenvolvimento Científico e Tecnológico  - CNPq.} como requisito parcial para a obtenção do grau de Mestre em Matemática pelo Programa de Pós-Graduação em Matemática do Instituto de Matemática e Estatística da Universidade Federal do Rio Grande do Sul.
+\par \vspace{1.0in} Professora Orientadora:
+\par \hspace{0.6in} Thaísa Raupp Tamusiunas (PPGMat-UFRGS)
+\par \vspace{1.0in} Banca Examinadora:
+\par \hspace{0.6in} Antonio Paques (PPGMat-UFRGS)
+\par \hspace{0.6in} Bárbara Seelig Pogorelsky (PPGMat-UFRGS)
+\par \hspace{0.6in} Dirceu Bagio (UFSM)
+\thispagestyle{empty}
+\par \vspace{1.0in} Data da Apresentação: 25 de Maio de 2021.}
+%=========================================================================
+%           Agradecimentos, Resumo e outros
+%=========================================================================
+\chapter*{\center Agradecimentos}
+Este trabalho é, no momento, a conclusão de uma grande jornada enquanto Estudante. Estudante enquanto aluno, monitor, pesquisador e até mesmo professor. Por isso, é também motivo de muita gratidão. \par
+% Mãe, Padrinho e Madrinha, família
+Agradeço a minha família, em especial a minha mãe, Laura Felix Gorniski, que sempre me apoia, e também a meu pai, Horst Hans Beier. Sempre que vejo um objeto do dia a dia e me pergunto qual seu volume, me lembro do meu pai e todo o estímulo que recebi na infância para aprender sempre mais. Sei que estaria bastante orgulhoso, embora nunca houvesse esperado diferente. Agradeço a meus irmãos, meu padrinho, minha madrinha, e todos aqueles que acompanharam meu crescimento e minhas conquistas. \par
+% Wesley e Thaísa
+Este é um trabalho bastante especial, e não poderia ter contado com pessoas mais especiais neste período que me dediquei à Álgebra: agradeço de coração à minha orientadora, Thaísa, que esteve sempre disposta a resolver as dúvidas - aquelas que eu tinha, e principalmente as que eu mesmo criava. Ao meu amigo e colega de pesquisa Wesley, que não auxiliou apenas nos pré-requisitos, mas também na revisão e ao longo de todo o trabalho. Sendo meu primeiro contato com a pesquisa em Matemática, vejo o quanto ambos se dedicam e gostam de seu trabalho, e desejo tudo de melhor nas suas carreiras. \par
+% Amigos da Matemática - Duda, Tomás, Alessandra, Vinícius, Iza.
+Ao longo da Licenciatura e do Mestrado, a Matemática me trouxe muitos amigos, e por isso sou muito grato a uma lista enorme de pessoas: Cristian, Tomás, Eduarda, Alessandra, Vinícius, Izabella, além de diversos outros colegas e professores. Dentre estes, destaco o professor Antonio Paques. Apesar de não haver sido seu aluno, vejo o reflexo de seu trabalho e seu estudo sobre Extensões Galoisianas Comutativas, que iluminou este trabalho. \par
+% CNPq
+Agradeço ao CNPq, Conselho Nacional de Desenvolvimento Científico e Tecnológico, pelo apoio financeiro - sei que a oportunidade que tive não é acessível a todos, e parte do meu trabalho é lutar para que isso se torne realidade. \par
+% Instituto de Matemática e Estatística
+Agradeço ao Instituto de Matemática e Estatística, que se tornou um novo lar. Que o Instituto, que completa 62 anos em 2021, possa formar professores, matemáticos e estatísticos por mais 62 anos.
+
+
+
+
+
+\chapter*{\center Resumo}
+\noindent Neste trabalho estendemos a teoria de Galois desenvolvida sobre corpos para extensões de anéis comutativos. Os principais resultados são relacionados à separabilidade de extensões de anéis comutativos, bem como a definição das estruturas e objetos necessários. Seguindo \cite{chr}, definimos extensões galoisianas, exploramos a correspondência de Galois e os homomorfismos de extensões galoisianas. Por fim, apresentamos um resultado da cohomologia galoisiana, principal resultado de \cite{chr}, a partir do isomorfismo entre $H^n(S/R,F)$, o $n$-ésimo grupo de cohomologia de Amitsur de $T/R$ com valores em $F$, e $H^n(G,F(S))$, o $n$-ésimo grupo de cohomologia de $G$ sobre $F(S)$. \\[12pt]
+\noindent \textbf{Palavras-chave: } extensões comutativas, cohomologia galoisiana, teoria de Galois.
+
+\chapter*{\center Abstract}
+\noindent In this essay we will extend the Galois theory over fields to commutative ring extensions. The main results relate to the separability of commutative ring extensions, along with the definition of the required structures and objects. In addition to that, we will define the Galois extensions, explore the Galois correspondence and homomorphisms of Galois extensions. Concluding it, we present a result of the Galois cohomology, which is the main result of \cite{chr}, consequence of the isomorphism between $H^n(S/R,F)$, the $n$-th Amitsur cohomology group of $T/R$ with values in F, and $H^n(G,F(S))$, the $n$-th cohomology group of $G$ over $F(S)$.\\[12pt]
+\noindent \textbf{Keywords: } commutative extensions, Galois cohomology, Galois theory.
+
+\tableofcontents
+%=========================================================================
+%           Introdução
+%=========================================================================
+\chapter*{Introdução} \pagenumbering{arabic} \addcontentsline{toc}{chapter}{Introdução}
+Para compreender a importância do nome Galois na Matemática, iremos buscar um pouco da história por trás dele. Évariste Galois, com o objetivo de resolver equações polinomiais de quinto grau, desenvolveu o início do estudo hoje conhecido como teoria de Galois, origem histórica da teoria de grupos. Galois, voltado às equações polinomiais, permitiu determinarmos quando polinômios são solúveis por radicais - isto é, quando podemos determinar suas raízes a partir de seus coeficientes, de forma semelhante a como resolvemos polinômios de segundo grau. As extensões de corpos estudadas por Galois eram subcorpos dos números complexos, e a teoria posteriormente foi generalizada para corpos abstratos. \par
+A teoria de Galois é fundamentada sobre uma correspondência entre extensões de corpos e grupos de automorfismos (destes corpos). As características destes grupos podem ser fonte de informações sobre estas extensões de corpos. Podemos dar mais um passo: desenvolver a teoria de Galois sobre anéis comutativos. \citeauthor{brauer} foram os primeiros a introduzir a noção de extensão de Galois para anéis comutativos, no artigo \emph{The Brauer group of a Commutative Ring} em \citeyear{brauer}. Este artigo desenvolve o princípio da teoria geral de álgebras separáveis sobre anéis comutativos. \par
+Em \citeyear{chr}, \citeauthor*{chr} desenvolvem uma nova caracterização de extensões galoisianas de anéis comutativos. Estes resultados serão apresentados nesta dissertação, e são mais próximos ao desenvolvimento original (para corpos). No artigo \emph{Galois theory and Galois cohomology of Commutative Rings}, \citeauthor*{chr} desenvolvem também a cohomologia de Amitsur sobre extensões galoisianas, generalizando resultados obtidos por \citeauthor*{brauer}, assim como do Teorema 90 de Hilbert. \par 
+Nesta dissertação, iremos explorar os resultados obtidos por \citeauthor*{chr} em \cite{chr}, além da construção do grupo de Brauer apresentada em \cite{brauer} por \citeauthor{brauer}. No capítulo 1, serão desenvolvidos os pré-requisitos para que possamos compreender a teoria de Galois sobre anéis comutativos, a partir da construção inicial desta teoria. No capítulo 2, iremos estudar a teoria de Galois sobre extensões de anéis comutativos. No capítulo 3, iremos abordar o grupo de Brauer e a cohomologia galoisiana.
+
+%=========================================================================
+%           Desenvolvimento
+%=========================================================================
+\include{preliminares} %
+\include{galoiscomutativa} %
+\include{cohomologia} %
+
+%=========================================================================
+%           Referências
+%=========================================================================
+\bibliographystyle{plaingus.bst}
+\bibliography{biblio.bib}
+\addcontentsline{toc}{chapter}{Referências Bibliográficas}
+
+\end{document}

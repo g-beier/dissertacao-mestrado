@@ -1,0 +1,914 @@
+\chapter{Extensões Galoisianas Comutativas}
+Tendo em mãos as ferramentas necessárias, inicia agora a caminhada para os resultados da teoria de Galois sobre anéis comutativos. Iniciaremos nos distanciando das propriedades decorrentes de polinômios -- e isso impacta, principalmente, em nosso conceito de separabilidade. Vamos buscar uma nova definição de separabilidade, que seja adequada tanto para corpos quanto para as extensões de anéis, como uma generalização da definição usada para corpos. \par
+Nesta primeira seção, iremos abordar resultados desenvolvidos por \citeauthor{paques} em \cite{paques}, que serão de grande importância para justificar a definição de álgebra separável. \par
+Nas seções seguintes, abordaremos extensões galoisianas comutativas -- sua definição, o Teorema Fundamental da Teoria de Galois, homomorfismos de extensões galoisianas comutativas e por fim, localização e bases normais. Estes resultados foram desenvolvidos por \citeauthor*{chr} em \cite{chr}.
+
+
+\section{Álgebras Separáveis} \label{sec:algsep}
+Normalidade e separabilidade são as condições que garantem que a correspondência entre subcorpos intermediários e subgrupos do grupo de Galois $\textrm{Gal}\left(L\mid_K\right)$ seja biunívoca. A normalidade se refere a presença de todas as raízes do polinômio minimal de um elemento em $L$, e a separabilidade da multiplicidade das raízes de polinômios irredutíveis. A partir destas informações, ambas as propriedades se referem às raízes e como os automorfismos do grupo de Galois permutam estas raízes. \par 
+Iremos tratar agora de extensões algébricas simples. Os seguintes resultados nos auxiliam a, em determinado sentido, afastar a separabilidade da extensão da separabilidade de polinômios. Em particular, o Teorema do Elemento Primitivo tem papel essencial para a caracterização de extensões separáveis. \par
+Os resultados a seguir buscam caracterizar as extensões de corpos separáveis, para então tratarmos de álgebras sobre anéis. \par 
+Devido ao isomorfismo \[\left. K(\alpha) \right|_K\simeq \left.  \displaystyle\frac{K[x]}{\langle m_\alpha\rangle} \right|_K,\] apresentado no Teorema \ref{teo:isomorf}, onde $m_\alpha$ é o polinômio minimal de $\alpha$ sobre $K$, e ao Teorema do Elemento Primitivo (Teorema \ref{teo:elprimitivo}), a caracterização de extensões algébricas, finitas e separáveis pode ser realizada a partir do polinômio minimal, que satisfaz as hipóteses da proposição a seguir.
+
+\begin{prop} \label{prop:sep1}
+Sejam $K$ um corpo e $f \in K[x]$ um polinômio mônico irredutível. Então $f$ é separável sobre $K$ se e somente se $\displaystyle\frac{K[x]}{\langle f \rangle}\otimes_K L$ não tem elementos nilpotentes não nulos, para qualquer extensão $L$ de $K$.
+\begin{proof}
+Suponha que $\dfrac{K[x]}{\langle f \rangle}\otimes_K L$ não possui elementos nilpotentes não nulos, para toda extensão $L$ de $K$. Seja $\Sigma$ o corpo de decomposição para $f$. Então $\Sigma$ contém todas as raízes de $f$, digamos $\alpha_1, \dots, \alpha_r$, e podemos escrever \[f=(x-\alpha_1)^{n_1}\cdots(x-\alpha_r)^{n_r} \in \Sigma[x],\] com $n_1, \dots, n_r \geq 1$, e \[\dfrac{K[x]}{\langle f \rangle} \otimes_K  \Sigma \simeq \dfrac{\Sigma[x]}{\langle f \rangle} \simeq \dfrac{\Sigma[x]}{\langle x-\alpha_1 \rangle^{n_1}} \oplus \dots \oplus \dfrac{\Sigma[x]}{\langle x-\alpha_r \rangle^{n_r}}.\]
+
+Como $\dfrac{K[x]}{\langle f \rangle} \otimes_K \Sigma$ não tem elementos nilpotentes não nulos, temos que $n_i = 1$ para todo $i \in \{1, \dots, r\}$, e portanto $f$ é separável.
+
+Por outro lado, seja $f \in K[x]$ polinômio minimal de $\alpha \in L$ tal que $L\simeq K(\alpha)$ e sejam $p_1, p_2, \dots, p_r \in L[x]$ os $r$ fatores irredutíveis distintos de $f$, isto é, temos \[f = \prod_{i = 1}^{r} p_i ^{n_i}\] com inteiros $n_i \geq 1$. Assim, temos
+\[\dfrac{K[x]}{\langle f \rangle}\otimes_K L \simeq \dfrac{L[x]}{\langle f \rangle} \simeq \dfrac{L[x]}{\langle p_1 \rangle^{n_1}} \oplus \dots \oplus \dfrac{L[x]}{\langle f_r \rangle^{n_r}}.\]
+
+Se $f$ é separável, temos $n_i = 1$ para todo $i\in\{1,\dots, r\}$; como os polinômios $p_i$ são irredutíveis, temos que $\dfrac{L[x]}{\langle p_i \rangle}$ é corpo para todo $i$. Desta forma, segue que \[\dfrac{K[x]}{\langle f \rangle}\otimes_K L \simeq \dfrac{L[x]}{\langle p_1 \rangle} \oplus \dots \oplus \dfrac{L[x]}{\langle p_r \rangle}\] não possui elementos nilpotentes não nulos.
+\end{proof}
+\end{prop}
+
+\begin{teo} \label{teo:sep1}
+Seja $L\mid_K$ uma extensão finita de corpos. Então $L\mid_K$ é separável se e somente se $L\simeq \displaystyle\frac{K[x]}{\langle f\rangle }$ para algum polinômio mônico, irredutível e separável $f$.
+\begin{proof}
+Como $L\mid_K$ é finita, então é finitamente gerada e algébrica. Assim, se $L$ é separável sobre $K$, $L = K(\alpha)$ pelo Teorema \ref{teo:elprimitivo}. Desta forma, o polinômio minimal $m_\alpha$ satisfaz as condições do enunciado e temos $L \simeq \dfrac{K[x]}{\langle m_\alpha \rangle}$. Para a recíproca, suponha $L\simeq \dfrac{K[x]}{\langle f \rangle}$. Então $f$ é o polinômio minimal de algum $\alpha \in L$ e $L\simeq K(\alpha)$ e portanto, $L$ é separável.
+\end{proof}
+\end{teo}
+Como consequência  da Proposição~\ref{prop:sep1} e do Teorema~\ref{teo:sep1}, temos o seguinte corolário:
+
+\begin{corol} \label{corol:nilp}
+Seja $L$ uma extensão finita de um corpo $K$. Então, $L$ é uma extensão separável de $K$ se e somente se $L\otimes_K F$ não tem elementos nilpotentes não nulos, para qualquer extensão de corpos $F$ de $K$.
+\end{corol}
+
+% iremos iniciar o estudo sobre álgebras  com sua deifinção....
+
+
+\begin{defn}
+Seja $R$ um anel comutativo. Uma $R$-álgebra é um anel $S$ que também é um $R$-módulo tal que as operações de multiplicação de $S$ e a ação de $R$ sobre $S$ são compatíveis, isto é,
+\[r(st) = (rs)t = s(rt),\] para quaisquer $s, t \in S$, $r \in R$.
+\end{defn}
+
+A partir de agora, iremos denotar por $A$ uma $K$-álgebra comutativa com elemento identidade e de dimensão finita sobre $K$ (como $K$-espaço vetorial). Diremos que $A$ é separável sobre $K$, se $A\otimes_K L$ não tem elementos nilpotentes não nulos, para qualquer extensão $L$ de $K$. \par 
+O teorema de Wedderburn a seguir nos auxilia a caracterizar álgebras separáveis sobre corpos, a partir dos elementos nilpotentes não nulos. Esta é uma versão simplificada para o caso comutativo. Na página \pageref{teo:wedderburn}, está enunciada a versão geral do Teorema.
+
+\begin{teo}[Wedderburn - Caso Comutativo] \label{teo:wed-comut}
+Seja $A$ uma $K$-álgebra comutativa de dimensão finita com unidade. Então $A$ é separável sobre o corpo $K$ se e somente se $A \simeq F_1 \oplus \dots \oplus F_n$, onde $F_i$ são corpos que são extensões finitas e separáveis de $K$.
+\begin{proof}
+Suponha $A\simeq F_1 \oplus \dots \oplus F_r$. Então $A\otimes_K L \simeq \left(F_1 \otimes_K L\right) \oplus \dots \oplus \left(F_r \otimes_K L\right)$. Como cada somando não tem elementos nilpotentes não nulos, segue que $A\otimes_K L$ também não os possui. Portanto, $A$ é separável sobre $K$. \par 
+Suponhamos $A$ separável sobre $K$; então $A\otimes_K K \simeq A$ não tem elementos nilpotentes não nulos. \par
+Pelos Lemas 1.5,\dots,1.9 de \cite{paques}, temos que $A=F_1 \oplus \dots \oplus F_n$, onde cada $F_i$ é uma extensão finita de $K$. Se algum $F_i$ não é separável sobre $K$, então existe uma extensão $L$ de $K$ tal que $F_i\otimes_K L$ tem pelo menos um elemento nilpotente $x\neq 0$. Então, $(0,\dots,x,\dots,0) \in F_1\otimes_K L \oplus \dots \oplus F_n\otimes_K L = A\otimes_K L$ é um elemento nilpotente não nulo, o que contradiz a hipótese de $A$ ser separável. Portanto, todos os $F_i$ são separáveis sobre $K$.
+\end{proof}
+\end{teo}
+
+Seja $A$ uma $K$-álgebra, não necessariamente comutativa. Definimos a álgebra oposta de $A$, denotada por $A^{o}$ como o anel definido sobre o próprio conjunto $A$, com multiplicação dada por $x*y = yx$, para quaisquer $x,y \in A$. Podemos ver que $A^o$ é de fato um anel. A multiplicação é associativa:
+\[(x*y)*z = yx*z = zyx = x*(zy) = x*(y*z).\]
+Além disso, distribui sobre a adição:
+\[x*(y+z) = (y+z)x = yx+zx = x*y + x*z\]
+De forma semelhante, decorrem as propriedades de $K$-módulo de $A^o$. Se $A$ é uma álgebra comutativa, então $A=A^o$. \par 
+Consideremos o produto tensorial $A^e=A\otimes_K A^o$, chamado álgebra envolvente\label{def:algenv} de $A$. Como $A$ e $A^o$ são $R$-álgebras, temos que $A^e$ também é uma $R$-álgebra, com multiplicação $(a_1\otimes b_1)(a_2 \otimes b_2) = a_1a_2 \otimes b_1 * b_2 = a_1 a_2 \otimes b_2b_1$, para quaisquer $a_1,a_2 \in A, b_1,b_2 \in A^o$. A álgebra $A$ possui uma estrutura de $A^e$-módulo à esquerda, com a ação definida por $(a\otimes c_o)b = abc_o$. \par
+Seja $\mu:A^e \rightarrow A$ definida por $x\otimes y = xy$, aplicação chamada de contração. O teorema a seguir nos auxiliará a estender a definição de separabilidade de uma álgebra $A$. Sua demonstração será omitida.
+
+
+
+\begin{teo} \label{teo:sep-seq}
+Seja $A$ uma $K$-álgebra de dimensão finita com elemento identidade $1$. Então $A$ é separável sobre $K$ se e somente se a sequência exata de $A^e$-módulos (à esquerda)\[0 \rightarrow \ker\mu \rightarrow A^e \xrightarrow{\mu} A \rightarrow 0\]cinde.
+\end{teo}
+
+
+Seja agora $R$ um anel comutativo com unidade e $S$ uma $R$-álgebra.
+
+\begin{teo} \label{teo:algsep}
+São equivalentes as seguintes afirmações:
+\begin{enumerate}
+    \item $S$ é um $S^e$-módulo projetivo;
+    \item A sequência exata de $S^e$-módulos $$0 \rightarrow \ker \mu \rightarrow S^e \xrightarrow{\mu} S \rightarrow 0$$onde $\mu(x\otimes y)=xy$, cinde;
+    \item Existe $e \in S^e$ tal que $\mu(e)=1$ e $\ker \mu \;e=0$. O elemento $e$ é chamado \emph{idempotente de separabilidade}.
+\end{enumerate}
+\begin{proof}
+A equivalência entre as afirmações $(1)$ e $(2)$ é consequência do Lema~\ref{teo:mproj}. Assim, veremos a equivalência entre as afirmações $(2)$ e $(3)$. \par 
+$(2 \Rightarrow 3)$ Seja $\nu: S \rightarrow S^e$ um homomorfismo de $S^e$-módulos tal que $\mu \circ \nu = \id{S}$. Seja $e=\nu(1)$. Então, $\mu(e)=1$; além disso, para qualquer $s\in S$, $(s\otimes1)e = (s\otimes 1)\nu(1)=\nu(s\otimes1 \cdot 1) = \nu(s\cdot 1 \cdot 1) = \nu (1\cdot 1 \cdot s) = \nu(1\otimes s\cdot 1)=1\otimes s \cdot \nu (1) = 1\otimes s \cdot  e$, logo $(s\otimes 1 - 1\otimes s)e=0$. Portanto $\ker \mu e=0$.\par 
+$(3\Rightarrow 2)$ Seja $e\in S^e$ tal que $\mu(e)=1$ e $\ker \mu e=0$. Definimos $\nu: S \rightarrow S^e$ por $\nu(s)=(s\otimes 1)e=(1\otimes s)e$. Temos $\nu(s+r)=(s+r\otimes 1)e=(s\otimes 1)e+(r\otimes 1)e=\nu(s)+\nu(r)$ e $\mu \circ\nu(s)=\mu(s\otimes 1 \cdot e) = \mu(s\otimes 1)\mu(e)=s\Rightarrow \mu\circ \nu = \id{S}$. Além disso, $\nu(s\otimes r \cdot t)=\nu(str) = (str\otimes 1)e = (st\otimes 1)(r\otimes 1)e =(st\otimes 1)(1\otimes r)e=(s\otimes r)(t\otimes 1)e= (s\otimes r)\nu(t)$. Portanto, $\nu$ é um homomorfismo de $S^e$-módulos que $\mu\circ \nu=\id{S}$.
+\end{proof}
+\end{teo}
+
+Note que os elementos da forma $(s \otimes 1 - 1\otimes s)$ pertencem a $\ker \mu$. Além disso, se $\sum s_i \otimes t_i \in \ker \mu$, então $\sum s_i t_i = 0$. Assim, temos que $\sum s_i t_i \otimes 1 = 0$ e, portanto, $\sum s_i \otimes t_i = \sum s_i \otimes t_i - \sum s_i t_i \otimes 1 = \sum (s_i \otimes 1)(1 \otimes t_i - t_i \otimes 1)$. Logo, o $\ker \mu$ é um ideal de $S^e$ gerado pelos elementos da forma $(s \otimes 1 - 1 \otimes s)$.
+
+
+Encerramos esta seção com a definição de uma álgebra separável, motivada pelo Teorema~\ref{teo:sep-seq}, além de dois exemplos.
+
+\begin{defn}
+Uma $R$-álgebra $S$ é dita separável se $S$ é um $S^e$-módulo projetivo.
+\end{defn}
+
+\begin{exemplo}
+Tomemos $R = \Z$ e $S = \Z_n$ o anel dos inteiros módulo $n$. Se $\mu\left(\sum \overline{m_i} \otimes \overline{n_i}\right) = \overline{0}$, temos $\sum \overline{m_in_i} = 0$. Logo $\sum \overline{m_i} \otimes \overline{n_i} = \sum \overline{m_i} \otimes n_i \overline{1} = \sum \overline{m_i n_i} \otimes 1 = 0$. Assim, temos que $\mu$ é injetivo. Como $\mu$ é claramente sobrejetivo, segue que $\Z_n$ é uma $\Z$-álgebra separável.
+
+Note que se $S$ é um anel comutativo, o idempotente de separabilidade $e \in S^e$ é único: sejam $e_1, e_2 \in S^e$ tais que $\mu(e_i) = 1$ e $\ker \mu \; e_i = 0$, para $i = 1, 2$. Então $0 = \mu(e_1) - \mu(e_2) = \mu(e_1 - e_2)$ e portanto $e_1 - e_2 \in \ker \mu$. Logo, $(e_1 - e_2)e_i = 0$, de onde segue que $e_1 - e_2e_1 = e_2 - e_1e_2 = 0 \Rightarrow e_1 = e_2$.
+
+Desta forma, $e=1\otimes 1$ é o único idempotente de separabilidade de $(Z_n)^e$.
+\end{exemplo}
+
+Para o próximo exemplo, relembramos que $S^e$ tem multiplicação definida por
+\[(s_1\otimes s_2)(t_1 \otimes t_2) = s_1 t_1 \otimes t_2s_2,\]
+para quaisquer $s_1,s_2 \in S$, $t_1, t_2 \in S^o$.
+
+\begin{exemplo}
+Sejam $R = \R$ o corpo dos números reais e $S = \Hq $ a $\R$-álgebra dos quatérnios. Então $\Hq$ é uma $\R$-álgebra separável. De fato, tomemos \[e = \dfrac{1}{4}\left( 1\otimes1 - i \otimes i - j \otimes j - k \otimes k \right) \in \Hq \otimes_\R \Hq^{o}.\]
+
+Primeiramente, temos
+
+\[\mu(e) = \dfrac{1}{4}\left[(1)(1) - (i)(i) - (j)(j) - (k)(k)\right] = 1.\]
+
+Como $\ker \mu$ é gerado pelos elementos da forma $s\otimes 1 - 1 \otimes s$, temos
+\[4(s\otimes 1 - 1 \otimes s)e = (s\otimes 1 - si\otimes i - sj\otimes j - sk\otimes k) - (1\otimes s - i\otimes is - j \otimes js - k\otimes ks).\]
+
+Por questão de organização, vamos escrever o segundo termo desta equação como
+\[ (s\otimes 1 - 1 \otimes s) + (i \otimes is - si \otimes i) + (j \otimes js - sj \otimes j) + (k \otimes ks - sk \otimes k).\]
+
+Expandindo $s \in \Hq$ como $a + bi + cj + dk$ e efetuando os produtos $si, is, sj, js, sk, ks$, temos
+\begin{align*}
+    si = -b + ai + dj - ck \qquad&\qquad
+    is = -b + ai - dj + ck \\
+    sj = -c - di + aj + bk \qquad&\qquad
+    js = -c + di + aj - bk \\
+    sk = -d + ci - bj + ak \qquad&\qquad
+    ks = -d - ci + bj + ak 
+\end{align*}
+Assim, expandindo cada parcela da soma separadamente, segue
+\begin{align*}
+    s\otimes 1 - 1 \otimes s &= b(i \otimes 1 - 1 \otimes i) + c (j \otimes 1 - 1 \otimes j) + d (k \otimes 1 - 1 \otimes k) \\
+    i \otimes is - si \otimes i &= b(1 \otimes i - i \otimes 1) + c(i \otimes k + k \otimes i) - d (i \otimes j + j \otimes i) \\
+    j\otimes js - sj \otimes j &= -b(j\otimes k + k \otimes j) + c (1\otimes j - j \otimes 1) + d (j \otimes i + i \otimes j) \\
+    k\otimes ks - sk \otimes k &= b (j\otimes k + k \otimes j) - c(i \otimes k + k \otimes i) + d (1 \otimes k + k \otimes 1)
+\end{align*}
+
+Observando as expressões acima, podemos ver que os termos se anulam e portanto, $e = \dfrac{1}{4}[1 \otimes 1 - i \otimes i - j \otimes j - k \otimes k]$ é idempotente de separabilidade para $\Hq$ enquanto $\R$-álgebra.
+
+Note que este elemento é de fato idempotente:
+\begin{align*}
+    e^2 =& \dfrac{1}{16}\left( 1\otimes1 - i \otimes i - j \otimes j - k \otimes k \right)^2 \\
+    =& \dfrac{1}{16} \left[ \left( 1\otimes1 - i\otimes i - j\otimes j - k\otimes k \right) \right. \\
+    &- \left(i\otimes i - (-1)\otimes(-1) - k\otimes (-k) - (-j)\otimes j  \right)\\
+    &- \left(j\otimes j - (-k)\otimes k - (-1)\otimes(-1) - i\otimes (-1) \right)\\
+    &- \left. \left( k\otimes k - j\otimes (-j) - (-i)\otimes i - (-1)\otimes (-1) \right) \right]\\
+    =& \dfrac{4}{16}\left[1\otimes 1 - i \otimes i - j \otimes j - k \otimes k \right] = e.
+\end{align*}
+Porém, se um elemento $e \in S^e$ satisfaz $\mu(e) = 1$ e $\ker \mu \; e = 0$, $e$ é necessariamente idempotente, pois $e^2 - e = (e-1 \otimes 1)e \in \ker \mu \; e = 0$, logo $e^2 = e$. Assim, a verificação de $e^2 = e$ não se faz necessária, nem a adição desta hipótese no Teorema \ref{teo:algsep}.
+\end{exemplo}
+\begin{exemplo}
+Seja $R$ um anel comutativo com unidade e $S = M_n(R)$ a $R$-álgebra de matrizes de ordem $n$ com entradas em $R$. Denotemos por $e_{ij}$ as matrizes com todas as entradas nulas, exceto a entrada ${i,j}$, que tem valor $1$.
+
+Para cada $1\leq j \leq n$, temos que $e = \sum_{i=1}^n e_{ij} \otimes e_{ji}$ satisfaz
+\[\mu(e) = \sum_{i = 1}^n e_{ij}e_{ji} = \sum_{i=1}^{n} e_{ii} = I_n = 1,\]
+onde $I_n$ denota a matriz identidade de ordem $n$, isto é, a unidade de $M_n(R)$. Além disso, como $\ker \mu$ é gerado por elementos da forma $s\otimes 1 - 1 \otimes s$, seja $s \in M_n(R)$ uma matriz de ordem $n$. Então 
+\[(s\otimes 1 - 1 \otimes s)e = \sum_{i = 1}^n s e_{ij} \otimes e_{ji} - e_{ij} \otimes e_{ji}s\]
+e, escrevendo \[s = \sum_{k = 1}^{n} \sum_{l = 1}^n s_{kl}e_{kl},\] onde $s_{kl} \in R$, para todos $1\leq k, l \leq n$, temos então
+\[se_{ij} = \sum_{k=1}^n s_{ki}e_{kj} \;\; \textrm{ e } \;\; e_{ji}s = \sum_{l = 1}^{n} s_{il} e_{jl}.\]
+
+Realizando a substituição, obtemos
+\begin{align*}
+    (s\otimes 1 - 1 \otimes s) e &= \sum_{i=1}^n \sum_{k=1}^n s_{ki}e_{kj}\otimes e_{ji} - \sum_{i = 1}^n \sum_{l=1}^n s_{il} e_{ij} \otimes e_{jl} \\
+    &= \sum_{i=1}^n \sum_{k=1}^n s_{ki}e_{kj}\otimes e_{ji} - \sum_{l = 1}^n \sum_{i=1}^n s_{il} e_{ij} \otimes e_{jl} \\
+    &= \sum_{i=1}^n \sum_{k=1}^n s_{ki}e_{kj}\otimes e_{ji} - \sum_{i = 1}^n \sum_{k=1}^n s_{ki} e_{kj} \otimes e_{ji} = 0.
+\end{align*}
+Portanto $e$ é idempotente de separabilidade para $M_n(R)$ sobre $R$, e $M_n(R)$ é uma $R$-álgebra separável.
+\end{exemplo}
+
+\section{Extensões Galoisianas} \label{sec:extgal}
+Deixando as extensões de corpos, a partir da definição de extensão separável, podemos dar início ao estudo das extensões galoisianas de anéis comutativos. O estudo se torna mais rico ao abordarmos extensões que não contenham idempotentes além de 0 e 1, mas os resultados serão desenvolvidos sobre extensões quaisquer. Para isso, precisamos dos resultados a seguir. Os produtos tensoriais nas seções a seguir serão denotados apenas por $\otimes$, por simplicidade, e serão sobre $R$ exceto onde explicitado.
+\begin{defn}
+Sejam $f,g:S\rightarrow T$ homomorfismos de anéis comutativos. Dizemos que $f$ e $g$ são fortemente distintos se, para qualquer idempotente não nulo $e \in T$, existe $s \in S$ tal que $f(s)\cdot e \neq g(s) \cdot e$.
+\end{defn}
+
+\begin{lemma} \label{lem:fdist}
+Sejam $S$ uma $R$-álgebra comutativa separável, e $f:S\rightarrow R$ um homomorfismo de $R$-álgebras. Então existe um único idempotente $e\in S$ tal que $f(e)=1$ e $se=f(s)e$ para qualquer $s\in S$. Além disso, se $f_1,\dots,f_n:S\rightarrow R$ são homomorfismos de $R$-álgebras dois a dois fortemente distintos, então os idempotentes correspondentes $e_1, \dots, e_n$ são dois a dois ortogonais, e $f_i(e_j)=\delta_{i,j}$.
+\begin{proof}
+Como $S$ é separável, pelo Teorema~\ref{teo:algsep}, existe um homomorfismo de $S^e$-módulos $g:S\rightarrow S^e$ tal que $\mu\circ g = \id{S}$.
+\begin{center}
+    \begin{tikzcd}
+    & S \arrow{d}{\id{S}} \arrow[dashed]{ld}[above]{g} & \\
+    S \otimes S \arrow[two heads]{r}[below]{\mu} & S\arrow{r} & 0
+    \end{tikzcd}
+\end{center}
+Seja então $g(1)=\sum_{i=1}^{m}x_i\otimes y_i \in S\otimes S$. Assim, tomando $\mu$, temos $\sum_{i=1}^{m}x_iy_i=1$. Como definido na página \pageref{def:algenv}, $S$ é um $S^e$-módulo com ação definida por $(s\otimes t)a = sat$. Assim, segue
+
+\[\begin{array}{rrl}
+     & g(s) = g(s\cdot 1 \cdot 1)  &= g(1\cdot 1 \cdot s) \\
+     \Rightarrow & g\left((s\otimes 1) \cdot 1\right) &= g\left(1\cdot (1\otimes s)\right) \\
+    \Rightarrow & (s\otimes 1) \cdot g(1) &= (1\otimes s) \cdot g(1) \\
+    \Rightarrow & (s\otimes 1) \cdot \sum_{i=1}^{m}x_i\otimes y_i &= (1\otimes s) \cdot \sum_{i=1}^{m}x_i\otimes y_i \\
+    \Rightarrow & \sum_{i=1}^{m}sx_i\otimes y_i & = \sum_{i=1}^{m}x_i\otimes sy_i,
+\end{array}\]
+para qualquer $s \in S$. \par
+Tomando $e=\sum_{i=1}^m f(x_i)y_i$, temos:
+\[\begin{array}{rlll}
+    f(e) &= f\left(\sum_{i=1}^m f(x_i)y_i\right) &= \sum_{i=1}^m f\left(f(x_i)y_i\right) & \\
+     &= \sum_{i=1}^m f(x_i)f(y_i) &= \sum_{i=1}^m f(x_iy_i) & \\
+     &= f\left(\sum_{i=1}^m x_iy_i\right) &= f(1) = 1
+\end{array}\]
+Aplicando $f\otimes 1$ na igualdade\[\sum_{i=1}^{m}sx_i\otimes y_i = \sum_{i=1}^{m}x_i\otimes sy_i\]obtemos o seguinte:
+\[\begin{array}{rrl}
+    & \sum_{i=1}^{m}f(sx_i)\otimes y_i &= \sum_{i=1}^{m}f(x_i)\otimes sy_i \\
+    \Rightarrow & \sum_{i=1}^{m}f(s)f(x_i)\otimes y_i &= \sum_{i=1}^{m} f(x_i) \otimes sy_i
+\end{array}\]
+Aplicando $\mu$, segue:
+
+\[\begin{array}{rrl}
+    & \sum_{i=1}^{m}f(s)f(x_i)y_i &= \sum_{i=1}^{m}f(x_i)sy_i \\
+    \Rightarrow & f(s)\sum_{i=1}^{m}f(x_i)y_i &= s\sum_{i=1}^{m}f(x_i)y_i \\
+    \Rightarrow & f(s)e &= se ,\forall s \in S
+\end{array}\]
+
+Em particular, tomando $s=e$, temos $e=e^2$, isto é, $e\in S$ é realmente um idempotente. Tomando $e'$ outro idempotente de $S$ satisfazendo as mesmas condições, então $e'=1\cdot e'=f(e)e'=e\cdot e'=f(e')e=e$.
+\par Para a segunda afirmação, basta mostrarmos que $f_i(e_j)=\delta_{i,j}$ e que os idempotentes $e_i$ são ortogonais, isto é, $e_ie_j=\delta_{i,j}e_i$. Note que $\left(f_i(e_j)\right)^2 =f_i(e_j)f_i(e_j) =f_i(e_j^2)=f_i(e_j)$ é um idempotente de $R$, e que $f_i(s)f_i(e_j) = f_i(se_j) = f_i(f_j(s)e_j) = f_j(s)f_i(e_j)$. Como $f_i$ e $f_j$ são fortemente distintos para $i\neq j$, temos que a igualdade se verifica apenas com $f_i(e_j) = 0$ se $i\neq j$, e portanto temos que $f_i(e_j)=\delta_{i,j}$. Finalmente, $e_ie_j =f_j(e_i)e_j =\delta_{i,j}e_j$, logo $e_1, \dots, e_n$ são realmente ortogonais dois a dois.
+\end{proof}
+\end{lemma}
+Ao longo do texto, estaremos focados na seguinte situação: sejam $S$ um anel comutativo, $G$ um grupo finito de automorfismos de $S$ e $R=S^G$ o subanel dos elementos que permanecem fixos pela ação de $G$. \par 
+Para o desenvolvimento do capítulo, vamos definir duas álgebras auxiliares. A primeira, \label{alg:D}denotada por $D=S\rtimes G$, é o produto cruzado destes conjuntos. $D$ é um $S$-módulo livre com geradores $\delta_\sigma$, com $\sigma\in G$, e também uma $R$-álgebra, com a multiplicação definida por\[s\delta_\sigma t\delta_{\tau}=s\sigma(t)\delta_{\sigma\tau}\]para os geradores e estendida linearmente para a álgebra. A identidade de $D$ é $1\delta_{\id{G}}$ e será denotada por $1$. Além disso, a aplicação $j: D \rightarrow \Hom{R}{S}{S}$ dada por $j(s\delta_\sigma) = s\sigma$ é um homomorfismo de $R$-álgebras. De fato:
+
+  \vspace{0.3 cm}
+  
+    $\begin{array}{rrl}
+         \bullet & j(1)(x) &= j(1\delta_{\id{S}})(x) \\
+        & &= 1\id{S}(x) = x
+    \end{array}$
+    
+    \vspace{0.3 cm}
+    
+     $\begin{array}{rrl}
+        \bullet &  j(s\delta_\sigma+t\delta_\tau)(x) &= (s\sigma+t\tau)(x) \\
+       & &= s\sigma(x)+t\tau(x) \\
+        & &= j(s\delta_\sigma)(x)+j(t\delta_\tau)(x)
+    \end{array}$
+    
+     \vspace{0.3 cm}
+     
+     $\begin{array}{rrl}
+       \bullet &  j(rs\delta_\sigma) &= rs\sigma(x) \\
+        & &= rj(s\delta_\sigma)(x)
+    \end{array}$
+    
+     \vspace{0.3 cm} 
+     
+     $\begin{array}{rrl}
+        \bullet &  j(s\delta_\sigma t\delta_\tau)(x) &= j(s\sigma(t)\delta_{\sigma\tau})(x) \\
+        & &= s\sigma(t)\sigma(\tau(x)) \\
+        & &= s\sigma(t\tau(x)) \\
+        & &= j(s\delta(\sigma))(t\tau(x))=j(s\delta_\sigma)j(t\delta_\tau)(x)
+     \end{array}$
+  \vspace{0.3 cm}
+  
+Além disso, também é um homomorfismo de $S$-módulos. \par 
+Seja $E$ \label{alg:E} a álgebra de todas as funções de $G$ em $S$, com a adição e multiplicação ponto a ponto. Se $v_\sigma$ é a função definida por $v_\sigma(\tau)=\delta_{\sigma,\tau}$, então $E= \bigoplus_{\sigma \in G}Sv_\sigma$.
+Podemos escrever qualquer função $f\in E$ como\[f(\tau)=\sum_{\sigma \in G} f(\sigma)v_\sigma(\tau)\]para qualquer $\tau \in G$. Além disso, como $v_\sigma(\tau) = \delta_{\sigma,\tau}$, temos que cada $v_\sigma$ é idempotente e os elementos do conjunto $\{v_\sigma\}_{\sigma \in G}$ são ortogonais dois a dois e sua soma é 1. De fato,\[(v_\sigma \cdot v_\tau )(x) =v_\sigma(x)v_\tau(x)=\delta_{\sigma,x}\delta_{\tau,x}=\begin{cases}
+0 & \textrm{se } \sigma\neq \tau \\
+v_\sigma(x) & \textrm{se } \sigma=\tau \end{cases}\]
+Tomando $S\otimes S$ como uma $S$-álgebra no primeiro fator, temos um homomorfismo de $S$-álgebras $h: S\otimes S \rightarrow E$ definido por $h(s\otimes t)(\sigma)=s\sigma(t)$. Com efeito,
+
+\vspace{0.3cm}
+$\begin{array}{rrl}
+    \bullet & h(1\otimes 1)(\sigma) &= 1\sigma(1) = 1
+\end{array}$
+
+\vspace{0.3cm}
+
+$\begin{array}{rrl}
+    \bullet & h(s\otimes t + p \otimes q)(\sigma) &= s\sigma(t)+p\sigma(q) \\
+    & &= h(s\otimes t)(\sigma) +h(p\otimes q)(\sigma)
+\end{array}$
+
+\vspace{0.3cm}
+
+$\begin{array}{rrl}
+    \bullet & h(s r\otimes t)(\sigma) &= h ((sr) \otimes t)(\sigma)  \\
+    & &= sr\sigma(t) \\
+    & &= s h(r\otimes t)(\sigma)
+\end{array}$
+
+\vspace{0.3cm}
+
+$\begin{array}{rrl}
+    \bullet & h(s\otimes r \cdot t \otimes u)(\sigma) &= h(st \otimes ru)(\sigma) \\
+    & &= st\sigma(ru) \\
+    & &=st\sigma(r)\sigma(u) \\
+    & &=s\sigma(r)t\sigma(u) =h(s\otimes r)(\sigma)\cdot h(t\otimes u)(\sigma)
+\end{array}$
+
+\vspace{0.3cm}
+
+O objetivo desta seção é demonstrar o teorema a seguir. Para isso, vamos definir o que é um $G$-módulo:
+
+\begin{defn}
+Seja $G$ um grupo. Um $G$-módulo é um grupo abeliano $A$ com uma ação de $\Z G$ sobre $A$, isto é, $A$ é um $\Z G$-módulo.
+\end{defn}
+
+\begin{teo} \label{galois}
+Sejam $S$ um anel comutativo, $G$ um grupo finito de automorfismos de $S$ e $R=S^G$. Então, são equivalentes:
+\begin{enumerate}
+    \item $S$ é uma $R$-álgebra separável, e os elementos de $G$ são dois a dois fortemente distintos;
+    \item Existem elementos $x_1,\dots,x_n;y_1,\dots,y_n$ de $S$ tais que $\sum_{i=1}^{n}x_i\sigma(y_i)=\delta_{1,\sigma}$ para todo $\sigma \in G$. Estes elementos são chamados \emph{sistema de coordenadas de Galois};
+    \item $S$ é um $R$-módulo projetivo finitamente gerado e $j: D \rightarrow \Hom{R}{S}{S}$ é um isomorfismo;
+    \item Seja $M$ um $D$-módulo à esquerda, que pode ser visto como um $G$-módulo com $\sigma(m)=\delta_\sigma(m)$. Então a aplicação $\omega: S\otimes M^G \rightarrow M$ definida por $\omega(s\otimes m)=sm$ é um isomorfismo de $S$-módulos;
+    \item $h: S\otimes S \rightarrow E$ é um isomorfismo de $S$-álgebras;
+    \item Dado $\sigma \neq 1$ em G e um ideal maximal $I$ de $S$, existe $s=s(I,\sigma)$ tal que $s-\sigma(s)\not\in I$.
+\end{enumerate}
+\begin{proof}
+$(1\Rightarrow 2)$ 
+Seja $e=\sum_{i=1}^m x_i \otimes y_i\in S\otimes S$ o idempotente de separabilidade de $S$ sobre $R$, isto é, $\mu (e) =1$ e $\left( 1\otimes a - a \otimes 1\right)e =0$, para qualquer $a \in S$. Seja $e_\sigma=\mu\left( (1\otimes \sigma)e \right)$, para qualquer $\sigma \in G$. Como $R=S^G$, temos que $\sigma$ é um $R$-automorfismo de $S$ e, portanto, $1 \otimes \sigma$ é um $S$-automorfismo de $S\otimes S$. Além disso, como $S$ é comutativo, $\mu$ é um homomorfismo de anéis. Assim, para qualquer $\sigma\in G$, temos:
+
+\begin{align*}
+    e_\sigma^2   &= \mu\left( (1\otimes \sigma)(e) \right)\cdot \mu\left( (1\otimes \sigma)(e) \right) \\
+            &= \mu\left( (1\otimes \sigma)(e) \cdot  (1\otimes \sigma)(e)  \right) \\
+            &= \mu\left( (1\otimes \sigma)(e^2) \right) \\
+            &= \mu\left( (1\otimes \sigma)(e) \right) \\
+            &= e_\sigma.
+\end{align*}Ou seja, $e_\sigma$ é um idempotente de $S$. Por outro lado, para qualquer $x\in S$, temos:
+\begin{align*}
+    xe_\sigma    &= x\mu\left( (1\otimes \sigma)(e) \right) \\
+            &= x\otimes 1 \cdot \mu\left( (1\otimes \sigma)(e) \right) \\
+            &= \mu\left( (x\otimes 1) \cdot (1\otimes \sigma)(e) \right) \\
+            &= \mu\left( (1\otimes \sigma)(x \otimes 1) \cdot (1\otimes \sigma)(e) \right) \\
+            &= \mu\left( (1\otimes \sigma)(x\otimes 1 \cdot e) \right) \\
+            &= \mu\left( (1\otimes \sigma)(1\otimes x \cdot e) \right) \\
+            &= \mu\left( (1\otimes \sigma)(1\otimes x) \cdot (1\otimes \sigma)(e) \right)\\
+            &= \mu\left( (1\otimes \sigma(x)) \cdot (1\otimes \sigma)(e) \right) \\
+            &= \left( 1\otimes \sigma(x) \right) \cdot \mu\left((1\otimes \sigma)(e)\right) \\
+            &= \left( 1\otimes \sigma(x) \right) \cdot e_\sigma \\
+            &= 1\cdot e_\sigma \cdot \sigma(x) \\
+            &= \sigma(x)e_\sigma.
+\end{align*}
+
+Assim, $xe_\sigma=\sigma(x)e_\sigma$. Como $\sigma\in G$ são $R$-automorfismos de $S$ fortemente distintos, temos que $e_\sigma=0$ ou $\sigma=1$. Assim, para qualquer $\sigma\in G$, temos $\delta_{1,\sigma}=e_\sigma=\sum_{i=1}^{m}\left( x_i \sigma(y_i) \right)$. \par 
+
+
+
+$(2\Rightarrow 3)$ 
+Tomemos os elementos $x_i,y_i\in S$, $i\in \{1,\dots,m\}$ tais que $\sum_{i=1}^mx_i\sigma(y_i)=\delta_{1,\sigma}$, para qualquer $\sigma\in G$. Defina $f_j\in \textrm{Hom}_R(S,R)$ por $f_j(x)=\sum_{\sigma\in G}\sigma(xy_i)$, para todo $x \in S$. De fato, $f_j$ é um homomorfismo:
+\begin{align*}
+        f_j(a+rb) &= \sum_{\sigma\in G}\sigma((a+rb)y_j) \\
+        &= \sum_{\sigma\in G}\sigma(ay_j +rby_j) \\
+        &= \sum_{\sigma\in G}\sigma(ay_j)+\sigma(rby_j) \\
+        &= \sum_{\sigma\in G}\sigma(ay_j)+\sum_{\sigma\in G}r\sigma(by_j) = f_j(a)+rf_j(b).
+\end{align*} \par
+Assim, para qualquer $x\in S$, temos:
+\begin{align*}
+        \sum_{j=1}^{m}f_j(x)x_j &=\sum_{j=1}^{m}\sum_{\sigma\in G}\sigma(xy_j)x_j \\
+        &= \sum_{\sigma\in G}\sigma(x)\sum_{j=1}^{m} \sigma(y_j)x_j \\
+        &= \sum_{\sigma\in G}\sigma(x) \delta_{1,\sigma} \\
+        &= x,
+\end{align*}
+o que mostra que $S$ é um $R$-módulo projetivo finitamente gerado pelos elementos $x_i$, $i\in \{1,\dots,n\}$. Basta mostrarmos que $j: D \rightarrow \Hom{R}{S}{S}$ é um isomorfismo. \par 
+Para mostrarmos que $j$ é sobrejetivo, dado um homomorfismo $p$ em $\Hom{R}{S}{S}$, seja
+\[q= \sum_{\sigma \in G} \sum_{i=1}^{m} h(x_i)\sigma(y_i)\delta_\sigma\]
+Dessa forma,
+\begin{align*}
+        j(q)(x) &= \sum_{\sigma \in G} \sum_{i=1}^{m} p(x_i)\sigma(y_i)\sigma(x) = \sum_{i=1}^{m} p(x_i) \sum_{\sigma \in G} \sigma(xy_i) \\
+        &= p\left(\sum_{i=1}^{m} x_i \sum_{\sigma \in G} \sigma(xy_i)\right) = p\left(\sum_{i=1}^{m} \left(\sum_{\sigma \in G} x_i\sigma(y_i) \right) \sigma(x)\right) \\
+        &= p\left( \sum_{i=1}^{m} \delta_{\sigma,1} \sigma(x)\right) = p(x).
+\end{align*}
+Ou seja, existe $q \in D$ tal que $j(q)(x)=p(x)$, para qualquer $p \in \Hom{R}{S}{S}$. \par
+Para mostrarmos a injetividade de $j$, tomemos $w=\sum_{\sigma\in G}a_\sigma \delta_\sigma \in D$ tal que $j(w)=0$. Então, $j(w)(x)=0$, para qualquer $x \in S$. Portanto,
+
+\begin{align*}
+        0   &= \sum_{\tau\in G}\sum_{i=1}^{n} j(w)(x_i) \cdot \tau(y_i)\delta_\tau = \sum_{\tau\in G}\sum_{i=1}^{n} \sum_{\sigma\in G}a_\sigma \sigma(x_i) \tau(y_i)\delta_\tau \\
+            &= \sum_{\tau\in G} \sum_{\sigma\in G}a_\sigma \sigma\left(\sum_{i=1}^{n}x_i \sigma^{-1}\tau(y_i)\right)\delta_\tau = \sum_{\tau\in G} \sum_{\sigma\in G}a_\sigma \sigma\left(\delta_{\sigma^{-1}\tau,1}\right) \delta_\tau \\
+            &= \sum_{\tau\in G} \sum_{\sigma\in G} a_\sigma \delta_{\sigma^{-1}\tau,1} \delta_\tau = \sum_{\sigma\in G} a_\sigma \delta_\sigma = w.
+\end{align*}
+Logo, $\ker j =0$ e $j$ é injetiva, o que implica que $j$ é um isomorfismo. \par 
+
+
+
+$(3\Rightarrow 4)$
+Como $S$ é um $R$-módulo projetivo finitamente gerado, segue do Teorema~\ref{teo:mproj} que existem elementos $x_i \in S$ e $\phi_i \in \Hom{R}{S}{S}$, $i\in \{1,\dots,n\}$ tais que\[s=\sum_{i=1}^{n} \phi_i(s)x_i\]\par
+Como $j$ é um isomorfismo, existem elementos $d_i \in D$ tais que $j(d_i)=\phi_i$. Ainda,\[j\left(\sum_{i=1}^{n} x_id_i \right)(s)=\sum_{i=1}^n x_i\phi_i(s)=s\]e, sendo $j$ um isomorfismo, segue que $\sum_{i=1}^{n}x_i d_i =\delta_1 =1_D$. \par 
+Além disso, temos $j(\delta_\sigma d_i)(s) = \sigma(\phi_i(s))=\phi_i(s)=j(d_i)(s)$, o que implica $d_i=\delta_\sigma d_i$, para qualquer $\sigma\in G$. Portanto, $d_i m \in M^G$, para qualquer $m\in M$. \par Como $S \subset D$, podemos ver $M$ como um $S$-módulo, e
+\begin{align*}
+        d(sm_o) &= \left(\sum_{\sigma\in G}a_\sigma\delta_\sigma \right)(s\delta_1 m_o) = \sum_{\sigma\in G} a_\sigma \delta_\sigma s\delta_1 sm_o \\
+                &= \sum_{\sigma\in G} a_\sigma \sigma(s)\delta_\sigma m_o = \sum_{\sigma\in G} a_\sigma \sigma(s)\sigma(m_o) \\
+                &= \left(\sum_{\sigma\in G} a_\sigma j(\delta_\sigma)(s)\right)m_o = j(d)(s)m_o
+\end{align*}
+para $d\in D, s\in S$ e $m_o \in M^G$. Agora defina uma aplicação $\gamma: M \rightarrow S\otimes M^G$ como $\gamma (m)=\sum_{i=1}^{n}x_i \otimes d_i m$. Temos $\omega\gamma=\id{M}$, pois\[\omega\gamma(m)=\omega\left( \sum_{i=1}^{n}x_i \otimes d_i m \right) = \sum_{i=1}^{n}x_id_im= \left(\sum_{i=1}^{n}x_id_i \right) m=m\]
+Por outro lado, se $s$ e $m_0$ estão em $S$ e $M^G$, respectivamente, temos\[\gamma\omega(s\otimes m_o)= \sum_{i=1}^{n} x_i \otimes d_i (sm_o) = \sum_{i=1}^{n}x_i\otimes \phi_i(s)m_o = \sum_{i=1}^{n}\phi_i(s)x_i\otimes m_o = m_o\]
+e $\gamma\omega=\id{S\otimes M^G}$. Assim, podemos concluir que $\omega$ é um isomorfismo.
+
+
+
+$(4\Rightarrow 5)$
+Determine a ação de $G$ em $E=F(G,S)$ como $\sigma\cdot f (x)=\sigma(f(\sigma^{-1}x))$, para $\sigma,x \in G$ e $f \in E$. Assim, temos $\sigma(sf)(x)=\sigma(sf(\sigma^{-1}x))=\sigma(s)\sigma(f(\sigma^{-1}x))=\sigma(s)\sigma(f)(x)$, e $E$ pode ser visto como um $D$-módulo à esquerda, pela ação $s\delta_\sigma(f)=s\sigma(f)$. \par Agora, $E^G$ é o conjunto dos $G$-homomorfismos de $G$ e $S$, e a aplicação $\theta: S \rightarrow E^G$ definida por $\theta (s)(\sigma)=\sigma(s)$ é um isomorfismo de $R$-módulos. Com isso, a composição $\omega(1\otimes \theta): S\otimes S \rightarrow E$ é um isomorfismo de $S$-módulos, e é simplesmente $h$. \par
+
+
+
+$(5\Rightarrow 1)$
+O $E$-módulo $Ev_1=Sv_1$ é $E$-projetivo. Através do isomorfismo $h: S\otimes S \rightarrow E$, podemos ver $E$ como um $S\otimes S$-módulo, e temos que $Sv_1$ é $S\otimes S$-projetivo. Mais ainda, a equação $h(s\otimes1)v_1 = h(1\otimes s)v_1$ mostra que $Sv_1 \simeq S$ como $S\otimes S$-módulos, e portanto $S$ é $S\otimes S$-projetivo, logo é uma $R$-álgebra separável.\par
+Tomando $h^{-1}(v_1) = \sum_{i=1}^{n}x_i \otimes y_i$, temos que os elementos $x_i, y_i$, $i\in \{1,\dots, n\}$ satisfazem $\sum_{i=1}^{n}x_i \sigma(y_i) = \delta_{\sigma,1}$. \par
+Suponha agora $e$ um idempotente de $S$ tal que $\sigma(s)e=\tau(s)e$, para $\sigma\neq \tau$ em $G$ e qualquer $s \in S$; então $e=\sum_{i=1}^{n}x_iy_i e=\sum_{i=1}^{n}x_i \tau^{-1}\sigma(y_i) e = 0$. Logo, os elementos de $G$ são dois a dois fortemente distintos. \par 
+
+
+
+$(2\Rightarrow 6)$
+Suponha que exista $\sigma\neq 1$ em $G$ e um ideal maximal $I \subset S$ tal que $\sigma(x)-x \in I$, para qualquer $x \in S$. Então, $\sum_{i=1}^{m}x_i(y_i-\sigma(y_i))=1 \in I$, o que implica que $I =S$, uma contradição. Assim, $\exists \, x \in S$ tal que $\sigma(x)-x \not\in I$. \par
+
+
+
+$(6\Rightarrow 2)$
+Seja $\sigma\neq 1$ em $G$ e $I\subset S$ o ideal gerado por $\{x-\sigma(x) \mid x \in S\}$. Pelo argumento acima, temos que $I=S$. Portanto, existem elementos $x_i, y_i \in S$, $i \in \{1,\dots, n\}$ tais que $1=\sum_{i=1}^{n}x_i(y_i-\sigma(y_i))$, ou seja,  $\sum_{i=1}^{n}x_iy_i = 1 + \sum_{i=1}^{n}x_i\sigma(y_i)$. Sejam $x_{n+1} = -\sum_{i=1}^{n}x_i\sigma(y_i)$ e $y_{n+1}=1$. Então, temos
+\[\sum_{i=1}^{n+1} x_iy_i = \sum_{i=1}^{n}x_iy_i + x_{n+1}y_{n+1} = 1 + \sum_{i=1}^{n}x_i\sigma(y_i)-\sum_{i=1}^{n}x_i\sigma(y_i) = 1\]
+e
+\[\sum_{i=1}^{n+1}x_i\sigma(y_i) = \sum_{i=1}^{n}x_i\sigma(y_i) + x_{n+1}\sigma(y_{n+1}) = \sum_{i=1}^{n}x_i\sigma(y_i) -\sum_{i=1}^{n}x_i\sigma(y_i) = 0,\]
+isto é, $\sum_{i=1}^{n+1} x_iy_i=\delta_{\sigma,1}$. Tomemos agora dois subconjuntos $H, H'\supset \{1\}$ de $G$, para os quais existem elementos $x_i,y_i,x'_j,y'_j$ de $S$, $i\in \{1,\dots, n\}$, $j\in\{1,\dots, m\}$, tais que para todo $\sigma\in H$ e todo $\sigma'\in H'$, $\sum_{i=1}^{n} x_i \sigma(y_i) = \delta_{1,\sigma}$ e $\sum_{j=1}^{m} x'_i \sigma'(y'_i) = \delta_{1,\sigma'}$. Então, para qualquer $\tau \in H \cup H'$, temos\[\sum_{i=1}^{n}\sum_{j=1}^{m} x_ix'_j \tau(y_iy'_j) = \sum_{i=1}^{n}\left(\sum_{j=1}^{m} x'_j \tau(y'_j)\right)x_i\tau(y_i) =\delta_{1,\tau}\]
+Como $G= \bigcup_{\sigma \neq 1}\{1,\sigma\}$, temos que a condição é satisfeita para todo $\sigma \in G$.
+\end{proof}
+\end{teo}
+
+
+
+A partir deste teorema, podemos definir o que é uma extensão galoisiana de anéis comutativos.
+
+\begin{defn}
+Se $G$ é um grupo finito de automorfismos de um anel comutativo $S$ e $R=S^G$, então $S$ é dita extensão de Galois de $R$ com grupo de Galois $G$ se uma (e portanto, todas) das condições do Teorema~\ref{galois} é satisfeita.
+\end{defn}
+
+
+\begin{remark}
+\begin{enumerate}
+    \item Se $S$ é um corpo, então a condição $(6)$ do Teorema~\ref{galois} claramente é válida, e portanto nossa definição coincide com a definição usual. Além disso, $(1)$ e $(3)$ mostram que uma extensão de corpos galoisiana é uma extensão finita e separável do corpo fixo, com dimensão igual a ordem do grupo de Galois.
+    \item O item $(4)$ do Teorema \ref{teo:galoisgeneralizavel} é a motivação para o isomorfismo apresentado no item $(3)$ do Teorema \ref{galois}; esta também foi a primeira definição de extensão galoisiana de anéis comutativos, apresentadas em \cite{brauer} por \citeauthor{brauer}.
+\end{enumerate}
+\end{remark}
+
+Para dar continuidade, definiremos a aplicação \emph{traço}\label{def:traco}. Seja $S$ uma extensão galoisiana de $R$ com grupo de Galois $G$. A aplicação traço é a aplicação definida por 
+\begin{align*}
+    tr_G : S &\rightarrow S \\
+    x &\mapsto \sum_{\sigma\in G} \sigma(x)
+\end{align*}
+Observe que $tr_G(x) \in S^G=R$:
+\begin{align*}
+    \sigma(tr_G(x)) & = \sigma \sum_{\rho \in G} \rho(x) = \sum_{\rho \in G} \sigma \rho (x) \\
+    & = \sum_{\tau \in G} \tau (x) = tr_G(x).
+\end{align*}
+
+Ao longo do texto, por simplicidade, usaremos a notação $tr$. \par 
+O próximo Lema, encontrado em \cite{zariski}, nos permitirá mostrar que a aplicação traço é sobrejetiva.
+
+\begin{lemma} \label{lem:zariski}
+Seja $R$ um anel com unidade e $I$ e $J$ dois ideais de $R$, tal que $I$ gerado por $x_1, \dots, x_n$ e $I =IJ$. Então existe um elemento $z \in J$ tal que $(1-z)I=0$. 
+\begin{proof}
+Denote por $I_i = (x_i, \dots, x_n)$. Assim, $I_1 =I$ e seja $I_{n+1}=0$. Vamos mostrar, por indução em $i$, a existência de um elemento $z_i$ em $J$ tal que $(1-z_i)I\subset I_i$; então $z_{n+1}$ será o elemento $z$ que buscamos. \par
+Para $i=1$, basta tomarmos $z_1=0$. A partir de $(1-z_i)I\subset I_i$ e $I\subset IJ$, deduzimos $(1-z_i)I\subset J(1-z_i)I \subset JI_i$; em particular, temos $(1-z_i)x_i = \sum_{j=1}^{n}z_{ij}x_j$ com $z_{ij}\in J$. Assim, $(1-z_i - z_{ii})x_i \in I_{i+1}$, e podemos tomar $1-z_{i+1} = (1-z_i)(1-z_i-z_{ii})$.
+\end{proof}
+\end{lemma}
+
+\begin{lemma} \label{lem:traco}
+Seja $S$ uma extensão galoisiana de $R$ com grupo de Galois $G$. Então existe $c \in S$ tal que $tr(c)=\sum_{\sigma\in G}\sigma(c)=1$, e $R$ é um $R$-módulo somando direto de $S$.
+\begin{proof}
+Temos que $tr \in \textrm{Hom}_R(S,R)$. Logo $tr(S)$ é um ideal de $R$. De fato, dados $x,y \in S$, $r \in R$, temos:
+\[tr(x+ry) = \sum_{\sigma\in G}\sigma(x+ry) = \sum_{\sigma\in G}\sigma(x)+r\sigma(y) = tr(x)+r\cdot tr(y)\]
+Assim, $0 = tr(0)$, $tr(x)+tr(y)=tr(x+y)\in tr(S)$ e $r\cdot tr(x) = tr(rx)\in tr(S)$. Tomando os elementos $x_i,y_i$, $i\in \{1,\dots, m\}$ como no Teorema~\ref{galois}, temos $\sum_{\sigma\in G} \sum_{i=1}^{m} x_i\sigma(y_i) = \sum_{\sigma \in G} \delta_{1,\sigma} = \sum_{i=1}^{m} x_i tr(y_i) = 1 $. Assim, o ideal de $S$ gerado por $tr(S)$ é igual a $S$. Como $S$ é um $R$-módulo finitamente gerado, pelo Lema~\ref{lem:zariski}, obtemos $r$ em $tr(S)$ com $(1-r)S=0$. Portanto, $r=1$ e $tr(S)=R$, estabelecendo a existência de $c \in S$ com $tr(c)=1$. Logo, a sequência de $R$-módulos $S\xrightarrow{tr}R\rightarrow 0$ é exata. Definimos $\theta:R \rightarrow S$ por $\theta(r)=rc$, para qualquer $r\in R$. $\theta$ é um homomorfismo tal que $tr \circ \theta = \id{R}$:
+\begin{align*}
+        tr \circ \theta (r) &= tr(rc) = r \cdot tr(c) \\
+        &= r \cdot 1 = r \\
+        \theta (x+ry) &= (x+ry)c \\
+        &= xc + ryc = \theta(x) + r\theta(y).
+\end{align*}
+Portanto, $R$ é somando direto de $S$ como $R$-módulos.
+\end{proof}
+\end{lemma}
+O Lema a seguir, adaptado de \cite[2.2]{thaisapaques}, traz mais resultados acerca da aplicação traço.
+\begin{lemma}
+Seja $S$ extensão galoisiana de $R=S^G$ com grupo de Galois $G$. Então são verdadeiras as afirmações a seguir:
+\begin{enumerate}
+    \item $tr(S) = R$;
+    \item existe $c \in S$ tal que $tr(c) = 1$;
+    \item $tr:S\rightarrow R$ é um epimorfismo de $R$-módulos que cinde;
+    \item $R$ é somando direto de $S$ como $R$-módulos;
+    \item $S\simeq R \oplus \ker{tr}$ como $R$-módulo;
+\end{enumerate}
+\begin{proof}
+A partir da demonstração do Lema~\ref{lem:traco}, obtemos as primeiras quatro afirmações. Assim, basta mostrarmos $(5)$.\par 
+A sequência \[0 \rightarrow \ker{tr} \rightarrow S \xrightarrow{tr} R \rightarrow 0\] é exata e cinde. Portanto, pela Proposição~\ref{prop:alveri}, temos $R\oplus \ker{tr} = S$.
+\end{proof}
+\end{lemma}
+
+
+\begin{lemma} \label{lem:alg}
+Seja $S$ uma extensão de Galois de $R$ com grupo de Galois $G$, e $A$ uma $R$-álgebra comutativa. Defina a ação de $G$ em $A \otimes S$ por $\sigma(a\otimes s) = a\otimes \sigma(s)$, para $s \in S$, $\sigma \in G$ e $a \in A$. Então $A \otimes S$ é uma extensão de Galois de $A$ com grupo de Galois $G$.
+\begin{proof}
+Pelo Lema~\ref{lem:traco}, temos que $R$ é um somando direto de $S$, então $A\otimes S= A\otimes R \oplus A\otimes N$ e $A\otimes R$ e $A$ são $R$-álgebras isomorfas, e identificaremos $A\otimes R$ e $A$ em $A\otimes S$ por meio deste isomorfismo. \par Se $x_1, \dots, x_n, y_1, \dots, y_n$ satisfazem $\sum_{i=1}^{n}x_i\sigma(y_i) = \delta_{\sigma,1}$, então $1\otimes x_i, 1\otimes y_i$, $i\in \{1,\dots, n\}$ satisfazem a mesma condição para $A\otimes S$:
+\begin{align*}
+        \sum_{i=1}^{n}(1\otimes x_i)\sigma(1\otimes y_i) &= \sum_{i=1}^{n}(1\otimes x_i)\left(1\otimes \sigma(y_i)\right) \\
+        &= \sum_{i=1}^{n} \left(1\otimes x_i \sigma(y_i) \right) = \sum_{i=1}^{n}\left( 1\otimes \delta_{1, \sigma} \right) = \delta_{1, \sigma}
+\end{align*} \par
+Assim, basta mostrar que $\left(A\otimes S\right)^G=A$. Para qualquer $a \in A$, temos $(1\otimes \sigma)(a\otimes 1)= a\otimes \sigma(1) = a\otimes 1$, para qualquer $\sigma \in G$, portanto $A \subset (A\otimes S)^G$. Tomemos então $w$ em $(A \otimes S)^G$. Pelo Lema~\ref{lem:traco}, existe $c \in S$ tal que $tr(c)=1$. Então $\sum_{i=1}^{n} (1\otimes \sigma)(1\otimes c) = 1 \otimes 1$. Seja então $w\cdot 1\otimes c = \sum_{i=1}^{m} a_i \otimes s_i \in A\otimes S$. Logo:
+\[w = w\cdot 1\otimes 1 = w\sum_{\sigma \in G} (1 \otimes \sigma)(1 \otimes c)\]
+e como $w\in (A\otimes S)^G$, segue
+\begin{align*}
+    w &= \sum_{\sigma\in G} (1\otimes \sigma)(w\cdot 1 \otimes c) \\
+    &= \sum_{\sigma \in G} (1 \otimes \sigma)(w \cdot 1 \otimes c) \\
+    &= \sum_{\sigma\in G}(1\otimes \sigma)\left( \sum_{i=1}^{m} a_i\otimes s_i \right) \\
+    &= \sum_{i=1}^{m} a_i \otimes \sum_{\sigma\in G} \sigma(s_i) \\
+    &= \sum_{i=1}^{m} a_i \otimes tr(s_i) \in A\otimes R = A
+\end{align*}
+Assim, temos $\left(A\otimes S\right)^G = A$
+\end{proof}
+\end{lemma}
+
+\section{Teorema Fundamental da Teoria de Galois} \label{sec:teofund}
+Tratando de extensões de corpos, o teorema fundamental da teoria de Galois determina que, em uma extensão galoisiana $L\mid_K$, para cada corpo intermediário $M$, $K \subset M \subset L$, existe um subgrupo $H \subset \textrm{Gal}(L\mid K)$ tal que $M$ permanece fixo pela ação de $H$. Reciprocamente, a cada subgrupo de $\textrm{Gal}(L\mid_K)$, corresponde um corpo intermediário, chamado corpo fixo, pois é o subcorpo que permanece fixo pela ação de $H$. \par Tratando de extensões de anéis comutativos, isso não é sempre verdade. Assim, necessitamos de mais informações sobre as álgebras intermediárias, em especial, as álgebras $G$-fortes.
+
+\begin{defn}
+Seja $S$ uma extensão galoisiana de $R$ com grupo de Galois $G$ e $T \subset S$ um subanel. Se diz que $T$ é $G$-forte se para quaisquer $\sigma,\tau \in G$, $\left.\sigma\right|_T = \left.\tau\right|_T$ ou $\left. \sigma \right|_T$ e $\left. \tau \right|_T$ são fortemente distintos.
+\end{defn}
+Note que se $S$ não possui idempotentes além de 0 e 1 -- em particular, se $S$ é corpo -- então todo subanel é $G$-forte. Assim, neste caso, temos uma correspondência biunívoca entre os subgrupos e os subanéis. \par 
+Se $S$ é uma extensão galoisiana de $R$ com grupo de Galois $G$, $H\subset G$ é um subgrupo de $G$ e $T\subset S$ é uma $R$-subálgebra de $S$, denotamos \[S^H=\{s\in S \mid \tau(s)=s, \forall \tau \in H\}\] e \[H_T=\{ \sigma\in G \mid \sigma(x)=x, \forall x \in T \}.\] \par
+Verificaremos que $S^H$ é uma $R$-subálgebra de $S$. De fato, tomemos $\sigma \in H$ $s,t \in S^H$ e $r \in R$. Então $\sigma(rs+t)= \sigma(rs)+\sigma(t)= r\sigma(s)+\sigma(t)= rs+t$, logo $rs+t \in S^H$. Além disso, $\sigma(st)=\sigma(s)\sigma(t) =st \in S^H$. Logo, $S^H$ é uma $R$-subálgebra de $S$. \par
+Vejamos agora que $H_T$ é um subgrupo de $G$. Claramente, $1 \in H_T$. Sejam então $\sigma, \tau \in H_T$, $t \in T$. Temos que $\sigma(t)=t \Rightarrow \sigma^{-1}\sigma(t)=\sigma^{-1}(t) =t$, ou seja, $\sigma^{-1}\in H_T$. Além disso, $\sigma\tau(t)=\sigma(t)=t$, então $\sigma, \tau \in G_T \Rightarrow \sigma\tau \in H_T$. Portanto, $H_T$ é um subgrupo de $G$. \par
+Seguimos agora com o teorema fundamental da teoria de Galois.
+
+\begin{teo}\label{teo:corresp-comut}
+Seja $S$ uma extensão galoisiana de $R$ com grupo de Galois $G$.
+\begin{enumerate}
+    \item Seja $H$ um subgrupo de $G$ e $T=S^H$. Então, $T$ é uma $R$-álgebra separável e $G$-forte como subálgebra de $S$, e $S$ é uma extensão galoisiana de $T$ com grupo de Galois $H=H_T$.
+    \item Seja $T$ uma $R$-subálgebra separável e $G$-forte de $S$ e $H=H_T$. Então $T=S^H$.
+    \item Para cada $\sigma \in G$ e para cada $R$-subálgebra separável e $G$-forte $T$ de $S$, $H_{\sigma(T)}=\sigma H_T\sigma^{-1}$. Como consequência, um subgrupo $H$ de $G$ é normal se e somente se $\sigma(S^H) =S^H$, para todo $\sigma \in G$. Mais ainda, neste caso $S^H$ é uma extensão galoisiana de $R$ com grupo de Galois $G/H$.
+\end{enumerate}
+\begin{proof}[Demonstração. 1]\let\qed\relax
+Sejam $x_i,y_i \in S$ , $i\in \{1,\dots,n\}$ que satisfazem\[\sum_{i=1}^{n} x_i\sigma(y_i)=\delta_{\sigma, 1}\]para todo $\sigma\in G$. Claramente $\sum_{i=1}^{n}x_i\sigma(y_i)=\delta_{\sigma, 1}$ para todo $\sigma \in H$, e portanto $S$ é uma extensão galoisiana de $T=S^H$ com grupo de Galois $H$. \par Desta forma, $S$ satisfaz todas as condições do Teorema~\ref{galois}, sendo um $T$-módulo projetivo; logo, $S\otimes S$ é um $T\otimes T$-módulo projetivo. Por outro lado, $S$ é uma $R$-álgebra separável e portanto, um $S\otimes S$-módulo projetivo. Assim, $S$ é um $T\otimes T$-módulo projetivo. Como $S$ é uma extensão galoisiana de $T$, então $T$ é um somando direto de $S$ como $T$-módulo e, em consequência, $T$ é também um somando direto de $S$ como $T\otimes T$-módulo. Desta forma, $T$ é um $T\otimes T$-módulo projetivo, e portanto, uma $R$-álgebra separável.
+
+Seja agora $H'=H_T$. Trivialmente, $H\subset H'$ e $S^{H'}=S^H=T$. Por um raciocínio análogo ao usado no início da demonstração, podemos ver que $S$ é também uma extensão galoisiana de $T$ com grupo de Galois $H'$. Logo, pelo Teorema~\ref{galois}, temos que $E_H \simeq S\otimes_T S \simeq E_{H'}$, $\abs{H'}=\dim_SS\otimes_T S=\abs{H}$. Logo $H'=H=H^T$.
+
+Finalmente mostraremos que $T$ é $G$-forte como subálgebra de $S$. Como $S$ é extensão galoisiana de $T$ com grupo de Galois $H$, existe $c\in S$ tal que $\sum_{\rho \in H}\rho(c) =1$.
+
+Consideremos novamente os elementos $x_i, y_i \in S$ ($i\in\{1, \dots, n\}$) tais que $\sum_{i=1}^{n} x_i \sigma(y_i)=\delta_{\sigma, 1}$, para qualquer $\sigma \in G$, e sejam $x_i'= \sum_{\rho \in H} \rho(x_i c)$ e $y_i'=\sum_{\rho \in H} \rho(y_i)$, para $i=1,\dots,n$. Como $x_i' = tr_H(x_i c)$ e $y_i'=tr_H(y_i)$, estes $x_i',y_i'$ pertencem a $S^H = T$, como mostrado na página \pageref{def:traco}. \par 
+Além disto, temos:
+\begin{align*}
+        \sum_{i=1}^{n}x_i'\sigma(y_i') &= \sum_{i=1}^{n} \left( \sum_{\rho \in H}\rho(x_i c) \right) \sigma \left(\sum_{\tau \in H}\tau(y_i) \right) = \sum_{\rho, \tau \in H}\rho(c)\sum_{i=1}^{n} \rho(x_i)\sigma\tau(y_i) \\
+        &= \sum_{\rho, \tau \in H}\rho(c)\rho\left(\sum_{i=1}^{n} x_i\rho^{-1}\sigma\tau(y_i)\right) = \sum_{\rho, \tau \in H}\rho(c)\delta_{1,\rho^{-1}\sigma\tau} \\
+        &= \sum_{\rho\in H} \rho(c) \sum_{\tau \in H}\delta_{1,\rho^{-1}\sigma\tau} = \begin{cases}
+        1 \textrm{, se }\sigma \in H \\
+        0 \textrm{, se } \sigma\not\in H
+        \end{cases}
+\end{align*}
+para qualquer $\sigma \in G$. \par
+Sejam $\sigma,\tau \in G$ tais que $\left.\sigma\right|_T \neq \left.\tau\right|_T$. Então $\tau\sigma^{-1}\not\in H$. Se agora $e \in S$ é um idempotente não nulo tal que $\sigma(t)e = \tau(t)e$, para todo $t\in T$, então $te = \tau\sigma^{-1}(t)e$ para todo $t\in T$ e
+\[e = \left( \sum_{i=1}^{n} x_i'y_i' \right) = \sum_{i=1}^{n}x_i'(y_i'e) = \sum_{i=1}^{n}x_i' \tau\sigma^{-1}(y_i)e = 0e =0\]
+e, portanto, $T$ é $G$-forte.
+\end{proof}
+
+\begin{proof}[2]\let\qed\relax
+Seja $T$ uma $R$-subálgebra separável e $G$-forte de $S$ e seja $H=H_T$. $T\subset S^H$, pois $S^H$ são os elementos fixos pela ação de $H=H_T$, que é o subgrupo que mantém $T$ fixo. Basta mostrar que $S^H\subset T$. \par 
+Temos que $S\otimes S$ é uma extensão de Galois de $S\otimes R = S$ com grupo de Galois $G$, onde $S$ opera no primeiro fator e $G$ no segundo. Então o isomorfismo $h: S\otimes S \rightarrow E$, dado por $h(s\otimes t)(\sigma)=s\sigma(t)$, induz uma ação de $G$ em $E$ por $\sigma v(\tau)=v(\tau\sigma)$ e portanto, $E$ é uma extensão de Galois de $S$ com grupo $G$. \par 
+Ainda, como $S$ é $R$-projetivo, identificaremos $S\otimes T$ com sua imagem em $S\otimes S$. Vamos mostrar que $E^H \subset h(S\otimes T)$. \par
+Seja $G=\bigcup_{i=1}^{r}\sigma_i H$. Então $E^H$ é o conjunto das funções de $G$ em $S$ que são constantes nas classes $\sigma_i H$. \par
+Seja $f_i: E \rightarrow S$ o homomorfismo de $S$-álgebras definido por $f_i(v)=v(\sigma_i)$. Vamos mostrar que $f_1, \dots, f_r$ são dois a dois fortemente distintos. \par
+Pela definição de $H=H_T$, temos que $i\neq j \Rightarrow \sigma_i\mid_T \neq \sigma_j \mid_T$. Dado $e \in S$ idempotente não nulo, como $T$ é $G$-forte, existe $t\in T$ tal que $f_i(h(1\otimes t))e = \sigma_i(t)e\neq\sigma_j(t)e=f_j(h(1\otimes t))e$. Logo, $f_1, \dots, f_r$ são fortemente distintos. \par
+Como $T$ é $R$-separável, $S\otimes T$ é $S$-separável. Podemos verificar isso observando que\[(S\otimes T)\otimes_S (S\otimes T) = S\otimes (T\otimes T)\]e que se $e_T\in T \otimes T$ é o idempotente de separabilidade de $T$ sobre $R$, então $1\otimes e_T$ é o idempotente de separabilidade de $S\otimes T$ sobre $S$. Além disso, como $h$ é um isomorfismo de $S$-álgebras, temos que $h(S\otimes T)$ também é uma $S$-álgebra separável. Portanto, existem idempotentes $w_1, \dots, w_r$, dois a dois ortogonais, com $f_i(x)w_i=x w_i$ e $w_i(\sigma_j)=f_j(w_i)=\delta_{i,j}$. \par 
+Notemos que $w_i \in E^H$, para qualquer $i\in \{1,\dots,r\}$, pois $h(S\otimes T) \subset E^H$. Logo, precisamos mostrar que $w_1,\dots,w_r$ gera $E^H$ como $S$-módulo. \par
+Observamos que se $z=\sum_{\sigma \in G} a_\sigma v_\sigma \in E^H$, então $\rho(z)=z$, para qualquer $\rho \in H$, e portanto\[\sum_{\sigma \in G} a_\sigma v_{\sigma\rho^{-1}}=\sum_{\sigma \in G} a_\sigma v_\sigma \; \textrm{  ou  } \; \sum_{\sigma \in G} a_{\sigma\rho}v_{\sigma} = \sum_{\sigma \in G} a_\sigma v_\sigma\]de onde seque que $a_{\sigma\rho}=a_\sigma$, para todo $\sigma \in G, \rho \in H$. Em particular, $a_{\sigma_i}=a_{\sigma_i \rho}$, para todo $\rho \in H$, $i\in \{1,\dots, n\}$. Então, como $G=\bigcup_{i=1}^{r} \sigma_i H$, para qualquer $z\in E^H$, temos:
+\[z= \sum_{\sigma \in G} a_\sigma v_\sigma = \sum_{i=1}^{r}\sum_{\rho \in H} a_{\sigma_i\rho^{-1}}v_{\sigma_i\rho^{-1}} = \sum_{i=1}^{r} a_{\sigma_i} \left( \sum_{\rho \in H}\rho(v_{\sigma_i}) \right)\]
+Como $f_i(w_j)=\delta_{i,j}$ e $w_i \in E^H$, para quaisquer $i,j \in \{ 1, \dots, r\}$, obtemos $w_i = \sum_{\rho \in H} \rho(v_{\sigma_i})$ e $z=\sum_{i=1}^{r}a_{\sigma_i}w_i$, para todo $z \in E^H$. Logo, $E^H \subset h(S\otimes T) \Rightarrow E^H = h(S\otimes T)$. \par
+Como $E^H \subset h(S\otimes T)$, aplicando $h^{-1}$ obtemos $S\otimes S^H \subset (S\otimes S)^H \subset S\otimes T$, e agora aplicamos $tr \otimes 1$ para obter $S^H \subset T$. Logo, $T=S^H$.
+\end{proof}
+
+\begin{proof}[3]
+Sejam $\rho \in H_T$ e $t \in T$. Temos que $\sigma(t) \in \sigma (T)$ e portanto, $\sigma \rho \sigma^{-1}(\sigma(t)) = \sigma\rho(t)=\sigma(t)$, para qualquer $\sigma \in G$. Portanto, $\sigma H \sigma^{-1} \subset H_{\sigma(T)} $. Por outro lado, seja $\rho \in H_{\sigma(T)}$, isto é, $\rho \in G$ tal que $\rho \sigma(t)=\sigma(t)$, para qualquer $t \in T$. Devemos mostrar que  $\rho \in \sigma H_T\sigma^{-1}$, ou seja, que existe $\tau \in H$ tal que $\rho = \sigma \tau \sigma^{-1}$. Temos que, dado $t \in T$, $ \rho \sigma (t) = \sigma(t)$, pois $\rho \in H_{\sigma(T)}$, então $\sigma^{-1}\rho \sigma (t) = t$, para qualquer $t \in T$. Assim, $\sigma^{-1}\rho \sigma \in H_T$. Então, existe $\tau \in H_T$ tal que $\tau = \sigma^{-1} \rho \sigma$, isto é, $\rho = \sigma \tau \sigma^{-1} \in \sigma H_T \sigma^{-1}$. Portanto, $\sigma H_T \sigma^{-1}= H_{\sigma(T)}$.\par 
+Por outro lado, suponha $H$ normal, isto é, $H=\sigma H \sigma^{-1}$, para qualquer $\sigma \in G$. Vamos mostrar que $\sigma(S^H) = S^H$. Sejam quaisquer $s \in S^H$ e $\rho \in H$; então existe $\tau \in H$  tal que $\sigma\tau = \rho\sigma$. \par
+Se $s \in S^H$, então $s = \rho (s) = \sigma\tau\sigma^{-1}(s)$, e $\sigma\tau\sigma^{-1}(s) \in \sigma(S^H)$ se $\tau\sigma^{-1}(s) \in S^H$. Tomemos agora qualquer $\psi\in H$; então existe $\phi \in H$ tal que $\phi\sigma = \sigma \psi $. Segue, então
+\begin{align*}
+\psi( \tau \sigma^{-1}(s)) =& \; \psi( \sigma^{-1} \rho(s)) = \psi\sigma^{-1}(s) \\
+&= \sigma^{-1}\phi(s) = \sigma^{-1}(s) = \sigma^{-1}\rho(s) = \tau\sigma^{-1}(s).
+\end{align*}
+Logo, $\tau\sigma^{-1}(s) \in S^H$ e, desta maneira, $S^H \subset \sigma(S^H)$. Por outro lado, tomemos $\sigma(s)=t \in \sigma(S^H)$. Para qualquer $\rho \in H$, temos\[\rho(t)=\rho\sigma(s)=\sigma\tau(s)=\sigma(s)=t\]
+Portanto, $\sigma(s)=t \in S^H$, para qualquer $s \in S^H$. \par 
+Por fim, seja $H$ subgrupo normal de $G$ e $T=S^H$. Então $\sigma(T)=T$, para qualquer $\sigma\in G$. Seja $G/H=\left\{ \bar{\sigma_i} = \sigma_i H \mid 1\leq i \leq r \right\}$. Definimos $\bar{\sigma_i}: T\rightarrow T$ por $\bar{\sigma_i}(x) =\sigma_i(x)$, para todo $x \in T$, $i\in \{1,\dots, r\}$. Podemos ver que a ação de $\sigma_i$ sobre $T$ não depende do representante de $\bar{\sigma_i}$ escolhido, pois $T=S^H$. Além disso, $T^{G/H}=S^G=R$ e os elementos $x_i',y_i' \in T$, $i \in \{1,\dots,n\}$, construídos na demonstração do item $(1)$ mostram que $T$ é uma extensão galoisiana de $R$ com grupo de Galois $G/H$, pois satisfazem o Teorema~\ref{galois}.
+\end{proof}
+\end{teo}
+Com o resultado acima, podemos estabelecer a correspondência entre as $R$-subálgebras $G$-fortes de $S$ e os subgrupos de $G$, de forma análoga às extensões galoisianas de corpos. Assim, obtemos o diagrama a seguir:
+%\begin{center}
+%\begin{tikzcd}
+% & & S \arrow[rrr] & & & \{\textrm{id}\} \arrow[lld] \arrow[rdd] & \\
+%S^H \arrow[rru, hook] & & & H \arrow[lll, dashed, crossing over] \arrow[rdd] & & & \\
+% & & & T \arrow[luu, hook] \arrow[rrr, dashed] & & & H_T \arrow[lld] \\
+% & R \arrow[rru, hook] \arrow[luu, hook] \arrow[rrr] & & & G & & 
+%\end{tikzcd}
+%\end{center}\par
+
+\[\begin{tikzcd}[row sep=scriptsize, column sep=scriptsize]
+& S \arrow[leftarrow]{dl}\arrow{rr}\arrow[leftarrow]{dd} & & \{\id{S}\} \arrow{dl}\arrow{dd} \\
+S^H \arrow[crossing over, leftarrow, dashed]{rr}\arrow[leftarrow]{dd} & & H \\
+& T \arrow[leftarrow]{dl}\arrow[dashed]{rr} & & H_T \arrow{dl} \\
+R \arrow{rr} & & G\arrow[crossing over, leftarrow]{uu} \\
+\end{tikzcd}\]
+
+\begin{exemplo}
+Sejam $R$ um anel comutativo com unidade e $S=Re_1 \oplus Re_2 \oplus Re_3 \oplus Re_4$, onde $e_1,e_2,e_3,e_4$ são idempotentes dois a dois ortogonais de $S$ com $e_1 + e_2 + e_3 + e_4 = 1_S$. Seja $G$ o grupo cíclico de ordem 4, gerado a partir de $\sigma$, agindo em $S$ via $\sigma(e_i) = e_{i+1}$. 
+
+Vamos verificar que $S$ é extensão galoisiana de $R = S^G$ com sistema de coordenadas de Galois $x_i = y_i = e_i$, com $1\leq i \leq 4$:
+\[\sum_{i=1}^{4} x_i \rho(y_i)= \sum_{i=1}^{4} e_i \rho(e_i), \]
+caso $\rho = id_S$, temos $\sum_{i=1}^4 e_i^2 = 1$; caso $\rho \neq id_S$, como $e_i e_j = 0$, para $i \neq j$, temos $\sum_{i=1}^4 e_i \rho(e_i) = 0$.
+
+Seja $T=R(e_1+e_2)\oplus R(e_3+e_4)$ e tomemos $t = r_1(e_1+e_2) + r_2(e_3 + e_4)$, com $r_1, r_2 \in R$.  Observe no quadro abaixo os automorfismos de $G$ restritos a $T$:
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|l|}
+\hline
+$\id{S} (t)$          & $r_1(e_1+e_2)+r_2(e_3+e_4)$ \\ \hline
+$\sigma (t)$          & $r_1(e_2+e_3)+r_2(e_4+e_1)$ \\ \hline
+$\sigma^2 (t)$        & $r_1(e_3+e_4)+r_2(e_1+e_2)$ \\ \hline
+$\sigma^3(t)$        & $r_1(e_4+e_1)+r_2(e_2+e_3)$ \\ \hline
+$\sigma^4(t)=\id{S}(t)$ & $r_1(e_1+e_2)+r_2(e_3+e_4)$ \\ \hline
+\end{tabular}
+\end{table}
+
+Podemos observar que $\sigma^{i}\mid_T \neq \sigma^{j}|_T$, se $i\neq j,$ $0 \leq i, j \leq 3$. Assim, temos que $\sigma^{i}$ e $\sigma^{j}$ devem ser fortemente distintos para que $T$ seja uma $R$-subálgebra $G$-forte de $S$: dois automorfismos distintos $\sigma^{i}, \sigma^{j} \in G$ devem satisfazer $\sigma^{i}(t)e \neq \sigma^{j}(t)e$, para qualquer $t \in T$ e $e$ idempotente não nulo de $T$. Temos que
+\[\begin{array}{rrll}
+& \sigma(t) e_1 &= \left(r_1(e_2+e_3)+r_2(e_4+e_1)\right)e_1 &= r_2e_1, \text{ e} \\
+& \sigma^2(t)e_1 &= \left(r_1(e_3+e_4)+r_2(e_1+e_2)\right)e_1 &= r_2e_1 \\
+\Rightarrow & \sigma(t)e_1 &=\sigma^2(t)e_1. &
+\end{array}\]
+
+Portanto, $T$ não é $G$-forte. Observemos agora \[H_T = \{g \in G \mid g(t) = t, \; \forall t \in T\}.\] Temos que $H_T = \{\id{S}\}$, porém $S^{H_T} = S \neq T$. Na página \pageref{ex:correspondencia}, vimos um exemplo semelhante para o caso de corpos, onde a correspondência não era satisfeita, pois a extensão $\Q(\sqrt[3]{2}) \mid_\Q$ não é normal. Agora, em extensões de anéis, este exemplo deixa clara a importância da hipótese de $T$ ser $G$-forte para garantir a bijetividade da correspondência de Galois.
+
+Tomemos agora um subgrupo de $G$. Como $G$ é o grupo cíclico de ordem 4, temos que $H = \{\id{S}, \sigma^2 \} \simeq \Z_2$ é único subgrupo próprio de $G$. Pelo Teorema~\ref{teo:corresp-comut}, temos que $S^H$ é uma $R$-álgebra separável e $G$-forte, e que $S = Re_1 \oplus R e_1 \oplus R e_3 \oplus R e_4$ é extensão de $S^H$ e, se $\tau(S^H) = S^H$ para todo $\tau \in G$, onde segue que $S^H$ é extensão galoisiana de $R$ com grupo de Galois $G/H$.
+
+Primeiro, vamos identificar quem é $T = S^H$. Temos \[\sigma^2(r_1 e_1 + r_2 e_2 + r_3 e_3 + r_4 e_4) = r_1 e_3 + r_2 e_4 + r_3 e_1 + r_4 e_2,\] logo se $\sigma^2(t) = t$, temos $t \in R(e_1 + e_3) \oplus R(e_2 + e_4) = T$.
+
+Agora, como \[\sigma(r_1(e_1 + e_3) + r_2 (e_2 + e_4)) = r_1 (e_2 + e_4) + r_2 (e_1 + e_3)\] temos que $\sigma(T) = T$, para todo $\sigma \in G$. Logo $H$ é normal e $T$ é extensão galoisiana de $R$ com grupo de Galois $G/H = \left\{\bar{\id{S}}, \bar{\sigma} \right\}$.
+\end{exemplo}
+
+\begin{exemplo}
+Seja $G = S_3 \times C_2$, onde $S_3$ é o grupo de permutações de 3 elementos e $C_2$ é o grupo cíclico de ordem 2. Seja $R$ um anel comutativo com unidade e considere
+\[S = \bigoplus_{g \in G}Re_g.\]
+
+$S_3$ possui 4 subgrupos próprios: um subgrupo cíclico de ordem 3, formado pelas permutações $\{1, (1\;2\;3), (1\;3\;2)\}$, e 3 subgrupos cíclicos de ordem 2, a saber $\{1, (1\;2)\}, \{1, (1\;3)\}, \{1,(2\;3)\}$; combinados com os subgrupos de $C_2$, temos 12 subgrupos do grupo de Galois $G$:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c c}
+        $H_1 = \{1\} \times \{1\}$  & $H_2 = \{1\} \times C_2$ \\
+        $H_3 = \{1, (1\;2\;3), (1\;3\;2)\} \times \{1\} $  & $H_4 = \{1, (1\;2\;3), (1\;3\;2)\} \times C_2 $ \\
+        $H_5 = \{1, (1\;2)\} \times \{1\} $  & $H_6 = \{1, (1\;2)\} \times C_2$ \\
+        $H_7 = \{1, (1\;3)\} \times \{1\} $  & $H_8 = \{1, (1\;3)\} \times C_2$ \\
+        $H_9 = \{1,(2\;3)\} \times \{1\} $  & $H_{10} = \{1,(2\;3)\} \times C_2$ \\
+        $H_{11} = S_3 \times \{1\} $  & $H_{12} = S_3 \times C_2$
+    \end{tabular}
+\end{table}
+
+Para determinar as subálgebras que permanecem fixas pela ação de cada subgrupo $H_i$, sejam $T_i = S^{H_i}$ e $s \in S$ dado por
+\[s = \sum_{(\sigma,\tau)\in G}r_{(\sigma,\tau)}e_{(\sigma,\tau)}.\]
+A partir deste momento, vamos denotar os elementos de $S_3$ e $C_2$ de forma a facilitar a indexação dos idempotentes. As transposições $(m\;n) \in S_3$ serão denotadas por $\sigma_{mn}$, e $(1\;2\;3) = \rho$. Além disso, $C_2 = \{1, \varphi\}$.
+
+Vejamos a tábua de operação de $S_3$.
+\begin{table}[H]
+\centering
+\begin{tabular}{c|cccccc}
+$(S_3, \circ)$ & 1 & $\sigma_{12}$ & $\sigma_{23}$ & $\sigma_{13}$ & $\rho$ & $\rho^2$ \\ \hline
+1 & 1 & $\sigma_{12}$ & $\sigma_{23}$ & $\sigma_{13}$ & $\rho$ & $\rho^2$ \\
+$\sigma_{12}$ & $\sigma_{12}$ & 1 & $\rho$ & $\rho^2$ & $\sigma_{23}$ & $\sigma_{13}$ \\
+$\sigma_{23}$ & $\sigma_{23}$ & $\rho^2$ & 1 & $\rho$ & $\sigma_{13}$ & $\sigma_{12}$ \\
+$\sigma_{13}$ & $\sigma_{13}$ & $\rho$ & $\rho^2$ & 1 & $\sigma_{12}$ & $\sigma_{23}$ \\
+$\rho$ & $\rho$ & $\sigma_{13}$ & $\sigma_{12}$ & $\sigma_{23}$ & $\rho^2$ & 1 \\
+$\rho^2$ & $\rho^2$ & $\sigma_{23}$ & $\sigma_{13}$ & $\sigma_{12}$ & 1 & $\rho$
+\end{tabular}
+\end{table}
+
+De onde segue
+\[T_1 = S\]
+\[T_2 = \bigoplus_{\sigma \in S_3} R \left(e_{(\sigma, 1)} + e_{(\sigma,\varphi)}\right)\]
+\begin{align*}
+    T_3 =& R\left(e_{(1,1)} + e_{(\rho, 1)} + e_{(\rho^2, 1)} \right) \oplus R \left( e_{(\sigma_{12},1)} + e_{(\sigma_{13},1)} + e_{(\sigma_{23},1)} \right) \\
+    &\oplus R\left(e_{(1,\varphi)} + e_{(\rho, \varphi)} + e_{(\rho^2, \varphi)} \right) \oplus R \left( e_{(\sigma_{12},\varphi)} + e_{(\sigma_{13},\varphi)} + e_{(\sigma_{23},\varphi)} \right)
+\end{align*}
+Observe agora que $(\rho, \varphi)^2 = (\rho^2, 1)$ e $(\rho, \varphi)^3 = (1, \varphi)$. Como $\rho$ é um elemento de ordem 3 em $S_3$, e $\varphi$ é de ordem 2, temos que $(\rho,\varphi)$ é de ordem 6. Desta forma, associamos os idempotentes em duas somas, com seis parcelas cada.
+\begin{align*}
+    T_4 = &R\left(e_{(1,1)} + e_{(\rho, \varphi)} + e_{(\rho^2, 1)} + e_{(1,\varphi)} + e_{(\rho, 1)} + e_{(\rho^2, \varphi)}\right) \\ 
+    &\oplus R \left( e_{(\sigma_{12},1)} + e_{(\sigma_{13},\varphi)} + e_{(\sigma_{23},1)} + e_{(\sigma_{12},\varphi)} + e_{(\sigma_{13},1)} + e_{(\sigma_{23},\varphi)} \right)
+\end{align*}
+Para $5\leq i \leq 10$, temos ações semelhantes por $\sigma_{mn}$. Como $\sigma_{mn}$ é de ordem 2, assim como $\varphi$, temos $(\sigma_{mn}, \varphi)^2 = (1,1)$ e portanto, associamos os idempotentes dois a dois.
+\begin{align*}
+    T_5 =& R\left( e_{(1,1)} + e_{(\sigma_{12}, 1)} \right) \oplus R\left( e_{(\rho,1)} + e_{(\sigma_{23}, 1)} \right) \oplus R\left( e_{(\rho^2,1)} + e_{(\sigma_{13}, 1)} \right) \\
+    &\oplus R\left( e_{(1,\varphi)} + e_{(\sigma_{12}, \varphi)} \right) \oplus R\left( e_{(\rho,\varphi)} + e_{(\sigma_{23}, \varphi)} \right) \oplus R\left( e_{(\rho^2,\varphi)} + e_{(\sigma_{13}, \varphi)} \right)
+\end{align*}
+\begin{align*}
+    T_6 =& R\left( e_{(1,1)} + e_{(\sigma_{12}, \varphi)} \right) \oplus R\left( e_{(\rho,1)} + e_{(\sigma_{23}, \varphi)} \right) \oplus R\left( e_{(\rho^2,1)} + e_{(\sigma_{13}, \varphi)} \right) \\
+    &\oplus R\left( e_{(1,\varphi)} + e_{(\sigma_{12}, 1)} \right) \oplus R\left( e_{(\rho,\varphi)} + e_{(\sigma_{23}, 1)} \right) \oplus R\left( e_{(\rho^2,\varphi)} + e_{(\sigma_{13}, 1)} \right)
+\end{align*}
+\begin{align*}
+    T_7 =& R\left( e_{(1,1)} + e_{(\sigma_{13}, 1)} \right) \oplus R\left( e_{(\rho,1)} + e_{(\sigma_{12}, 1)} \right) \oplus R\left( e_{(\rho^2,1)} + e_{(\sigma_{23}, 1)} \right) \\
+    &\oplus R\left( e_{(1,\varphi)} + e_{(\sigma_{13}, \varphi)} \right) \oplus R\left( e_{(\rho,\varphi)} + e_{(\sigma_{12}, \varphi)} \right) \oplus R\left( e_{(\rho^2,\varphi)} + e_{(\sigma_{23}, \varphi)} \right)
+\end{align*}
+\begin{align*}
+    T_8 =& R\left( e_{(1,1)} + e_{(\sigma_{13}, \varphi)} \right) \oplus R\left( e_{(\rho,1)} + e_{(\sigma_{12}, \varphi)} \right) \oplus R\left( e_{(\rho^2,1)} + e_{(\sigma_{23}, \varphi)} \right) \\
+    &\oplus R\left( e_{(1,\varphi)} + e_{(\sigma_{13}, 1)} \right) \oplus R\left( e_{(\rho,\varphi)} + e_{(\sigma_{12}, 1)} \right) \oplus R\left( e_{(\rho^2,\varphi)} + e_{(\sigma_{23}, 1)} \right)
+\end{align*}
+\begin{align*}
+    T_9 =& R\left( e_{(1,1)} + e_{(\sigma_{23}, 1)} \right) \oplus R\left( e_{(\rho,1)} + e_{(\sigma_{13}, 1)} \right) \oplus R\left( e_{(\rho^2,1)} + e_{(\sigma_{12}, 1)} \right) \\
+    &\oplus R\left( e_{(1,\varphi)} + e_{(\sigma_{23}, \varphi)} \right) \oplus R\left( e_{(\rho,\varphi)} + e_{(\sigma_{13}, \varphi)} \right) \oplus R\left( e_{(\rho^2,\varphi)} + e_{(\sigma_{12}, \varphi)} \right)
+\end{align*}
+\begin{align*}
+    T_{10} =& R\left( e_{(1,1)} + e_{(\sigma_{23}, \varphi)} \right) \oplus R\left( e_{(\rho,1)} + e_{(\sigma_{13}, \varphi)} \right) \oplus R\left( e_{(\rho^2,1)} + e_{(\sigma_{12}, \varphi)} \right) \\
+    &\oplus R\left( e_{(1,\varphi)} + e_{(\sigma_{23}, 1)} \right) \oplus R\left( e_{(\rho,\varphi)} + e_{(\sigma_{13}, 1)} \right) \oplus R\left( e_{(\rho^2,\varphi)} + e_{(\sigma_{12}, 1)} \right)
+\end{align*}
+Por fim, temos
+\[T_{11} = R\left( \sum_{\sigma \in S_3} e_{(\sigma,1)}\right) \oplus R\left( \sum_{\sigma \in S_3} e_{(\sigma,\varphi)}\right)\]
+\[T_{12} = R\sum_{(\sigma,\tau) \in G}e_{(\sigma,\tau)} \simeq R\]
+
+
+Pelo Teorema~\ref{teo:corresp-comut}, temos que $T_i$ são $R$-álgebras separáveis e $G$-fortes enquanto subálgebras de $S$.
+
+Claramente temos $H_2$ normal: dado $(\sigma,\tau) \in G$, $(\sigma, \tau)(t) \in T_2$, para todo $t\in T_2$. Logo $T_2$ é extensão galoisiana de $R$ com grupo de Galois $G_2 = G/H_2 \simeq S_3$.
+
+Observe que $H_3$ e $H_4$ também são subgrupos normais de $G$. Basta observar que os elementos de $G$ permutam os idempotentes de uma mesma parcela, ou ``trocam as parcelas'' da soma direta. Sendo assim, temos que $T_3$ e $T_4$ são extensões galoisiana de $R$, com grupo de Galois $G_3 = G/H_3 \simeq \Z_2\times\Z_2$ e $G_4 = G/H_4 \simeq \Z_2$, respectivamente.
+\end{exemplo}
+
+\begin{exemplo}
+Sejam $R$ um anel comutativo com unidade e $G$ um grupo finito. Considere $S = \bigoplus_{\sigma \in G}Re_\sigma$, onde $e_\sigma e_\tau = \delta_{\sigma,\tau} e_\sigma$ e $\sum_{\sigma \in G} e_\sigma = 1$. A ação de $G$ em $S$ é dada por $\sigma(e_\tau) = e_{\sigma\tau}$.
+
+Então, com $x_i = y_i = e_\sigma$, para $1 \leq i \leq |G| = n$, temos
+\[\sum_{i=1}^n x_i \sigma(y_i) = \sum_{\tau \in G} e_\tau \sigma(e_\tau) = \sum_{\tau \in G}\delta_{\tau,\sigma\tau} e_\tau = \delta_{1, \sigma}\]
+e portanto, $x_i, y_i$ são um sistema de coordenadas de Galois para $S$, que por sua vez é uma extensão galoisiana de $R$. Note que este exemplo engloba os exemplos anteriores.
+\end{exemplo}
+
+
+
+\section{Homomorfismos de Extensões Galoisianas} \label{sec:homext}
+Nesta seção, estaremos estudando os homomorfismos de extensões galoisi\-anas. Em especial, iremos mostrar que se existe um homomorfismo de $R$-álgebras e $G$-módulos entre duas extensões com mesmo grupo de Galois, então estas extensões são isomorfas.
+\begin{teo} \label{teo:homom}
+Sejam $S$ uma extensão galoisiana de $R$ com grupo de Galois $G$, $A$ uma $R$-álgebra comutativa, $f,g : S \rightarrow A$ homomorfismos de $R$-álgebras. Então existe um único conjunto $\{e_\sigma \mid \sigma\in G\}$ de idempotentes dois a dois ortogonais de $A$, alguns possivelmente nulos, tais que $\sum_{\sigma \in G} e_\sigma =1$ e \[g(s)=\sum_{\sigma \in G} f(\sigma(s))e_\sigma\]
+Além disso, se $f$ é  um homomorfismo de $R$-álgebras, qualquer aplicação $g: S \rightarrow A$ definida desta forma também será.
+\begin{proof}
+Seja $\theta$ a composição\[ E \xrightarrow{h^{-1}} S\otimes S \xrightarrow{f\otimes g} A\otimes A \xrightarrow{k} A\]
+onde $h: S\otimes S \rightarrow E$ é dado por $h(s\otimes t)(\sigma) = s\sigma(t)$ e $k(a_1\otimes a_2)=a_1a_2$. \par 
+Seja $e_\sigma = \theta(v_\sigma)$, onde $v_\sigma \in E$ é definido por $v_\sigma(\tau)=\delta_{\sigma,\tau}$. Temos $e_\sigma e_\tau = \theta(v_\sigma v_\tau)$; vimos anteriormente, na página \pageref{alg:E}, que os elementos $v_\sigma \in E$, $\sigma \in G$ são idempotentes dois a dois ortogonais, e portanto $\theta(v_\sigma)=e_\sigma$ também o são. Além disso, $\sum_{\sigma \in G}e_\sigma = \sum_{\sigma \in G} \theta(v_\sigma) = \theta\left(\sum_{\sigma\in G} v_\sigma\right)=1$. \par
+Tomemos $h:S\otimes S \rightarrow E$ dada por $h(s\otimes t)(\sigma)=s\sigma(t)$, como no Teorema~\ref{galois}. Então, temos que $h(1\otimes s) = \sum_{\sigma\in G} \sigma(s)v_\sigma$: dado qualquer $\tau \in G$, temos $h(1\otimes s)(\tau) = 1\tau(s) =\tau(s)$, e por outro lado
+
+\[\left(\sum_{\sigma \in G} \sigma(s)v_\sigma\right)(\tau) = \sum_{\sigma\in G}\sigma(s)v_\sigma(\tau) = \sum_{\sigma\in G}\sigma(s)\delta_{\sigma,\tau}= \tau(s). \]
+
+Aplicando $\theta$ na equação $h(1\otimes s) = \sum_{\sigma \in G} \sigma(s)v_\sigma$, temos $\theta(h(1\otimes s)) = g(s)$:
+\begin{align*}
+        \theta(h(1\otimes s)) &= k\left(f\otimes g\left(h^{-1}\left(h\left( 1 \otimes s \right)\right)\right)\right) \\
+        &= k\left(f\otimes g\left(1 \otimes s\right)\right) \\
+        &= f(1)g(s) = g(s)
+\end{align*}
+Assim:
+\begin{align*}
+        g(s) & = \theta(h(1\otimes s)) = \theta\left(\sum_{\sigma\in G}\sigma(s)v_\sigma \right) = \sum_{\sigma \in G}\theta \left( \sigma(s) \right)e_\sigma \\
+        &= \sum_{\sigma \in G} k\left(f\otimes g\left( h^{-1}\left( \sigma(s) \right)\right)\right) e_\sigma = \sum_{\sigma \in G} k\left(f\otimes g\left( \sigma(s)\otimes 1 \right)\right) e_\sigma \\
+        &= \sum_{\sigma \in G} k\left(f\left(\sigma(s)\right)\otimes g(1) \right) e_\sigma = \sum_{\sigma\in G}f\left(\sigma(s)\right) e_\sigma
+\end{align*} \par 
+Para mostrar a unicidade, suponha $\{d_\sigma \mid \sigma \in G \}$ elementos idempotentes de $A$, dois a dois ortogonais, que satisfazem as condições $\sum_{\sigma \in G} d_\sigma = 1$ e $g(s) = \sum_{\sigma \in G} f(\sigma(s)) d_\sigma$, para todo $s \in S$. Seja $h^{-1}(v_\sigma) = \sum_{i=1}^{r} s_i \otimes t_i$; então $\sum_{i=1}^{r}s_i\rho(t_i) = v_\sigma(\rho)=\delta_{\sigma,\rho}$ e
+\begin{align*}
+        e_\sigma = \theta(v_\sigma) &= \sum_{i=1}^{r} f(s_i)g(t_i) = \sum_{i=1}^{r}f(s_i) \left(\sum_{\rho \in G} f(\rho(t_i)) d_\rho\right) \\
+        &= \sum_{i=1}^{r}\sum_{\rho \in G}f(s_i)f(\rho(t_i))d_\rho = \sum_{\rho \in G} \sum_{i=1}^{r} f(s_i \rho(t_i))d_\rho \\
+        &= \sum_{\rho \in G} f\left( \sum_{i=1}^{r}s_i \rho(t_i) \right)d_\rho = \sum_{\rho \in G} \delta_{\sigma, \rho} d_\rho = d_\sigma
+\end{align*} \par
+Por fim, vamos mostrar que se $f$ é um homomorfimos de $R$-álgebras, então $g(s) = \sum_{\sigma \in G}f(\sigma(s)) e_\sigma$ também é. Sejam $s,t \in S$, $r \in R$. Temos então
+
+\vspace{0.3cm}
+$\begin{array}{rrl}
+        \bullet &g(s+t) &= \sum_{\sigma\in G}f(\sigma(s+t))e_\sigma \\
+        & &= \sum_{\sigma \in G}f(\sigma(s))e_\sigma + \sum_{\sigma \in G} f(\sigma(t))e_\sigma \\
+        & &= g(s) + g(t)
+\end{array}$
+
+\vspace{0.3 cm}
+
+$\begin{array}{rrl}
+        \bullet & g(rs) &=\sum_{\sigma \in G} f(\sigma(rs)) e_\sigma \\
+        & &= \sum_{\sigma \in G} r f(\sigma(s)) e_\sigma \\
+        & &= rg(s)
+\end{array}$
+
+\vspace{0.3cm}
+
+$\begin{array}{rrl}
+        \bullet & g(s)g(t) &= \left(\sum_{\sigma \in G} f(\sigma(s))e_\sigma \right) \left(\sum_{\rho \in G} f(\rho (s)) e_\rho \right) \\
+        & &= \sum_{\sigma \in G} f(\sigma(s))e_\sigma \sum_{\rho \in G} f(\rho (s)) e_\rho \\
+        & &= \sum_{\sigma \in G} f(\sigma(s)) \sum_{\rho \in G} f(\rho (s)) e_\rho e_\sigma \\
+        & &= \sum_{\sigma \in S} f(\sigma(s)) f(\sigma(t)) e_\sigma \\
+        & &= \sum_{\sigma \in S}f(\sigma(st))e_\sigma = g(st) 
+\end{array}$
+\vspace{0.3 cm}
+
+Assim, encerramos a demonstração.
+\end{proof}
+\end{teo}
+Note que se $A$ não tem idempotentes diferentes de 0 e 1, então existe um único elemento $\sigma \in G$ tal que $e_\sigma = 1$, e portanto $g(s) = f(\sigma(s))$, para todo $s \in S$.
+
+Sejam $S$ uma extensão galoisiana de $R$ com grupo de Galois $G$, $W$ o semigrupo multiplicativo dos endomorfismos de anéis de $S$ que mantém $R$ fixo, isto é, $W\subset \Hom{R}{S}{S}$. Desta forma, sendo $j: D \rightarrow \Hom{R}{S}{S}$ o isomorfismo dado por $j(s\delta_\sigma) = s\sigma$ como no Teorema \ref{galois}, segue que $j^{-1}(W)$ consiste em todos os elementos de $D$ da forma $\sum_{\sigma \in G}e_\sigma \delta_\sigma$, com $e_\sigma$ idempotentes dois a dois ortogonais de $S$ tais que $\sum_{\sigma \in G} e_\sigma = 1$.
+
+De fato, tomando $A=S$ e $f=\id{S}$ no Teorema~\ref{teo:homom}, temos que existe um conjunto de idempotentes $\{e_\sigma \mid \sigma \in G\}\subset S$, tais que $\sum_{\sigma \in G}e_\sigma = 1$ e $g(s)=\sum_{\sigma \in G} \sigma(s) e_\sigma$, isto é, $j^{-1}(g)=\sum_{\sigma \in G}e_\sigma \delta_\sigma$.
+
+\begin{corol}
+Nas notações acima, se todo idempotente de $S$ pertence a $R$, então todo elemento de $W$ é um automorfismo, e portanto o grupo de $R$-automorfismos de $S$ é isomorfo, via $j^{-1}$, ao subgrupo multiplicativo do grupo $R(G)\subseteq D$, que consiste dos elementos da forma $\sum_{\sigma\in G}e_\sigma \sigma$. Além disso, $S$ não tem idempotentes além de 0 e 1 se e somente se $W = G$, isto é, se $G$ é o conjunto de todos os $R$-endomorfismos de $S$.
+\begin{proof}
+Se todos os idempotentes de $S$ estão contidos em $R$, então $e_\sigma \in R$, e temos que
+
+\begin{align*}
+    \left( \sum_{\sigma \in G} e_\sigma \delta_{\sigma} \right) \left(\sum_{\sigma \in G} e_\sigma \delta_{\sigma^{-1}} \right) & = \sum_{\sigma \in G} e_\sigma \delta_\sigma \sum_{\rho \in G} e_\rho \delta_{\rho^{-1}} \\
+    &= \sum_{\sigma \in G} \sum_{\rho \in G} e_\sigma \sigma(e_\rho) \delta_{\sigma \rho^{-1}} \\
+    &= \sum_{\sigma\in G}\sum_{\rho \in G} e_\sigma e_\rho \delta_{\sigma \rho^{-1}} \\
+    &= \sum_{\sigma \in G} e_{\sigma} \delta_{1} = 1 \in D
+\end{align*}
+assim, todo endomorfismo de $W$ tem inverso, logo são todos $R$-automorfismos de $S$. 
+
+Se $S$ não tem idempotentes além de 0 e 1, temos que todos seus idempotentes pertencem a $R$, logo todo endomorfismo de $S$ é um automorfismo. Assim, todos são escritos da forma $f=\sum_{\sigma \in G}e_\sigma \sigma$; como $\sum_{\sigma \in G} e_\sigma =1$, temos que $f=\sigma$, para algum $\sigma \in G$. Logo, $W =G$.
+\end{proof}
+\end{corol}
+
+\begin{teo}
+Sejam $S,S'$ extensões galoisianas de $R$ com mesmo grupo de Galois $G$, e seja $f: S \rightarrow S'$ um homomorfismo de $R$-álgebras e $G$-módulos. Então $f$ é um isomorfismo.
+\begin{proof}
+Tomemos $x_1,\dots,x_r,y_1,\dots,y_r \in S$ um sistema de coordenadas de Galois, conforme visto no Teorema~\ref{galois}. Para qualquer $x' \in S'$, temos
+\begin{align*}
+    f\left(\sum_{i=1}^{r}x_i tr(f(y_i)x')\right) &= \sum_{i=1}^{r}f(x_i)tr(f(y_i)x') \\
+    &=\sum_{i=1}^{r}\sum_{\sigma \in G}f(x_i) \sigma(f(y_i)x') \\
+    &= \sum_{\sigma \in G} \sigma(x') \sum_{i=1}^{r} f(x_i)f(\sigma(y_i)) \\
+    &= \sum_{\sigma \in G}\sigma(x') f\left( \sum_{i=1}^{r} x_i\sigma(y_i) \right)\\
+    &=\sum_{\sigma \in G} \sigma(x')\delta_{1,\sigma} = x'
+\end{align*}
+e, portanto, $f$ é sobrejetivo. \par 
+Tomemos agora $x \in S$ tal que $f(x)=0$. Então, $\sigma(f(x)) = 0$ , o que implica $\sigma(f(x))f(\sigma(y_i)) = f(\sigma(xy_i))=0$, e portanto,
+$\sum_{\sigma \in G}f(\sigma(xy_i)) = f(tr(xy_i))=0$. Como $tr(xy_i) \in R$, segue que $f(tr(xy_i))=tr(xy_i)$. Logo
+\[x= \sum_{i=1}^{r}x_i tr(xy_i)=0\]
+e, portanto, $f$ é injetiva. Assim, $f$ é um isomorfismo.
+\end{proof}
+\end{teo}
+
+\begin{teo}
+Sejam $S$ um anel comutativo sem idempotentes além de 0 e 1, $G$ um grupo arbitrário de automorfismos de $S$ e $R=S^G$. \par Assuma que $S$ é uma $R$-álgebra separável e um $R$-módulo finitamente gerado. Então $G$ é finito, $S$ é uma extensão galoisiana de $R$ com grupo de Galois $G$ e $G$ é o grupo de todos os $R$ automorfismos de $S$.
+\begin{proof}
+Sejam $s_1, \dots, s_r$ geradores de $S$ como $R$-módulo. Vamos mostrar que $\abs{G}\leq r$. \par 
+$S\otimes S$ é gerado como um $S$ módulo por $1\otimes s_1, \dots, 1\otimes s_r$ e é uma $S$-álgebra separável, como visto no item 1 do Teorema~\ref{galois}. Se $\sigma_1, \dots, \sigma_n$ são elementos distintos de $G$, defina os seguintes homomorfismos de $S$-álgebras:\[f_i: S\otimes S \rightarrow S, \; f_i=k(1\otimes \sigma_i)\]com $k(s_1\otimes s_2) = s_1s_2$. Como $S$ não tem idempotentes além de 0 e 1, $f_i$ são fortemente distintos, satisfazendo o Lema~\ref{lem:fdist}, logo existem idempotentes $e_1, \dots, e_n$ em $S\otimes S$ com $f_i(e_i) = 1$ e $f_i(x) e_i = xe_i$, para qualquer $x \in S\otimes S$. Logo a restrição de $f_i$ em $(S\otimes S)e_i$ é um isomorfismo de $S$-módulos entre $(S\otimes S)e_i$ e $S$. \par 
+Se $e= 1- e_1 - \dots - e_n$, então\[S\otimes S =  (S\otimes S)e \oplus \bigoplus_{i=1}^{n} \left(S\otimes S \right)e_i\]como $S$-módulos. Portanto, $S\otimes S$ possui um somando direto que é um $S$-módulo livre de dimensão $n$. \par 
+Se $p$ é um ideal maximal qualquer de $S$, então $n$ é menor do que a dimensão do espaço vetorial $(S\otimes S)/p(S\otimes S)$ sobre $S/p$, que é menor ou igual a $r$, pois $r$ é o número de geradores de $S\otimes S$ sobre $S$. Logo, $G$ é finito. \par
+Pelo Teorema~\ref{galois}, $S$ é uma extensão galoisiana de $R$ com grupo de Galois $G$, e pelo corolário acima, $G$ é o grupo de todos os $R$-automorfismos de $S$.
+\end{proof}
+\end{teo}
+
+\section{Localização e Bases Normais} \label{sec:local}
+Seja $\p$ um ideal primo de $R$, e $M$ um $R$-módulo. Denotamos por $M_\p = (R\setminus \p)^{-1}M$ a localização de $M$ com respeito a $\p$, como na página \pageref{localiza}. \par 
+Em \cite{bourbaki}, \citeauthor{bourbaki} define que um $R$-módulo projetivo $S$ é de posto $n$ se é finitamente gerado e se $S_\p$ é um $R_\p$-módulo de posto $n$, para todo ideal primo $\p$ de $R$. Denotamos por $rank(S)=n$. No caso de $R$-módulos livres, então $R^n$ é de posto $n$, de forma análoga a espaços vetoriais.
+\begin{lemma} \label{lem:local}
+Seja $S$ extensão galoisiana de $R$ com grupo de Galois $G$, $\abs{G}=n$, e $\p$ um ideal primo de $R$. Então $S_\p \simeq R_\p \otimes S$ é um $R_\p$-módulo livre de posto $n$, isto é, $S$ é um $R$-módulo projetivo de posto $n$ no sentido acima.
+\begin{proof}
+Suponha $R$ um anel local. Então, pelo Teorema~\ref{galois} (c) e pelo Corolário~\ref{corol:bourbaki}, temos que $S$ é um $R$-módulo livre, de posto $m$, e $S\otimes S$ é um $R$-módulo livre de posto $m^2$.
+Por outro lado, o item (e) do Teorema~\ref{galois} mostra que $S\otimes S$ é um $S$-módulo livre de posto $n$. Logo é um $R$-módulo livre de posto $mn$. Assim, $m^2=mn \Rightarrow n=m$. \par
+Seja $R$ um anel comutativo arbitrário e $\p$ um ideal primo de $R$. Pelo Lema~\ref{lem:alg}, $S_\p \simeq R_\p \otimes S$ é uma extensão de Galois de $R_\p$ com grupo de Galois $G$. Pelo argumento acima, $S_\p$ é um $R_\p$-módulo livre de posto $n$.
+\end{proof}
+\end{lemma}
+Para o Lema a seguir, iremos utilizar um ideal radical -- um ideal que pode ser expresso como a intersecção de ideais primos.
+\begin{lemma}\label{lem:isoindu}\cite[Lemma 3.14.]{zelinsky}
+Sejam $R$ um anel, $J$ um ideal radical de $R$ e $V_1, V_2$ $R$-módulos projetivos finitamente gerados. Seja também $f: V_1/JV_1 \rightarrow V_2/JV_2$ um isomorfismo de $R$-módulos. Então $f$ é induzido por um isomorfismo $V_1\rightarrow V_2$.
+\begin{proof}
+Seja $p_i: V_i \rightarrow V_i/JV_i$ a aplicação canônica. Então, $fp_1$ é um epimorfismo de $V_1$ em $V_2/JV_2$. Como $V_1$ é projetivo, existe $g: V_1 \rightarrow V_2$ tal que $p_2 g = fp_1$. Como $f$ e $p_1$ são epimorfismos, temos que $g(V_1)+JV_2=V_2$. Mas $J$ é um ideal radical e $V_2/g(V_1)$ é finitamente gerado, logo $V_2/g(V_1) =0$, então $g$ é um epimorfismo. Como $g(V_1)=V_2$ é projetivo, $g$ cinde e $\ker{g}$ é somando direto de $V_1$. Isso implica $p_1(\ker{g}) = \ker{g}/J\ker{g}$ e também que $\ker{g}$ é finitamente gerado, então $p_1(\ker{g})=0$ somente se $\ker{g}=0$. Mas $fp_1(\ker{g})= p_2g(\ker{g}) =0$ e $f$ é um isomorfismo, então $\ker{g}=0$ de fato, logo $g$ é um isomorfismo.
+\end{proof}
+\end{lemma}
+
+Nosso objetivo é caracterizar os anéis de grupos de extensões galoisianas. Para isso, precisaremos do Teorema de Krull-Schmidt, que garante que um módulo não-nulo de comprimento finito pode ser decomposto como uma soma direta de partes indecomponíveis. 
+
+\begin{teo*}[Krull-Schmidt] \cite[Theorem 12.9, p.147]{fuller}
+Seja $M$ um módulo não-nulo de comprimento finito. Então $M$ tem uma decomposição finita em elementos indecomponíveis \[M = M_1 \oplus \cdots \oplus M_n\] que é única, exceto por permutações e isomorfismos.
+\end{teo*}
+
+Em especial, o Teorema~\ref{teo:aneldegrupo} traz um isomorfismo entre $R(G)$ e $S$ como $R(G)$-módulos quando $R$ é um anel semi-local, isto é, $R$ possui um número finito de ideais maximais.
+
+Dizemos que uma extensão galoisiana $S$ de $R$ tem base normal se existe $s \in S$ tal que $\{\sigma(s) \mid \sigma \in G\}$ forma uma base para $S$.
+
+\begin{teo}\label{teo:aneldegrupo}
+Seja $S$ extensão galoisiana de $R$ com grupo de Galois $G$. Sejam $R(G)$ e $S(G)$ os anéis de grupo de $G$ sobre $R$ e $S$, respectivamente. Vejamos $S$ e $S\otimes S$ como $R(G)$ e $S(G)$-módulos, respectivamente, pelas ações a seguir:
+\begin{align*}
+(r\sigma)(s) &= r\sigma(s) \\
+s\sigma(s_1\otimes s_2) &= ss_1 \otimes \sigma(s_2)
+\end{align*}
+Então, temos que 
+\begin{enumerate}
+    \item $S\otimes S \simeq S(G) \simeq S\otimes R(G)$ como $S(G)$-módulo e $S$ é um $R(G)$-módulo projetivo.
+    \item Se $S$ é um $R$-módulo livre e $\abs{G}=n$, então a soma direta de $n$ cópias de $S$ é $R(G)$-isomorfa a soma direta de $n$-cópias de $R(G)$.
+    \item Se $R$ é um anel semi-local, então $S\simeq R(G)$ como $R(G)$-módulo, isto é, $S$ possui uma base normal.
+\end{enumerate}
+\begin{proof}
+A $S$-álgebra $E$, das funções de $G$ em $S$, é um $G$-módulo pela ação \[(\sigma v)(\tau) = v(\tau\sigma)\] e portanto, a aplicação
+\begin{align*}
+    \gamma: E &\rightarrow S(G) \\
+    v &\mapsto \sum_{\sigma \in G} v(\sigma)\sigma^{-1}
+\end{align*}
+é um $S(G)$-isomorfismo de $E$ em $S(G)$:
+\[\begin{array}{r r l l}
+    & \gamma(v) &= 0 & \\
+    & \sum_{\sigma \in G} v(\sigma)\sigma^{-1} &=0 & \\
+    \Rightarrow & v(\sigma) &= 0, & \forall \sigma \in G \\
+    \Rightarrow & v &= 0 &
+\end{array}\]
+Seja agora $\alpha = \sum_{\sigma \in G} a_\sigma \sigma^{-1} \in S(G)$. Temos então que existe $v \in E$, $v=\sum_{\sigma \in G}a_\sigma v_{\sigma^{-1}}$, tal que
+\begin{align*}
+    \gamma(v) &= \gamma\left(\sum_{\sigma \in G}a_\sigma v_{\sigma^{-1}}\right) \\
+    &= \sum_{\rho,\sigma \in G} \left(a_\sigma v_{\sigma^{-1}} (\rho) \rho^{-1}\right) \\
+    &= \sum_{\rho \in G} a_\rho \rho^{-1} = \alpha
+\end{align*}
+
+Porém, com a estrutura de $S(G)$-módulo definida em $S\otimes S$, temos que $h$ se torna um isomorfismo de $S(G)$-módulos entre $E$ e $S\otimes S$, com $h(s_1 \otimes s_2)(\sigma) = s_1\sigma(s_2)$. Assim, se $h(s_1\otimes s_2) =0$, temos que $s_1 \sigma(s_2) = 0$, para todo $\sigma \in G$. Assim $s_1s_2 =0$.
+%isomorfismo h falta coisa
+Seguem então os isomorfismos $S\otimes S \simeq S(G) \simeq S\otimes R(G)$. Como $S$ é um $R$-módulo projetivo, $S\otimes S$ é um $R(G)$-módulo projetivo. Mas pelo Lema~\ref{lem:traco}, $S$ é um $R(G)$-somando direto de $S\otimes S$ e portanto, é um $R(G)$-módulo projetivo, provando (1). \par 
+Se $S$ é um $R$-módulo livre, segue do Lema~\ref{lem:local} que $S$ tem rank $n$. Então $S\otimes S$ é $R(G)$-isomorfo a soma direta de $n$ cópias de $S$. Por outro lado, $S(G)\simeq S\otimes R(G)$ é $R(G)$-isomorfo a soma direta de $n$ cópias de $R(G)$. A partir de (1), provamos (2). \par 
+Seja agora $J$ o radical de Jacobson de $R$ -- a intersecção (finita) de todos os ideais maximais, e tomemos $R' = R/J$. Então $R'$ e $R'(G)$ são anéis com a condição mínima para o teorema de Krull-Schmidt. \par 
+Agora, $S'=S/JS \simeq R'\otimes S$ e portanto, pelo Lema~\ref{lem:alg}, $S'$ é uma extensão galoisiana de $R'$ com grupo de Galois $G$. Como $R'$ é soma direta de um número finito de corpos, pelo Lema~\ref{lem:local} mostra que $S'$ é um $R'$-módulo projetivo de rank $n=\abs{G}$. Então, por (2) e pelo Teorema de Krull-Schmidt, $S'$ é $R'(G)$-isomorfa a $R'(G)$. Além disso, $R'(G) \simeq R'\otimes R(G)\simeq R(G)/JR(G)$ e $JR(G)$ é o radical de Jacobson de $R(G)$. Portanto, os $R(G)$-módulos projetivos $S$ e $R(G)$ são isomorfos módulo $JR(G)$. Portanto, eles são $R(G)$-módulos isomorfos, pelo Lema~\ref{lem:isoindu}
+\end{proof}
+\end{teo}
+

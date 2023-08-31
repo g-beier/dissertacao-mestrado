@@ -1,0 +1,356 @@
+\chapter{Preliminares}
+A proposta desta dissertação é desenvolver uma teoria de Galois sobre anéis comutativos como uma generalização natural da teoria sobre corpos. Assim, iremos utilizar os resultados da teoria de Galois e resultados da álgebra comutativa. \par
+Na primeira seção, como introdução e motivação para o estudo que segue, estão enunciados definições e resultados da teoria de Galois sobre corpos abstratos. O principal conceito observado ao longo desta seção é o de separabilidade \cite{stewart}. A separabilidade será estendida para anéis comutativos no próximo capítulo. \par 
+Na segunda seção, temos definições da álgebra comutativa e o estudo de módulos, em particular de módulos projetivos. \par
+
+\section{Teoria de Galois Clássica}
+Para iniciar o estudo da teoria de Galois, necessitamos do principal objeto do estudo -- as extensões galoisianas. Para isso, precisamos averiguar sob quais condições a correspondência de Galois é bijetiva. Ao longo desta seção, trabalharemos com resultados da teoria clássica, que adiante serão generalizados para o contexto de extensões comutativas.
+
+%buscar os resultados que serão necessários para a generalização da teoria de Galois sobre anéis comutativos, tendo ênfase na separabilidade.
+\begin{defn}\begin{itemize}
+\item[(i)] Sejam $K$ e $L$ dois corpos quaisquer. Se existir um monomorfismo $i: K \rightarrow L$, dizemos que $L$ é uma extensão de $K$. Por simplicidade, identificaremos $K$ com sua imagem $i(K) \subset L$. Denotaremos esta extensão por $L\mid_K$.
+\item[(ii)] Definimos o grau da extensão $L\mid_K$ como sendo a dimensão de $L$ visto como um $K$-espaço vetorial. Denotaremos o grau por $[L:K]=\dim_K L$. 
+\item[(iii)] Dado um conjunto $X \subset L$, denotamos por $K(X)$ o corpo gerado por $K \cup X$. Caso seja finito, isto é, $X = \{\alpha_1, \alpha_2, \dots, \alpha_n\}$, denotamos $K(X)=K(\alpha_1, \dots, \alpha_n)$, e dizemos que é o corpo obtido a partir de $K$ pela \emph{adjunção} de $\alpha_1, \dots, \alpha_n$. 
+\item[(iv)]Uma extensão $L\mid_K$ é dita simples se $L=K(\alpha)$ para algum $\alpha \in L$. 
+\item[(v)] Se $X$ for um conjunto finito, dizemos que $K(X)$ é finitamente gerada. 
+\item[(vi)] Dizemos que uma extensão $L\mid_K$ é finita se $[L:K]<\infty$.\end{itemize}
+\end{defn}%
+Assim, temos que $\R(i)= \C$ é um exemplo de extensão simples de $\R$, gerada a partir da adjunção da unidade imaginária $i$. Note que esse elemento não é único. Por exemplo, $\R(-i) = \R(i)= \C$. Mais ainda, temos que $i$ é a raiz do polinômio $p(x)=x^2+1$, o qual é irredutível sobre $\R$. Assim, dizemos que $i$ é algébrico sobre $\R$.
+\begin{defn}\begin{itemize}
+\item[(i)] Seja $L\mid_K$ uma extensão de corpos. Um elemento $\alpha \in L$ é dito algébrico sobre $K$ se $\alpha$ é raiz de algum polinômio $p \in K[x]$. Caso contrário, $\alpha$ é dito transcendente. 
+\item[(ii)] A extensão $L\mid_K$ é dita algébrica se todos elementos de $L$ são algébricos sobre $K$. 
+\item[(iii)] Se $\alpha$ é algébrico sobre $K$, então denotamos por $m_\alpha \in K[x]$ seu polinômio minimal: o polinômio mônico de menor grau em $K[x]$ tal que $m_\alpha (\alpha)=0$.\end{itemize}
+\end{defn}
+
+Observe que um polinômio minimal $m \in K[x]$ é um polinômio irredutível em $K[x]$. De fato, suponhamos que $m$ seja redutível sobre $K$, isto é, $m = fg$, onde $f, g$ tem grau menor do que $m$. Vamos assumir $f$ e $g$ mônicos. Então, como $m(\alpha) =0$, temos que $f(\alpha)g(\alpha) = 0$, isto é, $f(\alpha) =0$ ou $g(\alpha) =0$, o que contradiz a definição de $m$. \par Suponhamos agora $p \in K[x]$ tal que $p(\alpha) =0$. Pelo algoritmo da divisão, existem $q, r \in K[x]$ tais que $p(x) = m(x) q(x) + r(x)$, com grau de $r$ menor do que o grau de $m$. Logo, $p(\alpha) = 0 = r(\alpha)$. Pela minimalidade do grau de $m$, temos que $r=0$. Assim, $m$ divide todos os polinômios que possuem $\alpha$ como raiz. \par
+Note que se uma extensão é finita, então ela é algébrica e finitamente gerada \cite[Lemma 6.11.]{stewart}.
+\begin{teo} \label{teo:isomorf}
+Seja $K(\alpha)\mid_K$ uma extensão algébrica simples, e seja $m \in K[x]$ o polinômio minimal de $\alpha$ sobre $K$. Então $K(\alpha)\mid_K$ é isomorfa a $K[x]/\langle m \rangle \mid_K$, onde $\langle m \rangle$ denota o ideal gerado por $m$ em $K[x]$.
+\begin{proof}
+O isomorfismo $\phi: K[x]/ \langle m \rangle \rightarrow K(\alpha) $ é definido por $\bar{p}\mapsto p(\alpha)$, onde $\bar{p}$ é a classe de equivalência de $p \mod m$. Caso $\bar{p}=\bar{q}$, então $p-q = mn$, para algum $n \in K[x]$. Assim, $p(\alpha)-q(\alpha) = m(\alpha) n(\alpha) =0$. Além disso, $\phi$ é claramente sobrejetivo. \par 
+Como $p(\alpha)=0$ se e somente se $m$ divide $p$, temos que a aplicação é um monomorfismo entre corpos. Logo, as extensões são isomorfas.
+\end{proof}
+\end{teo}
+Um resultado que pode ser obtido a partir deste teorema é que se $K(\alpha)\mid_K$ e $K(\beta)\mid_K$ são extensões algébricas tais que $m_\alpha = m_\beta \in K[x]$, então são extensões isomorfas. Assim, a caracterização das extensões pode ser feita a partir do polinômio minimal.
+
+A ideia da teoria de Galois é estudar uma extensão de corpos $L\mid_K$ a partir do grupo de $K$-automorfismos de $L$, os automorfismos $\sigma: L \rightarrow L$ tais que $\sigma(k)=k$, para todo $k \in K$, isto é, $\sigma\mid_K=\id{K}$. \par Observe que $\sigma(kx)=\sigma(k)\sigma(x) = k\sigma(x)$, para quaisquer $k \in K$, $x \in L$. Assim, os $K$-automorfismos de $L$ são isomorfismos de anéis e também morfismos de $K$-espaços vetoriais. Além disso, formam um grupo com a operação de composição: sabemos que a composição de $K$-automorfismos será também um $K$-automorfismo de $L$. Além disso, $\id{L}$ é um $K$-automorfismo. Basta verificarmos se, dado um $K$-automorfismo $\sigma$, seu inverso $\sigma^{-1}$ também é um $K$-automorfismo de $L$. De fato é, pois $\sigma^{-1}(k)=\sigma^{-1}(\sigma(k))=k$, para todo $k \in K$.
+
+Se $\alpha$ é algébrico sobre $K$, e $\sigma:K(\alpha) \rightarrow K(\alpha)$ é um $K$-automorfismo, então $0=\sigma(0)=\sigma(m_\alpha(\alpha))=m_\alpha(\sigma(\alpha))$. Assim, $\sigma(\alpha)$ é uma raiz de $m_\alpha$. Logo a ação de $\sigma$ em $K(\alpha)$ apenas permuta as raízes do polinômio minimal $m_\alpha$.
+\subsection{A Correspondência de Galois}
+Para ilustrar a correspondência de Galois, tomemos a extensão $L\mid_K$, com $L=\Q(\sqrt{2},i)$ e $K=\Q$. Como os $K$-automorfismos de $L$ permutam as raízes do polinômio minimal, observando os polinômios minimais podemos determinar o grupo dos $K$-automorfismos de $L$ -- o grupo de Galois da extensão, denotado por $\Gal{L}{K}$.
+
+Os polinômios minimais são $m_{\sqrt{2}}(x)= x^2-2$ e $m_i(x)=x^2+1$. Portanto, um automorfismo $\sigma\in \Gal{L}{K}$ é tal que $\sigma(i)=\pm i$ e $\sigma(\sqrt{2})=\pm \sqrt{2}$. Portanto, o grupo é formado pelos automorfismos $\{\sigma_{i}, \sigma_{2}, \sigma_{2,i}, 1\}$ (denotamos $1= \id{L}$ o automorfismo identidade), tais que
+\begin{equation*}
+\begin{aligned}[c]
+\sigma_i(i) &= -i\\
+\sigma_2(i) &= i\\
+\sigma_{2,i}(i) &= -i
+\end{aligned}
+\qquad\textrm{ e }\qquad
+\begin{aligned}[c]
+\sigma_i(\sqrt{2}) &= \sqrt{2}\\
+\sigma_2(\sqrt{2}) &= -\sqrt{2}\\
+\sigma_{2,i}(\sqrt{2}) &= -\sqrt{2}
+\end{aligned}
+\end{equation*}
+Assim, podemos observar que $\Gal{L}{K} \simeq \Z_2 \times \Z_2$, e que os subgrupos de $\Gal{L}{K}$ são os seguintes:
+\[G_1 = \{1\} \qquad G_2 = \{1, \sigma_i\} \qquad G_3 = \{1, \sigma_2\} \qquad G_4 = \{1, \sigma_{2,i}\}\]
+
+Estes subgrupos dão origem ao diagrama a seguir.
+\begin{center}
+\begin{tikzcd}
+               & G_1 \arrow[ld] \arrow[d] \arrow[rd] &                \\
+G_2 \arrow[rd] & G_3 \arrow[d]                       & G_4 \arrow[ld] \\
+               & \Gal{L}{K}                          &               
+\end{tikzcd}
+\end{center}
+A cada subgrupo, corresponde um \emph{corpo fixo} pela ação desse subgrupo. Por exemplo, seja $z=a+bi+c\sqrt{2}+di\sqrt{2} \in L$. Se $z$ permanece fixo pela ação de $G_2$, temos que
+\begin{align*}
+    \sigma_{i}(z) &= z \\
+    a-bi+c\sqrt{2}-di\sqrt{2} &= a+bi+c\sqrt{2}+di\sqrt{2} \\
+    &\Rightarrow b=d=0
+\end{align*}
+Assim, o corpo fixo associado ao subgrupo $G_2$ é $\Q(\sqrt{2})$. Da mesma forma, podemos determinar os corpos fixos a partir da ação dos outros subgrupos de $\Gal{L}{K}$, obtendo o diagrama abaixo. \par Note que o corpo que permanece fixo por todos os elementos de $\Gal{L}{K}$ é exatamente $K$. Além disso, para cada subcorpo intermediário, temos um subgrupo associado a ele, uma relação biunívoca.
+\begin{center}
+\begin{tikzcd}
+               & G_1 \arrow[ld] \arrow[d] \arrow[rd] &                &                         & L                                 &                          \\
+G_2 \arrow[rd] & G_3 \arrow[d]                       & G_4 \arrow[ld] & \Q(\sqrt{2}) \arrow[ru] & \Q(i) \arrow[u]                   & \Q(\sqrt{2}i) \arrow[lu] \\
+               & \Gal{L}{K}                          &                &                         & K \arrow[lu] \arrow[u] \arrow[ru] &                         
+\end{tikzcd}
+\end{center} \par 
+Por outro lado, tomando a extensão $L\mid_K =\Q(\alpha) \mid_\Q$, onde $\alpha = \sqrt[3]{2}$, temos que $\Gal{L}{K}=\{1\}$, pois as raízes do polinômio minimal $m_\alpha = t^3-2$ não estão todas em $\Q(\alpha)$. Assim, o corpo fixo pela ação de $\Gal{L}{K}=\{1\}$ é $L$, e não $K$. Assim, vamos buscar quais condições são necessárias para que a correspondência de Galois seja biunívoca. \label{ex:correspondencia} \par 
+Fixemos uma extensão $L\mid_K$ qualquer. Temos a classe dos corpos intermediários de $L\mid_K$ e também a classe dos subgrupos de $\Gal{L}{K}$. Seja $H$ um subgrupo de $\Gal{L}{K}$ e $M$ um corpo intermediário da extensão $L\mid_K$, isto é, $K \subset M \subset L$. Denotamos por $L^H$ o subcorpo de $L$ fixo pela ação do subgrupo $H$, e $M^*$ o grupo dos $M$-automorfismos de $L$. \par 
+Se $H$ é subgrupo de $\Gal{L}{K}$, então $L^H$ é subcorpo de $L$ e contém $K$. Tomando $x,y \in L^H$ e $\sigma \in H$, temos $\sigma(x+y)=\sigma(x)+\sigma(y)=x+y$. Da mesma forma, $\sigma(xy) = \sigma(x)\sigma(y) = xy$ e, supondo $x\neq 0$, $\sigma(xx^{-1})=\sigma(1) = 1$ implica que $x^{-1}=x^{-1}\sigma(xx^{-1}) = x^{-1} \sigma(x) \sigma(x^{-1})=\sigma(x^{-1})$. Assim, $L^H$ é de fato um subcorpo de $L$.\par
+As propriedades necessárias são a \emph{normalidade} e a \emph{separabilidade}. Considerando o exemplo anterior, onde a correspondência entre os subcorpos de $L$ e os subgrupos de $\Gal{L}{K}$ não era biunívoca, isso foi um efeito colateral da raízes de $m_\alpha$ que não pertenciam a $L$. Como $K \subset L \subset \C$, sabemos que o polinômio possui raízes em $\C$, e portanto em alguma extensão de $K$ contendo $L$. Assim, por exemplo, $f(x)=x^2+1$ não possui raízes em $\Q$, mas sim em $\Q(i)$. Dizemos que um polinômio $f \in K[x]$ se fatora completamente sobre $K$ se ele pode ser expresso da forma \[f(x) = k \cdot (x-\alpha_1)\cdots(x-\alpha_n)\] com $k, \alpha_1,\dots,\alpha_n \in K$. Por exemplo, o polinômio $f(x)= 3x^2+12 \in \Q[x]$  se fatora sobre $\Q(i)$, pois pode ser escrito como $f(x)=3(x+2i)(x-2i)$. \par
+\begin{defn}
+Dizemos que uma extensão de corpos $L\mid_K$ é normal se qualquer polinômio irredutível $f \in K[x]$ que possui uma raiz em $L$ se fatora completamente sobre $L$.
+\end{defn}
+Dizemos que uma extensão $\Sigma\mid_K$ é corpo de decomposição para $f \in K[x]$ se $\Sigma$ é gerada a partir da adjunção das raízes de $f$, isto é, $\Sigma=K(\alpha_1, \dots, \alpha_n)$, onde $\alpha_i$, $i=\{1, \dots, n\}$, são todas as raízes de $f$. \par 
+Se uma extensão $L\mid_K$ é normal e finita, então sabemos que $L$ é algébrica e finitamente gerada, isto é, $L=K(\alpha_1,\dots,\alpha_n)$. Tomemos então $m_i$ o polinômio minimal de $\alpha_i$, para cada $i\in \{1,\dots, n\}$. Seja $f=m_1\cdots m_n$. Como $m_i(\alpha_i)=0$, temos que $f$ tem raízes em $L$, e portanto, como $L$ é normal, $f$ se fatora completamente em $L$, ou seja, todas suas raízes pertencem a $L$ e $L$ é gerado a partir da adjunção das raízes de $f$. Logo, é um corpo de decomposição para $f$. Reciprocamente, podemos mostrar que uma extensão $L\mid_K$ é normal e finita somente se é corpo de decomposição para algum polinômio $f \in K[x]$~\cite[Theorem 9.9.]{stewart}. \par
+
+Vamos agora abordar a separabilidade.
+\begin{defn}\begin{itemize}
+\item[(i)] Seja $L\mid_K$ extensão de corpos e seja $f\in K[x]$ polinômio irredutível com $\partial f \ge 1$. Dizemos que $f$ é separável sobre $K$ se admite somente raízes simples em seu corpo de decomposição $\Sigma$ (que é único a menos de isomorfismos \cite{stewart}), ou seja, $f(x)=k\cdot (x-\alpha_1)\dots (x-\alpha_n) \in \Sigma[x]$. Um polinômio que não é separável é dito inseparável. 
+\item[(ii)] Um elemento $\alpha\in L$ algébrico sobre $K$ é dito separável sobre $K$ se seu polinômio minimal $m_\alpha \in K[t]$ é separável sobre $K$. 
+\item[(iii)] Uma extensão $L\mid_K$ é dita separável se todo elemento de $L$ for separável sobre $K$.\end{itemize}
+\end{defn} \par
+
+A propriedade da separabilidade pode se trivializar se tratando de corpos de característica 0, no sentido de que \textit{todo} polinômio irredutível é separável neste caso. Segue na proposição a seguir uma caracterização de separabilidade para corpos abstratos:
+\begin{prop} \label{prop:separabilidade}
+Se $K$ é um corpo de característica $0$, todo polinômio irredutível sobre $K$ é separável sobre $K$. \par Se $K$ tem característica $p>0$, então um polinômio irredutível é inseparável se e somente se $f(x)= k_0 + k_1x^p+\dots+k_rt^{rp}=g(x^p)$, para algum $g\in K[x]$.
+\end{prop}
+Para demonstrar a proposição acima, iremos utilizar a derivada formal: dado um polinômio $f(x) \in K[x]$,
+\[f(x)=a_0 + a_1x + \cdots +a_nx^n\]
+a derivada formal de $f$ é o polinômio
+\[Df(x)=a_1 + 2a_2x +\cdots + na_nx^{n-1}\]
+em  $K[x]$. A derivada formal herda várias propriedades da derivada usual em $\R$, por exemplo $D(f+g)=Df+Dg$ e $D(fg)=(Df)g + f(Dg)$. \par 
+Claramente $D$ é linear. Além disso,
+\begin{align*}
+    D(x^k f) &= D(a_0x^k + \cdots + a_nx^{n+k}) \\
+    &= ka_0x^{k-1} + (k+1)a_1x^{k} + \cdots + (n+k)a_nx^{n+k-1} \\
+    &= kx^{k-1}\left[ a_0 + a_1x + \cdots + a_nx^n \right] \\
+    &\; \; \; + x^k\left[ a_1 + 2a_2x + \cdots + na_nx^{n-1} \right] \\
+    &= (Dx^k)f+x^k(Df)
+\end{align*}
+Assim, a partir da linearidade, temos $D(fg) = (Df)g+f(Dg)$. \par 
+Afirmamos que uma raiz $\alpha$ de $f$ é múltipla no seu corpo de decomposição se e somente se $f$ e $Df$ têm fator comum não constante em $K[x]$. De fato, seja $\Sigma$ o corpo de decomposição para $f$ e suponha $f(x)=(x-\alpha)^2g(x) \in \Sigma[x]$. Então $Df = 2(x-\alpha)g(x) + (x-\alpha)^2 Dg=(x-\alpha)\left[ 2g(x)+(x-a\alpha)Dg \right] \in \Sigma[x]$. Seja $m_{\alpha}$ o polinômio minimal de $\alpha$ sobre $K$. Logo $m_{\alpha}$ é um fator comum entre $f$ e $Df$ em $K[x]$. \par 
+Por outro lado, se $f$ não tem raízes múltiplas, suponha que $f$ e $Df$ têm um fator comum (não constante) em $K[x]$ e seja $\alpha$ raiz deste fator. Então $f=(x-\alpha)g$ em $\Sigma[x]$ e $Df = (x-\alpha)h$ em $\Sigma[x]$. Assim, $Df = (x-\alpha)Dg + g = (x-\alpha)h$. Portanto $(x-\alpha)$ divide $g$, e $(x-\alpha)^2$ divide $f$, mostrando que $\alpha$ é raiz múltipla em $\Sigma$. Vamos agora para a demonstração da Proposição~\ref{prop:separabilidade}:
+\begin{proof}
+Para $f \in K[x]$ ser irredutível e inseparável, então $f$ e $Df$ têm fator comum não constante. Como $f$ é irredutível e $Df$ tem grau menor do que $f$, temos $Df=0$. Assim, se \[f(x)=a_0 + \cdots + a_nx^n\] temos que $ma_m =0$, para todo $m>0$. \par
+Em característica 0, isso implica $a_m=0$, para todo $m$. Em característica $p>0$, temos que $a_m =0$ se $p$ não divide $m$. Tomemos $k_i = a_ip$, e segue o resultado.
+\end{proof}
+O teorema a seguir nos permite relacionar qualquer extensão separável e finita com uma extensão algébrica simples. Assim, pelo Teorema~\ref{teo:isomorf}, temos que $L \simeq K[x]/\langle m \rangle$, para algum polinômio irredutível $m$ sobre $K$. O resultado foi extraído de \cite[Teorema 1.2.6, p.15]{tese:primitivo}.
+
+\begin{teo}[Teorema do Elemento Primitivo]
+\label{teo:elprimitivo}
+Seja $L\mid_K$ uma extensão de corpos finita e separável. Então $L=K(\alpha)$ para algum $\alpha \in L$.
+\begin{proof}
+Seja $L= K(\alpha_1, \dots,\alpha_n)$. Para demonstrar que $L$ é uma extensão simples de $K$, vamos utilizar indução em $n$. Se $n=1$, não há nada a demonstrar, pois $L=K(\alpha_1)$. Suponha que $M=F(\alpha_1,\dots,\alpha_{n-1})$ é uma extensão simples de $K$, isto é, $M = K(\beta)$, para algum $\beta \in M$. Então $L = M(\alpha_n) = K(\beta, \alpha_n)$. Assim, temos nossa demonstração reduzida ao caso $n=2$. \par 
+Digamos que $L$ é gerado por dois elementos $\alpha$ e $\beta$. Sejam $f(x)$ e $g(x)$ os polinômios minimais de $\alpha$ e $\beta$ sobre $K$, e seja $\Sigma$ o corpo de decomposição destes polinômios. Sejam $\alpha_1 = \alpha, \alpha_2 \dots, \alpha_r$ e $\beta_1 = \beta, \beta_2, \dots,\beta_s$ as raízes de $f$ e $g$, respectivamente. Como $f$ e $g$ são separáveis, temos que as raízes são todas distintas. Consideremos agora as seguintes equações em $x$:
+\[\alpha_i + x \beta_j = \alpha + x \beta,\]
+com $1\leq i \leq r$ e $2 \leq j \leq n$. Estas equações têm exatamente uma solução no fecho normal $\bar{K}$, \[x = \dfrac{\alpha - \alpha_i}{\beta_j - \beta}.\]
+
+Seja $k$ um elemento de $K$ que não seja solução destas equações, e tomemos $\gamma = \beta + k \alpha$.  \par 
+Vamos mostrar que a extensão $L$ é gerada pela adjunção de $\gamma$, isto é, $K(\alpha, \beta) = K (\gamma)$. Como $\gamma \in K(\alpha, \beta)$, temos que $K(\gamma) \subset K(\alpha,\beta)$. Agora, basta mostrarmos que $\alpha$ e $\beta$ pertencem a $K(\gamma)$. \par 
+Para mostrar que $\beta \in K(\gamma)$, vamos mostrar que $\alpha$ é raiz de um polinômio de grau 1 sobre $K(\gamma)$. Consideremos os polinômios $f$ e $g$ como anteriormente. Temos que $f(x)$ e $h(x) = g(\gamma-kx)$ são polinômios sobre $K(\gamma)$. Dada a forma como $h(x)$ foram escolhido, $\alpha$ é raiz de ambos os polinômios, pois $h(\alpha) = g(\gamma - k\alpha) = g(\beta) = 0$. Assim, o máximo divisor comum destes polinômios é divisível por $x-\alpha$ em $\bar{K}[x]$, admitindo portanto a raiz $\alpha$. Como $f$ não tem raízes múltiplas, seu máximo divisor comum também não as tem, ou seja, $\alpha$ é uma raiz simples. Mas, pela escolha de $k$, os polinômios $f(x)$ e $h(x)$ não têm outra raíz em comum, dado que as raízes de $f(x)$ são $\alpha_i$, com $i \in \{1,\dots, r\}$, e $\gamma - k\alpha_i \neq \beta_j$, para todo $j\in \{2,\dots, s\}$. Portanto, o máximo divisor comum é um polinômio sobre $K(\gamma)$, o corpo dos coeficientes de $f(x)$ e $h(x)$. Portanto, $\alpha$ é a raiz de um polinômio de grau 1 sobre $K(\gamma)$, ou seja, $\alpha \in K(\gamma)$. Assim, $\gamma - k\alpha = \beta \in K(\gamma)$.
+\end{proof}
+\end{teo}
+%extensões de galois: normalidade e separabilidade
+%teorema do elemento primitivo
+
+Uma vez que os conceitos de normalidade e separabilidade foram esclarecidos, definimos uma extensão galoisiana e finalizamos a seção enunciando o Teorema de Correspondência de Galois no caso clássico \cite[Theorem 17.23, p.202]{stewart}.
+
+\begin{defn}
+Se $L\mid_K$ é uma extensão de corpos finita, normal e separável, então $L$ é dita \emph{extensão de Galois} de $K$ com grupo de Galois $G = \textrm{Aut}_K(L)$.
+\end{defn}
+
+
+\begin{teo}
+Se $L\mid_K$ é uma extensão de Galois com grupo de Galois $G$, então:
+\begin{enumerate}
+    \item O grupo de Galois $G$ tem ordem $[L:K]$;
+    \item Existe uma correspondência biunívoca, que inverte ordem, entre os subgrupos de $G$ e os subcorpos de $L$ que contém $K$;
+    \item Se $M$ é um corpo intermediário e $M^*$ é o subgrupo dos $M$-automorfismos de $L$, então $[L:M] = \abs{M^*}$ e $[M:K] = \abs{G}/\abs{M^*}$;
+    \item Um corpo intermediário $M$ é uma extensão normal de $K$ se e somente se $M^*$ é um subgrupo normal de $G$;
+    \item Se um corpo intermediário $M$ é uma extensão normal de $K$, então o grupo de Galois de $M\mid_K$ é isomorfo ao grupo quociente $G/M^*$.
+\end{enumerate}
+\end{teo}
+
+A correspondência entre os subgrupos de $G$ e os subcorpos de $L$ que contém $K$ pode ser observada no diagrama a seguir.
+
+\[\begin{tikzcd}[row sep=scriptsize, column sep=scriptsize]
+& L \arrow[leftarrow]{dl}\arrow{rr}\arrow[leftarrow]{dd} & & \{\id{L}\} \arrow{dl}\arrow{dd} \\
+L^H \arrow[crossing over, leftarrow, dashed]{rr}\arrow[leftarrow]{dd} & & H \\
+& M \arrow[leftarrow]{dl}\arrow[dashed]{rr} & & M^* \arrow{dl} \\
+K \arrow{rr} & & G\arrow[crossing over, leftarrow]{uu} \\
+\end{tikzcd}\]
+
+Note que os conceitos de normalidade e separabilidade se apoiam nos resultados sobre polinômios. Para generalizar estes resultados para extensões de anéis comutativos, vamos utilizar as equivalências a seguir, apresentadas em \cite{paques}.
+
+\begin{teo}\label{teo:galoisgeneralizavel}
+Seja $L\mid_K$ uma extensão de corpos e $G$ um grupo finito de $K$-automorfismos de $L$.
+
+Seja $L\rtimes G$ o $L$-espaço vetorial com base $\{\delta_\sigma\mid \sigma \in G\}$, com multiplicação definida por $a_\sigma \delta_\sigma b_\tau \delta_\tau = a_\sigma \sigma(b_\tau) \delta_{\sigma\tau}$ para os elementos geradores e estendida linearmente para os demais elementos.
+
+Então, são equivalentes:
+\begin{enumerate}
+    \item $L^G = K$;
+    \item $L$ é uma extensão de Galois de $K$ e $G$ é o grupo de todos os $K$-automorfismos de $L$;
+    \item O grupo $G$ tem ordem $[L:K]$;
+    \item $L$ é uma extensão finita de $K$ e $\varphi: L\rtimes G \rightarrow \Hom{K}{L}{L}$ é um isomorfismo de $K$-álgebras.
+\end{enumerate}
+\end{teo}
+
+
+\section{Módulos Projetivos}
+Diversos dos resultados apresentados para corpos são provenientes da estrutura de $K$-espaço vetorial da extensão $L$. Para estudarmos a generalização sobre anéis comutativos, precisamos de resultados acerca de módulos.
+Importante ressaltar que, ao longo desta dissertação, os anéis serão anéis comutativos com unidade, exceto quando o contrário estiver explicitamente mencionado.
+% DEFINIÇÕES: módulo, submódulo, módulo quociente
+\begin{defn}
+Seja $R$ um anel comutativo com unidade. Um grupo abeliano $M$ é dito \emph{$R$-módulo} se existe uma ação linear $R \times M \rightarrow M$ compatível com a multiplicação de $R$. Ou seja, dados $r, r_1, r_2 \in R$ e $m, m_1, m_2 \in M$
+\begin{align*}
+    (r_1 + r_2) m &= r_1 m + r_2  m \\
+    r  (m_1+m_2) &= r  m_1 + r  m_2 \\
+    r_1  (r_2  m) &= (r_1  r_2)  m \\
+    1_R  m &= m 
+\end{align*}
+Um \emph{$R$-submódulo de $M$} é um subgrupo $M'$ de $M$ fechado sobre a ação de $R$. Além disso, o grupo quociente $M/M'$ herda a estrutura de $R$-módulo pela ação $r (m + M') = r m + M'$.
+\end{defn}
+Alguns exemplos de $R$-módulos são os ideais de $R$ -- inclusive o próprio anel $R$ -- e os polinômios com coeficientes em $R$. Além disso, se existe um homomorfismo de anéis $f: S \rightarrow R$, então um $R$-módulo $M$ também é um $S$-módulo, pela ação definida por $(s, m)\mapsto f(s) m$. \par 
+% DEFINIÇÕES: conjunto gerador, módulo finitamente gerado
+Se $x$ é um elemento de $M$, os múltiplos de $x$ formam um submódulo de $M$, denotado por $Rx$. Se $M=\sum_{i \in I}Rx_i$, os elementos $x_i$'s são chamados de \emph{geradores} de $M$. Se existe um conjunto finito de geradores de $M$, então $M$ é dito \emph{finitamente gerado}. Por exemplo, o anel $R[x]$ dos polinômios sobre $R$ não é finitamente gerado, mas seu submódulo formado pelos polinômios de grau menor ou igual a $n$ é. \par
+% DEFINIÇÕES: soma direta, módulo livre
+Se $M$ e $N$ são $R$-módulos, a \emph{soma direta} $M\oplus N$ é o conjunto de todos os pares $x+y$, com $x \in M$ e $y\in N$, e definimos as operações de adição e multiplicação por escalar da forma usual. De forma mais geral, se $(M_i)_{i\in I}$ é uma família de $R$-módulos, podemos definir a soma direta $\bigoplus_{i \in I}M_i$; seus elementos são famílias $\sum_{i\in I}x_i$ tais que $x_i \in M_i$, para cada $i \in I$, e quase todos os $x_i$ são 0 -- isto é, $x_i \neq 0$ apenas para um número finito de índices $i \in I$. \par
+Dizemos que um $R$-módulo $M$ é \emph{livre} se é isomorfo a um $R$-módulo da forma $\bigoplus_{i \in I}M_i$, com cada $M_i \simeq R$. Assim, um $R$-módulo livre finitamente gerado é isomorfo a $R^n = R\oplus \cdots \oplus R$. \par
+Além disso, se $M$ é um $R$-módulo finitamente gerado, então sejam $x_1,\dots,$ $x_n$ geradores de $M$, e defina $\phi: R^n\rightarrow M$ por $\phi(r_1,\dots,r_n)=\sum_{i=1}^{n}r_i x_i$. Então $\phi$ é um homomorfismo de $R$-módulos sobrejetivo, e portanto $M\simeq R^n/\ker \phi $. \par
+Por outro lado, se temos um epimorfismo $\phi: R^n \rightarrow M$, e \[e_i = (0,\dots,1,\dots,0)\] então os $e_i$'s ($1\leq i \leq n$) geram $R^n$ e o conjunto formado pelas suas respectivas imagens $\phi(e_i)$ gera $M$. Logo, $M$ é finitamente gerado. Assim, temos a seguinte proposição, que nos permite caracterizar os módulos finitamente gerados.
+\begin{prop}\cite[II,Propositon 2.3]{atiyah}
+$M$ é um $R$-módulo finitamente gerado se e somente se $M$ é isomorfo a um quociente de $R^n$, para algum $n>0$.
+\end{prop}
+% DEFINIÇÕES: sequências exatas, módulos planos, módulo de representação finita
+Seja \[\cdots \rightarrow M_{i-1}\xrightarrow{f_i}M_i \xrightarrow{f_{i+1}}M_{i+1}\rightarrow \cdots\] uma sequência de $R$-módulos e $R$-homomorfismos. Dizemos que essa é uma sequência \emph{exata em $M_i$} se $\textrm{Im}(f_i) = \ker f_{i+1} $; se a sequência é exata em cada $M_i$, dizemos apenas que a sequência é exata. Note que $0 \rightarrow M' \xrightarrow{f} M$ é exata se e somente se $f$ é um monomorfismo, e $M \xrightarrow{g} M' \rightarrow 0$ é exata se e somente se $g$ é um epimorfismo. Além disso, a sequência \[0 \rightarrow M' \xrightarrow{f} M \xrightarrow{g} M'' \rightarrow 0\] é exata se e somente se $f$ é injetivo, $g$ é sobrejetivo e $g$ induz um isomorfismo \[\textrm{Coker}(f)=M/f(M')= M/\ker g \simeq M'' = \textrm{Im}(g)\] \par
+A Proposição a seguir, extraída de \cite[1.3.6]{alveri}, traz um resultado semelhante ao Teorema do Núcleo-Imagem, de espaços vetoriais, para o caso de módulos.
+\begin{prop}\label{prop:alveri}
+Seja $R$ um anel e consideremos a sequência exata curta de $R$-módulos
+\[0 \rightarrow N \xrightarrow{f} M \xrightarrow{g} P \rightarrow 0.\] Então, as seguintes afirmações são equivalentes:
+\begin{enumerate}
+    \item $M\simeq N\oplus P$;
+    \item Existe um $R$-homomorfismo $\psi:M\rightarrow N$, tal que $\psi\circ f = \id{N}$;
+    \item Existe um $R$-homomorfismo $\varphi:P \rightarrow M$ tal que $g\circ \varphi = \id{P}$.
+\end{enumerate}
+\begin{proof}
+A seguir, segue a demonstração da equivalência $(1\Leftrightarrow 2)$. A equivalência $(1\Leftrightarrow 3)$ pode ser demonstrada com uma argumentação semelhante. \par
+Como $f$ é injetivo, segue que $N\simeq f(N)$ e assim, $M\simeq N \oplus P\simeq f(N) \oplus P$. Desta forma, dado $m \in M$, temos $m=m_1+m_2$, com $m_1 \in f(N)$ e $m_2 \in P$. Novamente pela injetividade de $f$, segue que existe um único $n \in N$ tal que $f(n)=m_1$. Definimos então $\psi: M \rightarrow N$ por $\psi(m)=n$. Segue da escrita única e da injetividade de $f$ que $\psi$ está bem definida é um $R$-homomorfismo. %de fato...
+Mais ainda, para todo $n \in N$, $f(n)$ se escreve de forma única como $f(n) +0 \in f(N)\oplus P$, e onde segue $\psi \circ f = \id{N}$. \par 
+Suponhamos que exista $\psi:M \rightarrow N$ tal que $\psi \circ f = \id{N}$. Neste caso, $M=f(N) \oplus \ker{\psi}$, pois se $m \in M$, tomamos $x = f(\psi(m)) \in M$ e consideramos $y=m-x \in M$. Segue então que \[\psi(y) = \psi(m-x) \psi(m) - \psi(f(\psi(m))) = \psi(m)-\psi(m) =0\]
+isto é, $y \in \ker{\psi}$. Logo, $m = x+y \in f(N) + \ker{\psi}$. Além disso, se $z \in f(N) \cap \ker{\psi}$, segue que existe $n\in N$ tal que $f(n)=z$, o que implica $n = \psi \circ f(n) = \psi(z) = 0$, de onde decorre $z=0$. Portanto, $M=f(N) \oplus \ker{\psi}$. \par 
+Resta mostrar que $P\simeq \ker{\psi}$. Basta observar que \[P \simeq \dfrac{M}{\ker{g}} = \dfrac{f(N) \oplus \ker{\psi}}{f(N)} \simeq \ker{\psi}.\]
+\end{proof}
+\end{prop}
+Agora, vamos descrever algumas propriedades do produto tensorial sobre sequências exatas. Em \cite[II, p.28]{atiyah}, \citeauthor{atiyah} desenvolvem um isomorfismo canônico \[\Hom{}{M\otimes N}{P} \simeq \Hom{}{M}{\Hom{}{N}{P}}\] a partir do qual demonstramos que o produto tensorial é exato -- isto é, leva sequência exatas em sequências exatas -- sob certas condições. Por exemplo, seja \[M' \xrightarrow{f} M \xrightarrow{g} M'' \rightarrow 0\] uma sequência exata de $R$-módulos e $N$ um $R$-módulo qualquer. Então a sequência \[M'\otimes N \xrightarrow{f\otimes 1} M\otimes N \xrightarrow{g\otimes 1} M''\otimes N \rightarrow 0\] é exata \cite[II, Proposition 2.18.]{atiyah}. Porém, isso não é verdade para qualquer $R$-módulo $N$ e qualquer sequência. De fato, considere $R=\Z$ e a sequência exata \[0 \rightarrow \Z \xrightarrow{f} \Z\] onde $f(x)=2x$. Se $N=\Z_2$, a sequência não é exata, pois para qualquer $x\otimes y \in \Z \otimes \Z_2$, temos $(f\otimes 1)(x\otimes y)=2x\otimes y = x \otimes 2y = 0$, e $\Z\otimes N \neq 0$. \par 
+
+Assim, a aplicação $M \mapsto M\otimes_R N$ nem sempre preserva a exatidão da sequência. Se esta aplicação preservar exatidão, isto é, se tensorizar uma sequência com $N$ transforma qualquer sequência exata em outra sequência exata, então $N$ é dito um $R$-módulo \emph{plano}.
+\begin{prop}
+Seja $N$ um $R$-módulo. São equivalentes:
+\begin{enumerate}
+    \item $N$ é plano;
+    \item Se $0 \rightarrow M' \rightarrow M \rightarrow M'' \rightarrow 0$ é uma sequência exata de $R$-módulos, a sequência tensorizada $0 \rightarrow M'\otimes N \rightarrow M\otimes N \rightarrow M''\otimes N \rightarrow 0$ também é exata;
+    \item Se $f:M'\rightarrow M$ é injetiva, então $f\otimes 1: M'\otimes N\rightarrow M\otimes N$ é injetiva;
+    \item Se $f:M'\rightarrow M$ é injetiva e $M, M'$ são finitamente gerados, então $f\otimes 1: M'\otimes N \rightarrow M \otimes N$ é injetiva.
+\end{enumerate}
+\begin{proof}
+$(1\Leftrightarrow 2)$ é direta da definição, quebrando sequências exatas longas em sequências exatas curtas. \par
+$(2 \Leftrightarrow 3)$ é consequência de \cite[II, Proposition 2.18.]{atiyah}. \par
+$(3 \Rightarrow 4)$ é direta. \par
+$(4 \Rightarrow 3)$ Seja $f:M'\rightarrow M$ injetiva e $u=\sum_{i \in I}x_i \otimes y_i \in \ker(f\otimes 1)$, ou seja, $\sum_{i\in I} f(x_i)\otimes y_i =0$. Seja $M_0'$ o submódulo de $M'$ gerado por $x_i$ e seja $u_0= \sum_{i\in I}x_i \otimes y_i$ como um elemento de $M_0'\otimes N$. Então existe um submódulo finitamente gerado $M_0$ de $M$ que contém $f(M_0')$ e tal que $(f\otimes 1)(u_0) =0$ como elemento de $M_0 \otimes N$. Se $f_0: M_0' \rightarrow M_0$ é a restrição de $f$, isso significa que $(f_0 \otimes 1)(u_0)=0$. Como $M_0$ e $M_0'$ são finitamente gerados, $f_0\otimes 1$ é injetiva e portanto $u_0=0$, logo $u=0$; assim, $f\otimes 1$ é injetiva.
+\end{proof}
+\end{prop}
+
+Se $L_0$ e $L_1$ são $R$-módulos livres, dizemos que a sequência exata de $R$-módulos $L_1 \rightarrow L_0 \rightarrow M \rightarrow 0$ é uma \emph{apresentação} de um $R$-módulo $M$. Essa apresentação é dita finita se $L_0$ e $L_1$ são finitamente gerados, e $M$ é dito um $R$-módulo de apresentação finita. Em \cite[I, \textsection 2.8, p.20]{bourbaki}, \citeauthor{bourbaki} apresenta o resultado a seguir.
+\begin{prop}
+\begin{enumerate}
+    \item Todo módulo finitamente apresentado é finitamente gerado;
+    \item Todo módulo finitamente gerado projetivo admite apresentação finita.
+\end{enumerate}
+\end{prop} \par
+Claramente, a primeira afirmação decorre diretamente das definições. \par 
+Um $R$-módulo $P$ é projetivo se é somando direto de um $R$-módulo livre, isto é, se existem um $R$-módulo livre $L$ e um submódulo $Q \subset L$ tais que $L=P\oplus Q$. Assim, suponha $M$ um $R$-módulo projetivo finitamente gerado; então é somando direto de um $R$-módulo livre $L_0$, e o núcleo $N$ do epimorfismo $L_0 \rightarrow M$ é isomorfo a um quociente de $L_0$, e portanto finitamente gerado. Assim, dada a sequência $N \rightarrow L_0 \rightarrow M \rightarrow 0$, temos que $M$ admite apresentação finita. \par 
+O teorema a seguir traz equivalências para a definição de módulo projetivo, e nos permite uma melhor compreensão sobre estes módulos.
+\begin{teo} \cite[Teorema 2.1.]{paques} \label{teo:mproj} 
+Seja $P$ um $R$-módulo. As seguintes proposições são equivalentes:
+\begin{enumerate}
+    \item $P$ é projetivo;
+    \item Dado o diagrama
+    \begin{center}
+    \begin{tikzcd}
+                          & P \arrow{d}{\sigma} &   \\
+    M \arrow{r}{\theta} & N \arrow{r}           & 0
+    \end{tikzcd}    
+    \end{center}
+de $R$-módulos, onde $\theta$ é sobrejetivo, existe um homomorfismo $\sigma':P\rightarrow M$ tal que $\sigma'\theta=\sigma$.
+    \item Se $0\rightarrow M' \xrightarrow{\beta} M \xrightarrow{\alpha} N \rightarrow 0$ é uma sequência exata de $R$-módulos, então a sequência \[0\rightarrow \Hom{R}{P}{M'} \xrightarrow{\beta^*} \Hom{R}{P}{M} \xrightarrow{\alpha^*} \Hom{R}{P}{N} \rightarrow 0\] é exata, onde $\beta^*$ e $\alpha^*$ são dadas por $\beta^*(f) = \beta\circ f$ e $\alpha^*(g) = \alpha \circ g$.
+    \item Toda sequência exata de $R$-módulos $M\xrightarrow{\phi} P \rightarrow 0$ cinde, isto é, existe um homomorfismo de $R$-módulos $\psi:P \rightarrow M$ tal que $\phi\psi = \id{P}$.
+    \item Existem conjuntos $\{p_i \mid i \in I\}$ em $P$ e $\{f_i \mid i \in I\}$ em $P^* = \Hom{R}{P}{R}$ tais que para todo $p\in P$, $p = \sum_{i \in I}f_i(p)p_i$, onde $f_i(p) =0$ exceto para um número finito de índices.
+\end{enumerate}
+\begin{proof}
+$(1 \Rightarrow 2)$ Consideremos o diagrama acima, onde $\theta$ é sobrejetivo. Como $P$ é somando direto de um $R$-módulo livre $L$, existe um submódulo $Q$ de $L$ tal que $L=P\oplus Q$. Seja $\pi: L \rightarrow P$ a projeção canônica, e consideremos uma base $\{e_i \mid i \in I\}$ de $L$, e seja $n_i = \sigma(\pi(e_i)) \in N$, para cada $i\in I$, e seja $m_i \in M$ tal que $\theta(m_i) = n_i$, para cada $i \in I$. Definimos $\tau: L \rightarrow M$ por $\tau\left(\sum_{i\in I}r_ie_i \right)=\sum_{i\in I}r_i m_i$. Note que $r_i=0$ para quase todo $i \in I$. Evidentemente $\tau$ é $R$-linear e $\theta\circ \tau=\sigma \circ \pi$, logo basta tomarmos $\sigma ' = \tau \mid_P$. 
+
+$(2 \Rightarrow 3)$ Consideremos a sequência exata de $R$-módulos \[0 \rightarrow M' \xrightarrow{\beta} M \xrightarrow{\alpha} N \rightarrow 0\]
+Sejam $\beta^*, \alpha^*$ como na hipótese. Se $\beta^*(f)=0$ para algum $f \in \Hom{R}{P}{M'}$, então $\beta(f(p))=0$ para todo $p \in P$. Assim, $f(p) \in \ker\beta=0$, logo $f = 0$, e $\beta^*$ é injetiva. \par
+Seja $g \in \Hom{R}{P}{M}$. Se $g=\beta\circ f$ para algum $f\in \Hom{R}{P}{M'}$, então $\alpha^*(g) = \alpha\circ \beta \circ f = 0$, logo $g \in \ker\alpha^*$. Assim, $\beta^{*}(\Hom{R}{P}{M'})\subset \ker\alpha^*$. \par
+Por outro lado, suponha $g \in \ker\alpha^*$. Então $\alpha\circ g = \alpha^*(g) = 0$, o que implica $\alpha \circ g(p)=0$ para todo $p \in P$. Logo $g(p)\in \ker\alpha=\beta(M')$, para qualquer $p \in P$. Portanto, existe $x_p \in M'$ tal que $\beta(x_p)=g(p)$, para todo $p \in P$ e definimos $f: P \rightarrow M'$ por $f(p)=x_p \in M'$. $f$ é um homomorfismo de $R$-módulos e temos que $\beta^*(f)(p)=(\beta\circ f)(p)=\beta(x_p)=g(p)$ para todo $p \in P$, ou seja, $g=\beta^*(f)$ pertence a $\beta^*(\Hom{R}{P}{M'})$. Assim, $\beta^*(\Hom{R}{P}{M'})=\ker\alpha^*$. \par
+Por fim, seja $\gamma \in \Hom{R}{P}{N}$. Então temos que existe um homomorfismo $\gamma^*$ em $\Hom{R}{P}{M}$ tal que $\alpha\circ \gamma^* = \gamma$, ou seja $\alpha^*(\gamma^*)=\gamma$. Assim, a sequência
+\[0\rightarrow \Hom{R}{P}{M'} \xrightarrow{\beta^*} \Hom{R}{P}{M} \xrightarrow{\alpha^*} \Hom{R}{P}{N} \rightarrow 0\] é exata.
+
+$(3 \Rightarrow 4)$ Suponhamos que a sequência de $R$-módulos $M\xrightarrow{\phi} P \rightarrow 0$ é exata. Podemos estendê-la para a sequência exata \[0 \rightarrow \ker\phi \rightarrow M \xrightarrow{\phi} P \rightarrow 0\] \par
+Por (3) sabemos que a sequência \[0 \rightarrow \Hom{R}{P}{\ker\phi} \rightarrow \Hom{R}{P}{M} \xrightarrow{\phi^*} \Hom{R}{P}{P} \rightarrow 0 \] é exata. Logo, dado $\id{P} \in \Hom{R}{P}{P}$, existe $\psi \in \Hom{R}{P}{M}$ tal que $\phi^*(\psi)=\id{P}$, isto é, $\phi\circ \psi = \id{P}$. Portanto, a sequência $M\xrightarrow{\phi}P\rightarrow 0$ cinde.
+
+$(4 \Rightarrow 5)$ Sejam $\{p_i \mid i \in I\}$ geradores de $P$ como $R$-módulo. Seja $L$ um $R$-módulo livre com base $\{e_i \mid i \in I\}$. Definimos o homomorfismo de $R$-módulos $\rho: L \rightarrow P$ dado por $\rho(e_i)=p_i$, para todo $i \in I$. Obviamente $L\xrightarrow{\rho} P \rightarrow 0$ é exata e cinde. Então existe um homomorfismo $\delta: P \rightarrow L$ tal que $\rho \circ \delta = \id{P}$. \par
+Seja $\pi_i:L \rightarrow R$ dada por $\pi_i(\sum_{j \in I}r_j e_j)=r_i$ e defina $f_i: P \rightarrow R$ por $f_i = \pi_i \circ \delta$, para todo $i \in I$. Evidentemente $f_i \in P^*$, para todo $i\in I$. \par 
+Seja $p \in P$. Então, temos \[\delta(p)=\sum_{i\in I}f_i(p)e_i\] com $f_i(p)=r_i$, nulos exceto por um número finito de índices $i$, e
+\begin{align*}
+p &= \rho \circ \delta (p) = \rho \left(\sum_{i\in I}f_i(p)e_i \right) \\
+&= \sum_{i \in I} f_i(p)\rho(e_i) = \sum_{i \in I} f_i(p)p_i
+\end{align*}
+
+$(5 \Rightarrow 1)$ Sejam $P$ um $R$-módulo e $\{p_i \mid i \in I\} \subset P$ e $\{f_i \mid i \in I\}\subset P^*$ famílias de elementos como em (5). \par
+Seja $L$ um $R$-módulo livre com base $\{e_i\mid i \in I\}$. \par
+Seja $\rho: L \rightarrow P$ o homomorfismo dado por $\rho(e_i)=p_i$, para todo $i \in I$. Como $p= \sum_{i \in I}f_i(p)p_i$, para todo $p \in P$, a família $\{p_i \mid i \in I\}$ gera $P$. Portanto, $\rho$ é sobrejetivo. Seja $\delta: P\rightarrow L$ o homomorfismo dado por $\delta(p)=\sum_{i\in I}f_i(p) e_i$. Logo, $\rho \circ \delta = \id{P}$, pois
+\begin{align*}
+    \rho \circ \delta (p) &= \rho \left( \sum_{i \in I} f_i(p)e_i \right) = \sum_{i \in I} f_i(p) \rho(e_i) \\
+    &= \sum_{i \in I} f_i(p) p_i = p
+\end{align*}
+Assim, concluímos que $P \simeq \delta(P)$ e $L \simeq \delta(P) \oplus \ker\rho$.
+\end{proof}
+\end{teo}
+O teorema a seguir é um resultado apresentado por \citeauthor{bourbaki} e fornece condições para que um módulo à esquerda sobre um anel não necessariamente comutativos seja livre, e o Corolário~\ref{corol:bourbaki} apresenta uma caracterização deste tipo de módulo, mediante determinadas hipóteses.
+
+\begin{defn}
+Seja $A$ um anel. O \emph{radical de Jacobson} de $A$, denotado por $J(A)$, é a intersecção de todos os ideais maximais de $A$.
+\end{defn}
+
+\begin{teo} \label{teo:bourbaki} \cite[II, \textsection 3.2, p.83, Proposition 5]{bourbaki}
+Seja $A$ um anel (não necessariamente comutativo), $I \subset J(A)$ um ideal de $A$ e $M$ um $A$-módulo (à esquerda). Suponha que $M$ tem apresentação finita ou $I$ é nilpotente. \par
+Se $(A/I)\otimes_A M \simeq M/IM$ é um $A/I$-módulo livre (à esquerda) e o homomorfismo canônico $I\otimes_A M \rightarrow M$ é injetivo, então $M$ é um $A$-módulo livre.
+\end{teo}
+
+\begin{corol} \cite[II, \textsection 3.2, p.84, Corollary 2]{bourbaki} \label{corol:bourbaki}
+Seja $A$ um anel (não necessariamente comutativo), $J(A)$ o radical de Jacobson de $A$ e $M$ um $A$-módulo (à esquerda). Suponha que $A/J(A)$ é um corpo, e que uma das condições a seguir é satisfeita:
+\begin{itemize}
+	\item $M$ tem apresentação finita;
+	\item $J(A)$ é nilpotente.
+\end{itemize}
+Então as sequintes propriedades são equivalentes:
+\begin{enumerate}
+	\item $M$ é livre;
+	\item $M$ é projetivo;
+	\item $M$ é plano;
+	\item o homomorfismo canônico $J(A)\otimes_A M \rightarrow M$ é injetivo.
+\end{enumerate}
+\begin{proof}
+As implicações $(1\Rightarrow 2 \Rightarrow 3 \Rightarrow 4)$ são diretas. Como $A/J(A)$ é um corpo $(A/J(A))\otimes_A M$ é um $(A/J(A))$-módulo livre e o Teorema~\ref{teo:bourbaki} mostra que $(4\Rightarrow 1)$.
+\end{proof}
+\end{corol}
+% Anéis e módulos de frações
+Agora vamos observar a construção de anéis de frações e o processo de localização. Sejam $R$ um anel comutativo com unidade e $S$ um subconjunto multiplicativamente fechado de $R$ tal que $1 \in S$. Vamos definir uma relação em $R$ por \[(a,s) \equiv (b,t) \Leftrightarrow (at-bs)u = 0,\] para algum $u \in S$. Podemos ver que esta é uma relação reflexiva e simétrica com facilidade. Sejam $(a,r) \equiv (b,s)$ e $(b,s) \equiv (c,t)$. Então, existem $u, v \in S$ tais que $(as-br)u = 0$ e $(bt-cs)v = 0$. Assim, temos que $asu = bru$ e $btv = csv$; multiplicando a primeira equação por $tv$, e a segunda por $ru$, obtemos a igualdade $brutv = asutv = csvru$. Assim, $(at-cr)suv = 0$. Como $S$ é multiplicativamente fechado, temos que $suv \in S$ e portanto $(a,r)\equiv (c,t)$. Logo a relação é transitiva e, consequentemente, de equivalência. \par 
+Como $\equiv$ é uma relação de equivalência, podemos observar as classes de equivalência determinadas por $\equiv$ em $R$. Assim, seja $S^{-1}R$ o conjunto das classes de equivalência de $R$, onde a classe de $(r,s)$ é denotada por $\frac{r}{s}$. Definimos as operações usuais de frações em $S^{-1}R$, o que garante uma estrutura de anel \cite[p.36]{atiyah}. \par
+Seja $\p$ um ideal primo de $R$. Então $R\smallsetminus \p$ é um conjunto multiplicativamente fechado. De fato, como $\p$ é primo, se $xy \in \p$, então $x \in \p$ ou $y \in \p$. Assim, se $x, y \in R\smallsetminus \p$, então $xy \in R\smallsetminus\p$, caso contrário $x$ ou $y$ seriam elementos de $\p$, e isto é uma contradição. Além disso, $1 \in R\smallsetminus\p$, pois se $1 \in \p$, então $\p = R$.
+% ATIYAH: proposição 3.5
+Seja $\p$ um ideal primo de $R$,\label{localiza} e $M$ um $R$-módulo. Denotamos por $M_\p = S^{-1}M$, onde $S=R\smallsetminus \p$, a localização de $M$ com respeito a $\p$. Então $R_\p$ é uma $R$-álgebra, $M_\p$ é um $R_\p$-módulo e $M_\p \simeq R_\p\otimes M$ são $R_\p$-módulos isomorfos \cite{atiyah}. De fato, a aplicação
+\begin{align*}
+    R_\p \times M &\longrightarrow M_\p \\
+    (r/s, m) &\longmapsto rm/s
+\end{align*}
+é $R$-bilinear, e a propriedade universal do produto tensorial induz um $R$-homomorfismo
+\begin{align*}
+    f: R_\p \otimes M &\longrightarrow M_\p \\
+    \frac{r}{s}\otimes m &\longmapsto \frac{rm}{s}
+\end{align*}
+Além disso, temos que qualquer elemento de $R_\p \otimes M$ é da forma $\frac{1}{s}\otimes m$. Seja $\sum_{i=1}^{n} \left( r_i / s_i \right) \otimes m_i$ qualquer elemento de $R_\p\otimes M$. Sejam $s = \prod_{i=1}^{n} s_i$ e $t_i = \prod_{j=1, j\neq i}^{n} s_j$. Então 
+\[\sum_{i=1}^{n} \dfrac{r_i}{s_i} = \sum_{i=1}^{n} \dfrac{t_i r_i}{s} = \dfrac{1}{s}\sum_{i=1}^{n} t_i r_i \]
+\[\Rightarrow \sum_{i=1}^{n} \frac{r_i}{s_i} \otimes m_i = \dfrac{1}{s}\sum_{i=1}^{n} t_i r_i \otimes m_i = \dfrac{1}{s} \otimes \sum_{i=1}^{n} t_i r_i m_i \]
+Suponha $f\left( (1/s) \otimes m\right) =0$. Então, $m/s = 0$, logo existe $k \in A\smallsetminus \p$ tal que $km=0$. Assim, temos que 
+\[\dfrac{1}{s}\otimes m = \dfrac{k}{sk}\otimes m = \dfrac{1}{sk}\otimes km = \dfrac{1}{sk} \otimes 0 = 0\]
+e portanto $f$ é um isomorfismo.
+%================================ GALOIS SOBRE CORPOS ==================================
+
